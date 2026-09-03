@@ -13,18 +13,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://your-name-design-portfolio-demo.hikatanhui0624.chatgpt.site'),
   title: 'Your Name — Design Portfolio',
   description: 'A multidisciplinary design portfolio across research, visual systems, and illustration.',
   openGraph: {
     title: 'Your Name — Design Portfolio',
     description: 'Selected work across research, visual systems, and illustration.',
-    images: [{ url: '/og.png', width: 1200, height: 630 }],
+    images: [{ url: 'https://your-name-design-portfolio-demo.hikatanhui0624.chatgpt.site/og.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Your Name — Design Portfolio',
     description: 'Selected work across research, visual systems, and illustration.',
-    images: ['/og.png'],
+    images: ['https://your-name-design-portfolio-demo.hikatanhui0624.chatgpt.site/og.png'],
   },
 };
 
