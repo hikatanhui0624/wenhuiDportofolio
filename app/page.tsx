@@ -145,7 +145,7 @@ export default function Home() {
       <section className="about-section" id="about">
         <div className="section-kicker light">02 / ABOUT <span>基本信息</span></div>
         <div className="about-grid">
-          <div className="portrait-placeholder"><span>PORTRAIT<br />PLACEHOLDER</span><i>ADD YOUR PHOTO</i></div>
+          <div className="portrait-placeholder"><span>PORTRAIT / 01<br />PERSONAL ARCHIVE</span><i>PHOTO TO BE ADDED</i></div>
           <div className="about-copy"><p className="eyebrow">PROFILE / 个人信息</p><h2>A designer working<br />between <em>systems</em><br />and stories.</h2><p>这是一段个人介绍占位。后续将补充你的设计方向、研究兴趣、教育背景与职业目标。</p></div>
           <div className="info-stack">
             <article><span>01</span><h3>DESIGN FIELDS</h3><p>Visual Design<br />Service Design<br />Illustration</p></article>
