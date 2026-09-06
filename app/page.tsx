@@ -43,17 +43,26 @@ function FolderNavigator() {
   const move = (e:React.PointerEvent) => {
     if (!drag.current.active || !track.current) return;
     const delta = e.clientX - drag.current.x;
-    if (Math.abs(delta) > 5) drag.current.moved = true;
+    if (Math.abs(delta) > 10) drag.current.moved = true;
     track.current.scrollLeft = drag.current.left - delta;
   };
   const end = () => { drag.current.active = false; };
+  const openFolder = (e:React.MouseEvent<HTMLAnchorElement>, href:string) => {
+    e.preventDefault();
+    if (drag.current.moved) {
+      drag.current.moved = false;
+      return;
+    }
+    document.querySelector(href)?.scrollIntoView({ behavior:'smooth', block:'start' });
+    window.history.replaceState(null, '', href);
+  };
 
   return (
     <div className="folder-nav">
       <p className="folder-instruction">DRAG FILES TO EXPLORE <span>↔</span></p>
       <div className="folder-track" ref={track} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end}>
         {folders.map((folder) => (
-          <a className={`folder-card ${folder.tone}`} href={folder.href} key={folder.number} onClick={e=>drag.current.moved && e.preventDefault()} aria-label={`进入${folder.cn}`}>
+          <a className={`folder-card ${folder.tone}`} href={folder.href} key={folder.number} onClick={e=>openFolder(e, folder.href)} aria-label={`进入${folder.cn}`}>
             <div className="folder-back" />
             <img className="folder-objects" src={folder.image} alt="" draggable={false} />
             <div className="folder-front">
@@ -125,7 +134,12 @@ export default function Home() {
           <p className="hero-subtitle">Ideas Made Visible</p>
           <h1>
             <span className="welcome-line">Welcome to</span>
-            <span className="portfolio-line"><em>文慧’s</em> Portfolio</span>
+            <span className="portfolio-line">
+              <em>文慧’s</em>
+              <span className="collage-word" aria-label="Portfolio">
+                <i>P</i><i>o</i><i>r</i><i>t</i><i>f</i><i>o</i><i>l</i><i>i</i><i>o</i>
+              </span>
+            </span>
           </h1>
           <p className="intro">设计 · 插画 · 视觉叙事<br />SELECTED WORK, 2022—2026</p>
         </div>
