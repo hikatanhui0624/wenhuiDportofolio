@@ -25,6 +25,50 @@ const illustrationProjects: Project[] = [
   { number:'I.04', title:'SMALL UNIVERSE', cn:'微小宇宙', year:'2024', type:'PERSONAL WORK', tone:'acid' },
 ];
 
+const folders = [
+  { number:'01', title:'ABOUT', cn:'基本信息', note:'WHO I AM', href:'#about', image:'/folder-about-objects.png', tone:'folder-pink' },
+  { number:'02', title:'MASTER’S WORK', cn:'硕士期间作品', note:'RESEARCH · SERVICE · INTERACTION', href:'#masters', image:'/folder-masters-objects.png', tone:'folder-sage' },
+  { number:'03', title:'BACHELOR’S WORK', cn:'本科期间作品', note:'VISUAL · BRAND · INTERACTION', href:'#bachelors', image:'/folder-bachelors-objects.png', tone:'folder-gold' },
+  { number:'04', title:'ILLUSTRATION', cn:'数字绘画 / 插画', note:'DRAWING · PERSONAL WORK', href:'#illustration', image:'/folder-illustration-objects.png', tone:'folder-lilac' },
+];
+
+function FolderNavigator() {
+  const track = useRef<HTMLDivElement>(null);
+  const drag = useRef({ active:false, x:0, left:0, moved:false });
+  const start = (e:React.PointerEvent) => {
+    if (!track.current) return;
+    drag.current = { active:true, x:e.clientX, left:track.current.scrollLeft, moved:false };
+    track.current.setPointerCapture(e.pointerId);
+  };
+  const move = (e:React.PointerEvent) => {
+    if (!drag.current.active || !track.current) return;
+    const delta = e.clientX - drag.current.x;
+    if (Math.abs(delta) > 5) drag.current.moved = true;
+    track.current.scrollLeft = drag.current.left - delta;
+  };
+  const end = () => { drag.current.active = false; };
+
+  return (
+    <div className="folder-nav">
+      <p className="folder-instruction">DRAG FILES TO EXPLORE <span>↔</span></p>
+      <div className="folder-track" ref={track} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end}>
+        {folders.map((folder) => (
+          <a className={`folder-card ${folder.tone}`} href={folder.href} key={folder.number} onClick={e=>drag.current.moved && e.preventDefault()} aria-label={`进入${folder.cn}`}>
+            <div className="folder-back" />
+            <img className="folder-objects" src={folder.image} alt="" draggable={false} />
+            <div className="folder-front">
+              <span className="folder-number">{folder.number}</span>
+              <span className="folder-open">OPEN ↗</span>
+              <h2>{folder.title}<small>{folder.cn}</small></h2>
+              <p>{folder.note}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ProjectTrack({ projects, label, onOpen }:{ projects:Project[]; label:string; onOpen:(p:Project)=>void }) {
   const track = useRef<HTMLDivElement>(null);
   const drag = useRef({ active:false, x:0, left:0, moved:false });
@@ -72,16 +116,12 @@ export default function Home() {
     <main>
       <section className="hero" id="home">
         <header className="topbar">
-          <a className="wordmark" href="#home" aria-label="返回首页">YOUR NAME®</a>
+          <a className="wordmark" href="#home" aria-label="返回首页">WENHUI®</a>
           <p className="availability"><span /> AVAILABLE FOR OPPORTUNITIES</p>
           <button className="menu-pill" onClick={()=>setMenuOpen(true)}>INDEX <b>04</b></button>
         </header>
-        <div className="hero-stage" aria-label="作品集主视觉占位">
-          <div className="orbit orbit-one" /><div className="orbit orbit-two" />
-          <div className="specimen specimen-left"><span>01</span></div><div className="specimen specimen-right"><span>04</span></div>
-          <div className="hero-object"><div className="object-label">SELECTED WORK<br />2022—2026</div><div className="object-core" /></div>
-        </div>
-        <div className="hero-copy"><p className="eyebrow">MULTIDISCIPLINARY DESIGNER · PORTFOLIO 2026</p><h1>Ideas, made<br /><em>visible.</em></h1><p className="intro">专注于视觉系统、体验与叙事的设计实践。<br />这里将呈现硕士、本科与个人创作。</p></div>
+        <div className="hero-stage" aria-label="可拖动的作品集章节文件夹"><FolderNavigator /></div>
+        <div className="hero-copy"><p className="hero-subtitle">Ideas Made Visible</p><h1>Welcome to<br /><em>文慧’s</em> Portfolio</h1><p className="intro">设计 · 插画 · 视觉叙事<br />SELECTED WORK, 2022—2026</p></div>
         <a className="scroll-cue" href="#index"><span>SCROLL TO EXPLORE</span><i>↓</i></a>
       </section>
 
@@ -132,7 +172,7 @@ export default function Home() {
           <div><small>PHONE</small><p>+86 000 0000 0000</p></div>
           <a className="top-link" href="#home">BACK TO TOP ↑</a>
         </div>
-        <p className="footer-note">© 2026 YOUR NAME · DESIGNED WITH INTENTION</p>
+        <p className="footer-note">© 2026 WENHUI · DESIGNED WITH INTENTION</p>
       </footer>
 
       <div className={`menu-overlay ${menuOpen ? 'open' : ''}`} aria-hidden={!menuOpen}>

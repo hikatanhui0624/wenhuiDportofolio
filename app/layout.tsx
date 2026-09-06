@@ -14,17 +14,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://your-name-design-portfolio-demo.hikatanhui0624.chatgpt.site'),
-  title: 'Your Name — Design Portfolio',
-  description: 'A multidisciplinary design portfolio across research, visual systems, and illustration.',
+  title: '文慧 — Design Portfolio',
+  description: '文慧的设计作品集：研究、视觉系统与插画创作。',
   openGraph: {
-    title: 'Your Name — Design Portfolio',
-    description: 'Selected work across research, visual systems, and illustration.',
+    title: 'Welcome to 文慧’s Portfolio',
+    description: 'Ideas Made Visible — design, research and illustration.',
     images: [{ url: 'https://your-name-design-portfolio-demo.hikatanhui0624.chatgpt.site/og.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Your Name — Design Portfolio',
-    description: 'Selected work across research, visual systems, and illustration.',
+    title: 'Welcome to 文慧’s Portfolio',
+    description: 'Ideas Made Visible — design, research and illustration.',
     images: ['https://your-name-design-portfolio-demo.hikatanhui0624.chatgpt.site/og.png'],
   },
 };
