@@ -121,7 +121,14 @@ export default function Home() {
           <button className="menu-pill" onClick={()=>setMenuOpen(true)}>INDEX <b>04</b></button>
         </header>
         <div className="hero-stage" aria-label="可拖动的作品集章节文件夹"><FolderNavigator /></div>
-        <div className="hero-copy"><p className="hero-subtitle">Ideas Made Visible</p><h1>Welcome to<br /><em>文慧’s</em> Portfolio</h1><p className="intro">设计 · 插画 · 视觉叙事<br />SELECTED WORK, 2022—2026</p></div>
+        <div className="hero-copy">
+          <p className="hero-subtitle">Ideas Made Visible</p>
+          <h1>
+            <span className="welcome-line">Welcome to</span>
+            <span className="portfolio-line"><em>文慧’s</em> Portfolio</span>
+          </h1>
+          <p className="intro">设计 · 插画 · 视觉叙事<br />SELECTED WORK, 2022—2026</p>
+        </div>
         <a className="scroll-cue" href="#index"><span>SCROLL TO EXPLORE</span><i>↓</i></a>
       </section>
 
