@@ -159,13 +159,29 @@ export default function Home() {
       <section className="about-section" id="about">
         <div className="section-kicker light">02 / ABOUT <span>基本信息</span></div>
         <div className="about-grid">
-          <div className="portrait-placeholder"><span>PORTRAIT / 01<br />PERSONAL ARCHIVE</span><i>PHOTO TO BE ADDED</i></div>
-          <div className="about-copy"><p className="eyebrow">PROFILE / 个人信息</p><h2>A designer working<br />between <em>systems</em><br />and stories.</h2><p>这是一段个人介绍占位。后续将补充你的设计方向、研究兴趣、教育背景与职业目标。</p></div>
-          <div className="info-stack">
-            <article><span>01</span><h3>DESIGN FIELDS</h3><p>Visual Design<br />Service Design<br />Illustration</p></article>
-            <article><span>02</span><h3>EDUCATION</h3><p>Master · 20XX—20XX<br />Bachelor · 20XX—20XX</p></article>
-            <article><span>03</span><h3>SKILLS</h3><p>Research · Strategy<br />Figma · Adobe CC<br />Prototyping · Drawing</p></article>
+          <figure className="portrait-card">
+            <div className="portrait-frame"><img src="/wenhui-portrait.jpg" alt="董文慧的个人照片" /></div>
+            <figcaption><span>PORTRAIT / 01</span><span>PERSONAL ARCHIVE · 2026</span></figcaption>
+          </figure>
+          <div className="about-copy">
+            <p className="eyebrow">PROFILE / 个人信息</p>
+            <div className="name-lockup"><span>董文慧</span><b>WENHUI DONG</b></div>
+            <h2>I turn <em>research</em><br />into visible<br />experiences.</h2>
+            <p>艺术与科技、国际设计战略双学位硕士在读。以设计研究为起点，在视觉语言、服务系统与交互体验之间工作，关注文化遗产、公共服务与日常生活中的真实议题。</p>
+            <div className="profile-tags" aria-label="主要设计领域"><span>VISUAL DESIGN</span><span>SERVICE DESIGN</span><span>UX &amp; INTERACTION</span></div>
           </div>
+          <div className="info-stack">
+            <article><span>01</span><h3>DESIGN FIELDS <small>主设计领域</small></h3><p>视觉设计 · 服务设计<br />用户体验与交互设计<br />文化遗产数字体验</p></article>
+            <article><span>02</span><h3>EDUCATION <small>教育背景</small></h3><p><b>2024—至今</b> 中国美术学院<br />艺术与科技 · 硕士<br /><b>2025—至今</b> 南特大西洋设计学院<br />国际设计战略 · 硕士<br /><b>2020—2024</b> 南京林业大学<br />视觉传达设计 · 学士</p></article>
+            <article><span>03</span><h3>SKILLS <small>个人技能</small></h3><p>用户研究 · 信息架构 · 系统思维<br />Figma · Adobe CC · Miro<br />Procreate · AI 数字工具</p></article>
+          </div>
+        </div>
+        <div className="about-contact" aria-label="联系方式">
+          <div><small>BASE / 居住地</small><address>Hangzhou, China<br />中国 · 杭州</address></div>
+          <div><small>PHONE / 电话</small><a href="tel:+8615162153449">+86 151 6215 3449</a></div>
+          <div><small>EMAIL / 邮箱</small><a href="mailto:hikatanhui0624@gmail.com">hikatanhui0624@gmail.com</a></div>
+          <div><small>LANGUAGE / 语言</small><p>中文 · ENGLISH</p></div>
+          <span className="contact-stamp">OPEN TO<br />COLLABORATE</span>
         </div>
       </section>
 
@@ -189,8 +205,8 @@ export default function Home() {
         <div className="contact-main"><p>HAVE A PROJECT IN MIND?</p><h2>Let&apos;s make<br /><em>something.</em></h2></div>
         <div className="contact-details">
           <div className="qr-placeholder"><span>WECHAT<br />QR</span></div>
-          <div><small>EMAIL</small><a href="mailto:hello@example.com">HELLO@EXAMPLE.COM</a></div>
-          <div><small>PHONE</small><p>+86 000 0000 0000</p></div>
+          <div><small>EMAIL</small><a href="mailto:hikatanhui0624@gmail.com">HIKATANHUI0624@GMAIL.COM</a></div>
+          <div><small>PHONE</small><p>+86 151 6215 3449</p></div>
           <a className="top-link" href="#home">BACK TO TOP ↑</a>
         </div>
         <p className="footer-note">© 2026 WENHUI · DESIGNED WITH INTENTION</p>
