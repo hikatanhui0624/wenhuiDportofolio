@@ -1,11 +1,11 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-type Project = { number:string; title:string; cn:string; year:string; type:string; tone:string };
+type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; featured?:boolean };
 
 const masterProjects: Project[] = [
-  { number:'M.01', title:'FUTURE COMMONS', cn:'未来公共空间研究', year:'2026', type:'RESEARCH · SYSTEM', tone:'violet' },
+  { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', featured:true },
   { number:'M.02', title:'SOFT BOUNDARY', cn:'社会创新服务设计', year:'2025', type:'SERVICE · EXPERIENCE', tone:'acid' },
   { number:'M.03', title:'TRACES OF LIGHT', cn:'交互装置与叙事', year:'2025', type:'INTERACTION · SPACE', tone:'coral' },
   { number:'M.04', title:'OPEN PROTOCOL', cn:'毕业设计档案', year:'2026', type:'VISUAL · EDITORIAL', tone:'blue' },
@@ -105,10 +105,11 @@ function ProjectTrack({ projects, label, onOpen }:{ projects:Project[]; label:st
         {projects.map((project, index) => (
           <button className="project-card" key={project.number} onClick={()=>!drag.current.moved && onOpen(project)} aria-label={`查看 ${project.cn} 详情`}>
             <div className={`project-art ${project.tone}`}>
-              <span className="art-grid" /><span className="art-orb" /><span className="art-mark">{String(index+1).padStart(2,'0')}</span>
+              {project.featured ? <img className="project-card-image" src="/projects/tongyun/result-01.jpg" alt="通运共生项目场景预览" draggable={false} /> : <><span className="art-grid" /><span className="art-orb" /></>}
+              <span className="art-mark">{String(index+1).padStart(2,'0')}</span>
               <span className="view-chip">VIEW PROJECT ↗</span>
             </div>
-            <div className="project-meta"><span>{project.number}</span><h3>{project.title}<small>{project.cn}</small></h3><p>{project.year}<br />{project.type}</p></div>
+            <div className="project-meta"><span>{project.number}</span><h3>{project.title}<small>{project.cn}{project.subtitle && <b>{project.subtitle}</b>}</small></h3><p>{project.year}<br />{project.type}</p></div>
           </button>
         ))}
       </div>
@@ -116,10 +117,86 @@ function ProjectTrack({ projects, label, onOpen }:{ projects:Project[]; label:st
   );
 }
 
+function TongyunProject({ onClose }:{ onClose:()=>void }) {
+  return (
+    <article className="tongyun-project" role="dialog" aria-modal="true" aria-label="通运共生项目详情">
+      <header className="tongyun-topbar">
+        <a href="#tongyun-top" className="tongyun-brand">通运共生 <span>XR ARCHIVE</span></a>
+        <nav aria-label="项目详情目录"><a href="#tongyun-overview">概览</a><a href="#tongyun-mr">MR</a><a href="#tongyun-vr">VR</a><a href="#tongyun-outcomes">成果</a></nav>
+        <button onClick={onClose} aria-label="关闭项目详情">BACK TO WORKS ×</button>
+      </header>
+
+      <section className="tongyun-hero" id="tongyun-top">
+        <div className="tongyun-title">
+          <p>MASTER&apos;S PROJECT · 01 / 2025—2026</p>
+          <h1><span>通运</span><span>共生</span></h1>
+          <h2>基于漕运文化的 XR 数字交互体验设计</h2>
+          <div className="tongyun-subtitle"><b>未来博物馆 XR 交互</b><span>XR INTERACTION FOR THE FUTURE MUSEUM</span></div>
+        </div>
+        <div className="tongyun-hero-image"><img src="/projects/tongyun/board-01.jpg" alt="通运共生项目设计展板局部" /></div>
+        <div className="tongyun-route-line" aria-hidden="true"><span>杭州</span><i /><span>扬州</span><i /><span>淮安</span><i /><span>通州</span></div>
+      </section>
+
+      <section className="tongyun-overview" id="tongyun-overview">
+        <div className="case-heading"><span>01</span><p>PROJECT OVERVIEW</p><h2>让漕运历史成为<br />可进入、可参与的体验。</h2></div>
+        <div className="overview-copy">
+          <p>项目以中国漕运文化为历史脉络，以 XR 技术为媒介，构建兼具时间纵深与地域关联的沉浸式历史叙事。漕船既是核心交互载体，也是串联城市兴衰、货物流通、文化交融与民生百态的叙事线索。</p>
+          <dl><div><dt>ROLE</dt><dd>项目负责人</dd></div><div><dt>METHOD</dt><dd>历史研究 · 体验策略<br />交互原型 · 场景叙事</dd></div><div><dt>OUTPUT</dt><dd>MR 漕船交互<br />VR 漕运叙事体验</dd></div></dl>
+        </div>
+        <figure className="framework-figure"><img src="/projects/tongyun/framework.jpg" alt="通运共生主题背景与设计框架" /><figcaption>DESIGN FRAMEWORK / 双线体验框架</figcaption></figure>
+      </section>
+
+      <section className="tongyun-route">
+        <div className="route-copy"><p>02 / HISTORICAL ROUTE</p><h2>一艘漕船，<br />四段时空。</h2><p>依据历史资料与城市特征，将宋、元、明、清四个阶段落在杭州、扬州、淮安与通州。玩家沿模拟航线前进，在空间移动中理解漕运制度、城市功能与生活场景的变化。</p>
+          <ol><li><b>宋</b><span>杭州</span><small>装载启航</small></li><li><b>元</b><span>扬州</span><small>货物流通</small></li><li><b>明</b><span>淮安</span><small>水利枢纽</small></li><li><b>清</b><span>通州</span><small>抵达京畿</small></li></ol>
+        </div>
+        <figure><img src="/projects/tongyun/route-map.jpg" alt="杭州、扬州、淮安、通州漕运路线图" /><figcaption>ROUTE MAP / 杭州—扬州—淮安—通州</figcaption></figure>
+      </section>
+
+      <section className="tongyun-mr" id="tongyun-mr">
+        <div className="case-heading"><span>03</span><p>MR INTERACTION</p><h2>解构一艘船，<br />理解一套运输系统。</h2></div>
+        <figure className="mr-boat-figure"><img src="/projects/tongyun/mr-boat.jpg" alt="漕船结构拆解、搭建与交互细节" /><figcaption>CAO BOAT ASSEMBLY / 漕船解构与搭建</figcaption></figure>
+        <div className="process-steps"><article><b>01</b><h3>识别模型</h3><p>扫描漕船实体，建立现实模型与数字内容的定位关系。</p></article><article><b>02</b><h3>拆解搭建</h3><p>依次认识船舱、桅杆、船型与漕工室，并完成结构拼装。</p></article><article><b>03</b><h3>滑动探索</h3><p>围绕船体进行 360° 旋转，从不同视角查看细节。</p></article><article><b>04</b><h3>装载启航</h3><p>选择漕粮、瓷器、丝绸、茶、铜钱、盐与建材，理解运载逻辑。</p></article></div>
+      </section>
+
+      <section className="tongyun-vr" id="tongyun-vr">
+        <div className="vr-intro"><p>04 / VR NARRATIVE</p><h2>从地图出发，<br />进入运河沿线的日常。</h2><p>VR 部分以第一人称旅程串联港口、桥下、市集与城门等节点。玩家通过观察、移动、对话与触发事件，在航行中理解漕运网络背后的劳动、贸易与城市生活。</p></div>
+        <figure className="vr-main"><img src="/projects/tongyun/vr-prototype.jpg" alt="通运共生VR原型界面与漕运场景" /><figcaption>VR PROTOTYPE / 场景原型与叙事节点</figcaption></figure>
+        <figure className="vr-logic"><img src="/projects/tongyun/vr-logic.jpg" alt="通运共生VR场景视觉逻辑" /><figcaption>SPATIAL STORYTELLING / 空间叙事</figcaption></figure>
+        <div className="vr-sequence"><span>查看航线</span><i>→</i><span>选择起点</span><i>→</i><span>登船启航</span><i>→</i><span>触发人物与事件</span><i>→</i><span>抵达城市节点</span></div>
+      </section>
+
+      <section className="tongyun-tech">
+        <div className="case-heading"><span>05</span><p>TECHNICAL PATH</p><h2>从视觉语言，<br />到可运行的体验。</h2></div>
+        <figure><img src="/projects/tongyun/tech-path.jpg" alt="视觉风格、模型贴图、动画、蓝图与头显测试技术路径" /><figcaption>VISUAL ITERATION → 3D &amp; ANIMATION → UE BLUEPRINT &amp; TESTING</figcaption></figure>
+        <div className="tech-list"><p><b>01</b>古画资料研究与视觉风格迭代</p><p><b>02</b>C4D / UE5 模型、贴图与动画制作</p><p><b>03</b>蓝图交互编写与 HTC 头显串流测试</p></div>
+      </section>
+
+      <section className="tongyun-outcomes" id="tongyun-outcomes">
+        <div className="outcomes-title"><p>06 / SELECTED OUTCOMES</p><h2>设计成果</h2><span>完整图像展示 · FULL IMAGE</span></div>
+        <figure><img src="/projects/tongyun/result-01.jpg" alt="通运共生扬州、淮安与通州场景成果" loading="lazy" /><figcaption>01 / 沿线城市场景与交互节点</figcaption></figure>
+        <figure><img src="/projects/tongyun/result-02.jpg" alt="通运共生登船、货物装载与杭州场景成果" loading="lazy" /><figcaption>02 / 登船、装载与杭州码头体验</figcaption></figure>
+        <figure><img src="/projects/tongyun/result-03.jpg" alt="通运共生漕船MR交互与大运河地图成果" loading="lazy" /><figcaption>03 / MR 漕船搭建、货物装载与路线地图</figcaption></figure>
+      </section>
+
+      <details className="tongyun-boards"><summary>VIEW ORIGINAL PROCESS BOARDS <span>查看两张原始设计展板 ＋</span></summary><div><img src="/projects/tongyun/board-01.jpg" alt="通运共生原始设计展板一" loading="lazy" /><img src="/projects/tongyun/board-02.jpg" alt="通运共生原始设计展板二" loading="lazy" /></div></details>
+      <footer className="tongyun-footer"><p>通运共生 / TONGYUN CONFLUENCE</p><button onClick={onClose}>BACK TO MASTER&apos;S WORK ↑</button></footer>
+    </article>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    if (!activeProject) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const closeOnEscape = (event:KeyboardEvent) => event.key === 'Escape' && setActiveProject(null);
+    window.addEventListener('keydown', closeOnEscape);
+    return () => { document.body.style.overflow = previous; window.removeEventListener('keydown', closeOnEscape); };
+  }, [activeProject]);
 
   return (
     <main>
@@ -217,7 +294,9 @@ export default function Home() {
         <nav><a href="#about" onClick={closeMenu}><i>01</i>ABOUT</a><a href="#masters" onClick={closeMenu}><i>02</i>MASTER&apos;S WORK</a><a href="#bachelors" onClick={closeMenu}><i>03</i>BACHELOR&apos;S WORK</a><a href="#illustration" onClick={closeMenu}><i>04</i>ILLUSTRATION</a><a href="#contact" onClick={closeMenu}><i>05</i>CONTACT</a></nav>
       </div>
 
-      {activeProject && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
+      {activeProject?.number === 'M.01' && <div className="tongyun-overlay"><TongyunProject onClose={()=>setActiveProject(null)} /></div>}
+
+      {activeProject && activeProject.number !== 'M.01' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
         <article className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeProject.cn} 作品详情`} onMouseDown={e=>e.stopPropagation()}>
           <button className="modal-close" onClick={()=>setActiveProject(null)} aria-label="关闭详情">CLOSE ×</button>
           <div className={`modal-art ${activeProject.tone}`}><span>{activeProject.number}</span></div>
