@@ -80,19 +80,30 @@ function FolderNavigator() {
 
 function ProjectTrack({ projects, label, onOpen }:{ projects:Project[]; label:string; onOpen:(p:Project)=>void }) {
   const track = useRef<HTMLDivElement>(null);
-  const drag = useRef({ active:false, x:0, left:0, moved:false });
+  const drag = useRef({ active:false, x:0, y:0, left:0, moved:false });
   const start = (e:React.PointerEvent) => {
     if (!track.current) return;
-    drag.current = { active:true, x:e.clientX, left:track.current.scrollLeft, moved:false };
-    track.current.setPointerCapture(e.pointerId);
+    drag.current = { active:true, x:e.clientX, y:e.clientY, left:track.current.scrollLeft, moved:false };
   };
   const move = (e:React.PointerEvent) => {
     if (!drag.current.active || !track.current) return;
     const delta = e.clientX - drag.current.x;
-    if (Math.abs(delta) > 5) drag.current.moved = true;
+    const verticalDelta = e.clientY - drag.current.y;
+    if (!drag.current.moved && Math.abs(delta) > 12 && Math.abs(delta) > Math.abs(verticalDelta)) {
+      drag.current.moved = true;
+      track.current.setPointerCapture(e.pointerId);
+    }
+    if (!drag.current.moved) return;
     track.current.scrollLeft = drag.current.left - delta;
   };
-  const end = () => { drag.current.active = false; };
+  const end = () => {
+    drag.current.active = false;
+    if (drag.current.moved) window.setTimeout(() => { drag.current.moved = false; }, 0);
+  };
+  const openProject = (project:Project) => {
+    if (drag.current.moved) return;
+    onOpen(project);
+  };
   const nudge = (direction:number) => track.current?.scrollBy({ left:direction * Math.min(innerWidth * .72, 720), behavior:'smooth' });
 
   return (
@@ -102,16 +113,19 @@ function ProjectTrack({ projects, label, onOpen }:{ projects:Project[]; label:st
         <div><button onClick={()=>nudge(-1)} aria-label={`向左浏览${label}`}>←</button><button onClick={()=>nudge(1)} aria-label={`向右浏览${label}`}>→</button></div>
       </div>
       <div className="project-track" ref={track} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end}>
-        {projects.map((project, index) => (
-          <button className="project-card" key={project.number} onClick={()=>!drag.current.moved && onOpen(project)} aria-label={`查看 ${project.cn} 详情`}>
+        {projects.map((project, index) => {
+          const cardContent = <>
             <div className={`project-art ${project.tone}`}>
-              {project.featured ? <img className="project-card-image" src="/projects/tongyun/result-01.jpg" alt="通运共生项目场景预览" draggable={false} /> : <><span className="art-grid" /><span className="art-orb" /></>}
+              {project.featured ? <img className="project-card-image" src="/projects/tongyun/result-03.jpg" alt="通运共生MR漕船交互预览" draggable={false} /> : <><span className="art-grid" /><span className="art-orb" /></>}
               <span className="art-mark">{String(index+1).padStart(2,'0')}</span>
-              <span className="view-chip">VIEW PROJECT ↗</span>
+              <span className="view-chip">{project.featured ? 'OPEN CASE STUDY ↗' : 'VIEW PROJECT ↗'}</span>
             </div>
             <div className="project-meta"><span>{project.number}</span><h3>{project.title}<small>{project.cn}{project.subtitle && <b>{project.subtitle}</b>}</small></h3><p>{project.year}<br />{project.type}</p></div>
-          </button>
-        ))}
+          </>;
+          return project.featured ?
+            <a className="project-card" data-project={project.number} href="#tongyun-case" key={project.number} onClick={e=>{ if (drag.current.moved) { e.preventDefault(); return; } openProject(project); }} aria-label={`查看 ${project.cn} 详情`}>{cardContent}</a> :
+            <button className="project-card" data-project={project.number} key={project.number} onClick={()=>openProject(project)} aria-label={`查看 ${project.cn} 详情`}>{cardContent}</button>;
+        })}
       </div>
     </div>
   );
@@ -189,11 +203,31 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const closeMenu = () => setMenuOpen(false);
+  const openProject = (project:Project) => {
+    setActiveProject(project);
+    if (project.number === 'M.01') window.history.replaceState(null, '', '#tongyun-case');
+  };
+  const closeProject = () => {
+    setActiveProject(null);
+    window.history.replaceState(null, '', '#masters');
+  };
+  useEffect(() => {
+    const openFromHash = () => {
+      if (window.location.hash === '#tongyun-case') setActiveProject(masterProjects[0]);
+    };
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+    return () => window.removeEventListener('hashchange', openFromHash);
+  }, []);
   useEffect(() => {
     if (!activeProject) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    const closeOnEscape = (event:KeyboardEvent) => event.key === 'Escape' && setActiveProject(null);
+    const closeOnEscape = (event:KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setActiveProject(null);
+      if (window.location.hash === '#tongyun-case') window.history.replaceState(null, '', '#masters');
+    };
     window.addEventListener('keydown', closeOnEscape);
     return () => { document.body.style.overflow = previous; window.removeEventListener('keydown', closeOnEscape); };
   }, [activeProject]);
@@ -264,7 +298,7 @@ export default function Home() {
 
       <section className="works-section paper" id="masters">
         <div className="works-head"><div className="section-kicker">03 / MASTER&apos;S WORK <span>硕士期间作品</span></div><h2>Research-led<br /><em>practice.</em></h2></div>
-        <ProjectTrack projects={masterProjects} label="硕士作品" onOpen={setActiveProject} />
+        <ProjectTrack projects={masterProjects} label="硕士作品" onOpen={openProject} />
       </section>
 
       <section className="works-section dark" id="bachelors">
@@ -294,7 +328,7 @@ export default function Home() {
         <nav><a href="#about" onClick={closeMenu}><i>01</i>ABOUT</a><a href="#masters" onClick={closeMenu}><i>02</i>MASTER&apos;S WORK</a><a href="#bachelors" onClick={closeMenu}><i>03</i>BACHELOR&apos;S WORK</a><a href="#illustration" onClick={closeMenu}><i>04</i>ILLUSTRATION</a><a href="#contact" onClick={closeMenu}><i>05</i>CONTACT</a></nav>
       </div>
 
-      {activeProject?.number === 'M.01' && <div className="tongyun-overlay"><TongyunProject onClose={()=>setActiveProject(null)} /></div>}
+      {activeProject?.number === 'M.01' && <div className="tongyun-overlay"><TongyunProject onClose={closeProject} /></div>}
 
       {activeProject && activeProject.number !== 'M.01' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
         <article className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeProject.cn} 作品详情`} onMouseDown={e=>e.stopPropagation()}>
