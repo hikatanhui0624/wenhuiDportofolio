@@ -116,7 +116,7 @@ function ProjectTrack({ projects, label, onOpen }:{ projects:Project[]; label:st
         {projects.map((project, index) => {
           const cardContent = <>
             <div className={`project-art ${project.tone}`}>
-              {project.featured ? <img className="project-card-image" src="/projects/tongyun/result-03.jpg" alt="通运共生MR漕船交互预览" draggable={false} /> : <><span className="art-grid" /><span className="art-orb" /></>}
+              {project.featured ? <img className="project-card-image" src="/projects/tongyun/hero-frame-59.png" alt="通运共生项目首页封面预览" draggable={false} /> : <><span className="art-grid" /><span className="art-orb" /></>}
               <span className="art-mark">{String(index+1).padStart(2,'0')}</span>
               <span className="view-chip">{project.featured ? 'OPEN CASE STUDY ↗' : 'VIEW PROJECT ↗'}</span>
             </div>
