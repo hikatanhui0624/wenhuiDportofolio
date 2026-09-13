@@ -221,4 +221,9 @@ button { cursor:pointer; }
   .vr-logic-map,.vr-storyboard { width:min(100%,520px)!important; }
 }
 
+.ty-hero-cover { position:absolute; z-index:0; left:0; right:0; bottom:0; width:100%; height:auto; max-height:100%; object-fit:contain; object-position:center bottom; filter:none; pointer-events:none; user-select:none; }
+.tongyun-title { background:transparent; }
+.tongyun-hero-image { z-index:1; background:transparent; }
+.tongyun-hero-image:after,.ty-hero-canvas:before { display:none; }
+
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*:before,*:after { animation:none!important; transition-duration:.01ms!important; } }

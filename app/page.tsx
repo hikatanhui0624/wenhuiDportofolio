@@ -141,6 +141,7 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
       </header>
 
       <section className="tongyun-hero" id="tongyun-top">
+        <img className="ty-hero-cover" src="/projects/tongyun/hero-frame-59.png" alt="漕运城市、桥梁与船只组成的项目封面视觉" />
         <div className="tongyun-title">
           <p>MASTER&apos;S PROJECT · 01 / 2025—2026</p>
           <h1><span>通运</span><span>共生</span></h1>
@@ -148,11 +149,7 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
           <div className="tongyun-subtitle"><b>未来博物馆 XR 交互</b><span>XR INTERACTION FOR THE FUTURE MUSEUM</span></div>
         </div>
         <div className="tongyun-hero-image">
-          <div className="ty-hero-canvas" aria-label="由漕运山水、清明上河图场景与张择端人物组成的主视觉">
-            <span className="ty-hero-sun" aria-hidden="true" />
-            <img className="ty-hero-mountains" src="/projects/tongyun/figma/canal-mountains.png" alt="" />
-            <img className="ty-hero-history" src="/projects/tongyun/figma/qingming-collage.png" alt="清明上河图漕运场景拼贴" />
-            <img className="ty-hero-scholar" src="/projects/tongyun/figma/zhang-zeduan.png" alt="张择端人物插图" />
+          <div className="ty-hero-canvas">
             <p className="ty-hero-note"><span>THE GRAND CANAL</span>以一艘船为线索<br />进入流动的历史</p>
           </div>
         </div>
