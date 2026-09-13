@@ -131,6 +131,53 @@ function ProjectTrack({ projects, label, onOpen }:{ projects:Project[]; label:st
   );
 }
 
+const mrFlowFrames = [
+  ['01','识别漕船模型'],['02','选择船体部件'],['03','完成结构拼装'],
+  ['04','旋转探索漕船'],['05','进入历史叙事'],['06','选择并装载货物'],
+];
+
+function MrShowcase() {
+  const track = useRef<HTMLDivElement>(null);
+  const drag = useRef({ active:false, x:0, y:0, left:0, moved:false });
+  const start = (e:React.PointerEvent) => {
+    if (!track.current) return;
+    drag.current = { active:true, x:e.clientX, y:e.clientY, left:track.current.scrollLeft, moved:false };
+  };
+  const move = (e:React.PointerEvent) => {
+    if (!drag.current.active || !track.current) return;
+    const deltaX = e.clientX - drag.current.x;
+    const deltaY = e.clientY - drag.current.y;
+    if (!drag.current.moved && Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      drag.current.moved = true;
+      track.current.setPointerCapture(e.pointerId);
+    }
+    if (drag.current.moved) track.current.scrollLeft = drag.current.left - deltaX;
+  };
+  const end = () => { drag.current.active = false; };
+  const nudge = (direction:number) => track.current?.scrollBy({ left:direction * track.current.clientWidth, behavior:'smooth' });
+
+  return (
+    <div className="mr-showcase">
+      <div className="mr-drag-tools"><span>DRAG LEFT TO EXPLORE <b>01 / 02</b></span><div><button onClick={()=>nudge(-1)} aria-label="查看上一页">←</button><button onClick={()=>nudge(1)} aria-label="查看下一页">→</button></div></div>
+      <div className="mr-drag-track" ref={track} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end}>
+        <figure className="mr-boat-figure mr-slide">
+          <div className="mr-image-page"><img src="/projects/tongyun/mr-interaction-frame.png" alt="漕船部件拖拽拼装与三百六十度旋转交互" draggable={false} /></div>
+          <figcaption>MR INTERACTION / 拖拽拼装与旋转探索</figcaption>
+        </figure>
+        <figure className="mr-boat-figure mr-slide">
+          <div className="mr-boat-canvas" aria-label="漕船结构拆解与货舱剖层">
+            <span className="mr-index">01—07</span>
+            <img className="mr-parts" src="/projects/tongyun/figma/boat-parts.png" alt="船型、后船舱、后桨、桅杆、大货舱与漕工室拆解" draggable={false} />
+            <img className="mr-cutaway" src="/projects/tongyun/figma/cargo-cutaway.png" alt="漕船货物与甲板分层结构" draggable={false} />
+            <p><b>ASSEMBLE THE BOAT</b><span>识别结构，拖拽拼装，旋转探索</span></p>
+          </div>
+          <figcaption>CAO BOAT ASSEMBLY / 漕船解构与搭建</figcaption>
+        </figure>
+      </div>
+    </div>
+  );
+}
+
 function TongyunProject({ onClose }:{ onClose:()=>void }) {
   return (
     <article className="tongyun-project" role="dialog" aria-modal="true" aria-label="通运共生项目详情">
@@ -188,16 +235,10 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
 
       <section className="tongyun-mr" id="tongyun-mr">
         <div className="case-heading"><span>02</span><p>MR INTERACTION</p><h2>解构一艘船，<br />理解一套运输系统。</h2></div>
-        <figure className="mr-boat-figure">
-          <div className="mr-boat-canvas" aria-label="漕船结构拆解与货舱剖层">
-            <span className="mr-index">01—07</span>
-            <img className="mr-parts" src="/projects/tongyun/figma/boat-parts.png" alt="船型、后船舱、后桨、桅杆、大货舱与漕工室拆解" />
-            <img className="mr-cutaway" src="/projects/tongyun/figma/cargo-cutaway.png" alt="漕船货物与甲板分层结构" />
-            <p><b>ASSEMBLE THE BOAT</b><span>识别结构，拖拽拼装，旋转探索</span></p>
-          </div>
-          <figcaption>CAO BOAT ASSEMBLY / 漕船解构与搭建</figcaption>
-        </figure>
-        <div className="process-steps"><article><b>01</b><h3>识别模型</h3><p>扫描漕船实体，建立现实模型与数字内容的定位关系。</p></article><article><b>02</b><h3>拆解搭建</h3><p>依次认识船舱、桅杆、船型与漕工室，并完成结构拼装。</p></article><article><b>03</b><h3>滑动探索</h3><p>围绕船体进行 360° 旋转，从不同视角查看细节。</p></article><article><b>04</b><h3>装载启航</h3><p>选择漕粮、瓷器、丝绸、茶、铜钱、盐与建材，理解运载逻辑。</p></article></div>
+        <MrShowcase />
+        <div className="mr-flow-grid" aria-label="MR漕船交互六步流程">
+          {mrFlowFrames.map(([number,label])=><figure key={number}><img src={`/projects/tongyun/mr-flow-${number}.png`} alt={label} loading="lazy" /><figcaption>{number} / {label}</figcaption></figure>)}
+        </div>
       </section>
 
       <section className="tongyun-vr" id="tongyun-vr">
