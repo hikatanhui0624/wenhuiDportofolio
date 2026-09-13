@@ -171,7 +171,10 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
             <div className="framework-branch mr"><small>MR INTERACTION</small><b>识别 · 解构 · 搭建</b><span>从船体模型进入物质系统</span></div>
             <div className="framework-branch vr"><small>VR NARRATIVE</small><b>观察 · 航行 · 对话</b><span>从空间旅程进入社会生活</span></div>
             <div className="framework-cities"><span>杭州</span><span>扬州</span><span>淮安</span><span>通州</span></div>
-            <img src="/projects/tongyun/figma/timeline.png" alt="宋元明清与运河空间线索" />
+            <div className="framework-timeline" aria-label="宋元明清与运河空间线索">
+              <small>TIME / SPACE</small>
+              <span><b>宋</b><i>杭州</i></span><span><b>元</b><i>扬州</i></span><span><b>明</b><i>淮安</i></span><span><b>清</b><i>通州</i></span>
+            </div>
           </div>
           <figcaption>DESIGN FRAMEWORK / 双线体验框架</figcaption>
         </figure>
@@ -183,10 +186,10 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
         </div>
         <figure className="route-figure">
           <div className="route-art" aria-label="杭州、扬州、淮安、通州漕运路线视觉">
-            <img className="route-mountains" src="/projects/tongyun/figma/canal-mountains.png" alt="运河沿线山水建筑" />
             <img className="route-photos" src="/projects/tongyun/figma/route-photos.png" alt="运河城市历史照片" />
             <div className="route-spine" aria-hidden="true"><i /><i /><i /><i /></div>
             <div className="route-labels"><span>通州<small>清</small></span><span>淮安<small>明</small></span><span>扬州<small>元</small></span><span>杭州<small>宋</small></span></div>
+            <p className="route-caption">一艘漕船 · 四段时空</p>
           </div>
           <figcaption>ROUTE MAP / 杭州—扬州—淮安—通州</figcaption>
         </figure>
