@@ -244,19 +244,18 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
       <section className="tongyun-vr" id="tongyun-vr">
         <div className="vr-intro"><p>03 / VR NARRATIVE</p><h2>从地图出发，<br />进入运河沿线的日常。</h2><p>VR 部分以第一人称旅程串联港口、桥下、市集与城门等节点。玩家通过观察、移动、对话与触发事件，在航行中理解漕运网络背后的劳动、贸易与城市生活。</p></div>
         <figure className="vr-main">
-          <div className="vr-scene-canvas" aria-label="漕运人物与清明上河图场景组合">
-            <img className="vr-history" src="/projects/tongyun/figma/qingming-collage.png" alt="清明上河图虹桥漕运叙事" />
-            <img className="vr-characters" src="/projects/tongyun/figma/market-characters.png" alt="丝商、卖货郎等漕运人物" />
+          <div className="vr-scene-canvas" aria-label="运河沿线城市与码头场景">
+            <img className="vr-cover-scene" src="/projects/tongyun/hero-frame-59.png" alt="运河沿线城市、桥梁与船只场景" />
             <span>PORT · MARKET · BRIDGE · CITY GATE</span>
           </div>
           <figcaption>VR PROTOTYPE / 场景原型与叙事节点</figcaption>
         </figure>
         <figure className="vr-logic">
-          <div className="vr-logic-canvas" aria-label="VR叙事逻辑与场景分镜">
-            <img className="vr-logic-map" src="/projects/tongyun/figma/vr-story-logic.png" alt="VR叙事逻辑图" />
-            <img className="vr-storyboard" src="/projects/tongyun/figma/storyboard.png" alt="六段漕运场景分镜" />
+          <div className="vr-logic-canvas" aria-label="VR叙事逻辑与交互流程">
+            <img className="vr-narrative-map" src="/projects/tongyun/vr-narrative-frame.png" alt="港口、桥下、市集与城门的VR人物交互叙事" />
+            <img className="vr-route-flow" src="/projects/tongyun/vr-route-flow.png" alt="从杭州码头到城门的VR航行交互流程" />
           </div>
-          <figcaption>SPATIAL STORYTELLING / 空间叙事</figcaption>
+          <figcaption>SPATIAL STORYTELLING / 人物叙事与航行交互流程</figcaption>
         </figure>
         <div className="vr-sequence"><span>查看航线</span><i>→</i><span>选择起点</span><i>→</i><span>登船启航</span><i>→</i><span>触发人物与事件</span><i>→</i><span>抵达城市节点</span></div>
       </section>

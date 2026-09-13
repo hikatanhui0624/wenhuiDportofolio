@@ -169,12 +169,13 @@ button { cursor:pointer; }
 .mr-cutaway { grid-column:2; grid-row:1/3; justify-self:center; width:min(100%,340px)!important; }
 .mr-boat-canvas p { position:static; grid-column:1; grid-row:2; margin:22px 0 0!important; }
 
-.vr-scene-canvas { min-height:650px; }
-.vr-history { left:5%; top:6%; width:min(56%,430px)!important; opacity:.7; }
-.vr-characters { right:4%; bottom:2%; width:min(70%,540px)!important; }
-.vr-logic-canvas { min-height:510px; padding:50px 6%; gap:44px; }
-.vr-logic-map { width:min(100%,520px)!important; }
-.vr-storyboard { width:min(100%,520px)!important; }
+.vr-main { align-self:center; }
+.vr-scene-canvas { min-height:0; aspect-ratio:4972/2156; }
+.vr-cover-scene { position:absolute; inset:0; display:block; width:100%!important; height:100%; object-fit:contain; object-position:center bottom; }
+.vr-logic { width:92%; }
+.vr-logic-canvas { min-height:0; padding:52px 5%; gap:50px; }
+.vr-narrative-map { width:min(100%,1150px)!important; margin:0 auto; }
+.vr-route-flow { width:min(100%,1320px)!important; margin:0 auto; }
 
 .tech-stage img,.tech-stage:last-child img { width:auto!important; max-width:100%; height:auto; max-height:275px; margin:auto; object-fit:contain; }
 .tech-stage:nth-child(1) img { max-width:300px; }
@@ -208,11 +209,11 @@ button { cursor:pointer; }
 .mr-image-page,.mr-slide .mr-boat-canvas { height:clamp(470px,39vw,610px); min-height:0; }
 .mr-image-page { display:grid; place-items:center; overflow:hidden; background:linear-gradient(rgba(111,145,134,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(111,145,134,.09) 1px,transparent 1px),#f5efe3; background-size:34px 34px; }
 .mr-image-page img { display:block; width:100%!important; height:100%; object-fit:contain; object-position:center; pointer-events:none; }
-.mr-flow-grid { grid-column:1/-1; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; margin-top:70px; padding-top:12px; overflow-x:auto; border-top:1px solid rgba(32,28,21,.35); scrollbar-width:none; }
+.mr-flow-grid { grid-column:1/-1; display:grid; grid-template-columns:repeat(6,minmax(340px,1fr)); gap:12px; margin-top:70px; padding:12px 0 8px; overflow-x:auto; border-top:1px solid rgba(32,28,21,.35); scrollbar-width:none; }
 .mr-flow-grid::-webkit-scrollbar { display:none; }
 .mr-flow-grid figure { min-width:0; margin:0; background:#454540; border:1px solid rgba(32,28,21,.2); }
 .mr-flow-grid img { display:block; width:100%; aspect-ratio:795/484; object-fit:cover; }
-.mr-flow-grid figcaption { padding:9px 10px 11px; color:#eee8da; background:#232b29; font-size:7px; letter-spacing:.06em; }
+.mr-flow-grid figcaption { min-height:48px; padding:14px 15px; color:#eee8da; background:#232b29; font-size:11px; line-height:1.45; letter-spacing:.04em; }
 
 @media (max-width:900px) {
   .ty-hero-mountains { width:min(46%,400px)!important; }
@@ -223,15 +224,15 @@ button { cursor:pointer; }
   .framework-timeline>span { padding-inline:9px; }
   .route-photos { width:min(34%,165px)!important; }
   .mr-boat-canvas { min-height:560px; }
-  .vr-history { width:min(54%,410px)!important; }
-  .vr-characters { width:min(68%,510px)!important; }
+  .vr-logic { width:100%; }
+  .vr-logic-canvas { padding:40px 4%; gap:38px; }
   .tech-stage img,.tech-stage:last-child img { height:auto; max-height:250px; }
   .overview-visuals { grid-template-columns:1fr; margin-left:52px; }
   .overview-route-figure { width:min(100%,520px); justify-self:center; }
   .overview-route-figure img { height:auto; aspect-ratio:2104/2988; object-fit:cover; }
   .mr-showcase { grid-column:1; }
   .mr-image-page,.mr-slide .mr-boat-canvas { height:clamp(430px,64vw,590px); }
-  .mr-flow-grid { grid-template-columns:repeat(6,minmax(210px,1fr)); }
+  .mr-flow-grid { grid-template-columns:repeat(6,minmax(300px,1fr)); }
 }
 @media (max-width:700px) {
   .ty-hero-mountains { right:-2%; width:min(52%,300px)!important; }
@@ -253,11 +254,8 @@ button { cursor:pointer; }
   .mr-parts { width:min(100%,390px)!important; }
   .mr-cutaway { width:min(100%,190px)!important; }
   .mr-boat-canvas p { width:auto; }
-  .vr-scene-canvas { min-height:510px; }
-  .vr-history { left:5%; top:7%; width:min(62%,330px)!important; }
-  .vr-characters { right:1%; bottom:3%; width:min(78%,420px)!important; }
-  .vr-logic-canvas { min-height:390px; padding:34px 18px; gap:34px; }
-  .vr-logic-map,.vr-storyboard { width:min(100%,520px)!important; }
+  .vr-scene-canvas { min-height:0; }
+  .vr-logic-canvas { min-height:0; padding:26px 12px; gap:28px; }
   .case-heading { grid-template-rows:34px auto; }
   .case-heading h2 { margin-top:22px; }
   .overview-copy { margin-left:42px; }
@@ -268,8 +266,9 @@ button { cursor:pointer; }
   .overview-route-figure { width:100%; }
   .mr-image-page,.mr-slide .mr-boat-canvas { height:440px; }
   .mr-drag-tools span { font-size:7px; }
-  .mr-flow-grid { grid-template-columns:repeat(6,78vw); gap:8px; margin-top:42px; scroll-snap-type:x mandatory; }
+  .mr-flow-grid { grid-template-columns:repeat(6,82vw); gap:9px; margin-top:42px; scroll-snap-type:x mandatory; }
   .mr-flow-grid figure { scroll-snap-align:start; }
+  .mr-flow-grid figcaption { min-height:44px; padding:12px; font-size:10px; }
 }
 
 .ty-hero-cover { position:absolute; z-index:0; left:0; right:0; bottom:0; width:100%; height:auto; max-height:100%; object-fit:contain; object-position:center bottom; filter:none; pointer-events:none; user-select:none; }
