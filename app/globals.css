@@ -181,6 +181,21 @@ button { cursor:pointer; }
 .tech-stage:nth-child(2) img { max-width:360px; }
 .tech-stage:nth-child(3) img { max-width:270px; }
 
+.case-heading { grid-template-rows:42px auto; align-items:center; }
+.case-heading>span { grid-row:1; align-self:center; }
+.case-heading>p { align-self:center; margin:0; }
+.case-heading h2 { margin-top:28px; }
+.overview-copy { grid-template-columns:minmax(0,1.6fr) minmax(220px,.55fr); align-items:start; }
+.overview-text p { margin:0; font-size:14px; line-height:2; }
+.overview-text p+p { margin-top:24px; }
+.overview-visuals { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr); gap:22px; align-items:stretch; margin-left:calc(52px + 8%); }
+.overview-visuals .framework-figure { margin:0!important; }
+.overview-visuals .framework-canvas { min-height:650px; }
+.framework-composition figcaption { padding-left:52px; }
+.overview-route-figure { min-width:0; margin:0; padding:0; overflow:hidden; display:flex; flex-direction:column; background:#f5efe3; border:1px solid rgba(32,28,21,.18); box-shadow:0 20px 45px rgba(32,28,21,.11); }
+.overview-route-figure img { display:block; width:100%; height:650px; min-height:0; object-fit:cover; object-position:center; }
+.overview-route-figure figcaption { padding:10px 12px 12px; }
+
 @media (max-width:900px) {
   .ty-hero-mountains { width:min(46%,400px)!important; }
   .ty-hero-history { width:min(62%,480px)!important; }
@@ -193,6 +208,9 @@ button { cursor:pointer; }
   .vr-history { width:min(54%,410px)!important; }
   .vr-characters { width:min(68%,510px)!important; }
   .tech-stage img,.tech-stage:last-child img { height:auto; max-height:250px; }
+  .overview-visuals { grid-template-columns:1fr; margin-left:52px; }
+  .overview-route-figure { width:min(100%,520px); justify-self:center; }
+  .overview-route-figure img { height:auto; aspect-ratio:2104/2988; object-fit:cover; }
 }
 @media (max-width:700px) {
   .ty-hero-mountains { right:-2%; width:min(52%,300px)!important; }
@@ -219,6 +237,14 @@ button { cursor:pointer; }
   .vr-characters { right:1%; bottom:3%; width:min(78%,420px)!important; }
   .vr-logic-canvas { min-height:390px; padding:34px 18px; gap:34px; }
   .vr-logic-map,.vr-storyboard { width:min(100%,520px)!important; }
+  .case-heading { grid-template-rows:34px auto; }
+  .case-heading h2 { margin-top:22px; }
+  .overview-copy { margin-left:42px; }
+  .overview-text p { font-size:12px; line-height:1.9; }
+  .overview-visuals { margin-left:0; gap:18px; }
+  .overview-visuals .framework-canvas { min-height:650px; }
+  .framework-composition figcaption { padding-left:20px; }
+  .overview-route-figure { width:100%; }
 }
 
 .ty-hero-cover { position:absolute; z-index:0; left:0; right:0; bottom:0; width:100%; height:auto; max-height:100%; object-fit:contain; object-position:center bottom; filter:none; pointer-events:none; user-select:none; }

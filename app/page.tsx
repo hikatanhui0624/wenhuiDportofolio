@@ -159,41 +159,35 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
       <section className="tongyun-overview" id="tongyun-overview">
         <div className="case-heading"><span>01</span><p>PROJECT OVERVIEW</p><h2>让漕运历史成为<br />可进入、可参与的体验。</h2></div>
         <div className="overview-copy">
-          <p>项目以中国漕运文化为历史脉络，以 XR 技术为媒介，构建兼具时间纵深与地域关联的沉浸式历史叙事。漕船既是核心交互载体，也是串联城市兴衰、货物流通、文化交融与民生百态的叙事线索。</p>
+          <div className="overview-text">
+            <p>本设计项目以中国漕运文化为历史脉络，XR数字技术为媒介，旨在构建一个多维度的历史叙事框架，沉浸式还原漕运航行的历史场景，系统地呈现漕运在朝代更迭、航线变迁、城市兴衰、货物流通、文化交融、民生百态、经济发展及制度演进等方面的深远影响与核心历史地位。</p>
+            <p>作品以漕船作为核心设计线索与叙事载体，基于历史资料研究考证，虚拟重构一条贯穿宋（杭州）、元（扬州）、明（淮安）、清（通州）等关键历史节点与枢纽城市的代表性航线。通过时间与空间的双维度移动叙事结构，动态展现漕运文化的历史纵深感与地域关联性。</p>
+          </div>
           <dl><div><dt>ROLE</dt><dd>项目负责人</dd></div><div><dt>METHOD</dt><dd>历史研究 · 体验策略<br />交互原型 · 场景叙事</dd></div><div><dt>OUTPUT</dt><dd>MR 漕船交互<br />VR 漕运叙事体验</dd></div></dl>
         </div>
-        <figure className="framework-figure framework-composition">
-          <div className="framework-canvas" aria-label="通运共生双线体验框架">
-            <div className="framework-core"><small>CORE OBJECT</small><strong>漕船</strong><span>CAO BOAT</span></div>
-            <div className="framework-branch mr"><small>MR INTERACTION</small><b>识别 · 解构 · 搭建</b><span>从船体模型进入物质系统</span></div>
-            <div className="framework-branch vr"><small>VR NARRATIVE</small><b>观察 · 航行 · 对话</b><span>从空间旅程进入社会生活</span></div>
-            <div className="framework-cities"><span>杭州</span><span>扬州</span><span>淮安</span><span>通州</span></div>
-            <div className="framework-timeline" aria-label="宋元明清与运河空间线索">
-              <small>TIME / SPACE</small>
-              <span><b>宋</b><i>杭州</i></span><span><b>元</b><i>扬州</i></span><span><b>明</b><i>淮安</i></span><span><b>清</b><i>通州</i></span>
+        <div className="overview-visuals">
+          <figure className="framework-figure framework-composition">
+            <div className="framework-canvas" aria-label="通运共生双线体验框架">
+              <div className="framework-core"><small>CORE OBJECT</small><strong>漕船</strong><span>CAO BOAT</span></div>
+              <div className="framework-branch mr"><small>MR INTERACTION</small><b>识别 · 解构 · 搭建</b><span>从船体模型进入物质系统</span></div>
+              <div className="framework-branch vr"><small>VR NARRATIVE</small><b>观察 · 航行 · 对话</b><span>从空间旅程进入社会生活</span></div>
+              <div className="framework-cities"><span>杭州</span><span>扬州</span><span>淮安</span><span>通州</span></div>
+              <div className="framework-timeline" aria-label="宋元明清与运河空间线索">
+                <small>TIME / SPACE</small>
+                <span><b>宋</b><i>杭州</i></span><span><b>元</b><i>扬州</i></span><span><b>明</b><i>淮安</i></span><span><b>清</b><i>通州</i></span>
+              </div>
             </div>
-          </div>
-          <figcaption>DESIGN FRAMEWORK / 双线体验框架</figcaption>
-        </figure>
-      </section>
-
-      <section className="tongyun-route">
-        <div className="route-copy"><p>02 / HISTORICAL ROUTE</p><h2>一艘漕船，<br />四段时空。</h2><p>依据历史资料与城市特征，将宋、元、明、清四个阶段落在杭州、扬州、淮安与通州。玩家沿模拟航线前进，在空间移动中理解漕运制度、城市功能与生活场景的变化。</p>
-          <ol><li><b>宋</b><span>杭州</span><small>装载启航</small></li><li><b>元</b><span>扬州</span><small>货物流通</small></li><li><b>明</b><span>淮安</span><small>水利枢纽</small></li><li><b>清</b><span>通州</span><small>抵达京畿</small></li></ol>
+            <figcaption>DESIGN FRAMEWORK / 双线体验框架</figcaption>
+          </figure>
+          <figure className="overview-route-figure">
+            <img src="/projects/tongyun/route-frame-60.png" alt="宋元明清漕运路线地图" />
+            <figcaption>HISTORICAL ROUTE / 杭州—扬州—淮安—通州</figcaption>
+          </figure>
         </div>
-        <figure className="route-figure">
-          <div className="route-art" aria-label="杭州、扬州、淮安、通州漕运路线视觉">
-            <img className="route-photos" src="/projects/tongyun/figma/route-photos.png" alt="运河城市历史照片" />
-            <div className="route-spine" aria-hidden="true"><i /><i /><i /><i /></div>
-            <div className="route-labels"><span>通州<small>清</small></span><span>淮安<small>明</small></span><span>扬州<small>元</small></span><span>杭州<small>宋</small></span></div>
-            <p className="route-caption">一艘漕船 · 四段时空</p>
-          </div>
-          <figcaption>ROUTE MAP / 杭州—扬州—淮安—通州</figcaption>
-        </figure>
       </section>
 
       <section className="tongyun-mr" id="tongyun-mr">
-        <div className="case-heading"><span>03</span><p>MR INTERACTION</p><h2>解构一艘船，<br />理解一套运输系统。</h2></div>
+        <div className="case-heading"><span>02</span><p>MR INTERACTION</p><h2>解构一艘船，<br />理解一套运输系统。</h2></div>
         <figure className="mr-boat-figure">
           <div className="mr-boat-canvas" aria-label="漕船结构拆解与货舱剖层">
             <span className="mr-index">01—07</span>
@@ -207,7 +201,7 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
       </section>
 
       <section className="tongyun-vr" id="tongyun-vr">
-        <div className="vr-intro"><p>04 / VR NARRATIVE</p><h2>从地图出发，<br />进入运河沿线的日常。</h2><p>VR 部分以第一人称旅程串联港口、桥下、市集与城门等节点。玩家通过观察、移动、对话与触发事件，在航行中理解漕运网络背后的劳动、贸易与城市生活。</p></div>
+        <div className="vr-intro"><p>03 / VR NARRATIVE</p><h2>从地图出发，<br />进入运河沿线的日常。</h2><p>VR 部分以第一人称旅程串联港口、桥下、市集与城门等节点。玩家通过观察、移动、对话与触发事件，在航行中理解漕运网络背后的劳动、贸易与城市生活。</p></div>
         <figure className="vr-main">
           <div className="vr-scene-canvas" aria-label="漕运人物与清明上河图场景组合">
             <img className="vr-history" src="/projects/tongyun/figma/qingming-collage.png" alt="清明上河图虹桥漕运叙事" />
@@ -227,7 +221,7 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
       </section>
 
       <section className="tongyun-tech">
-        <div className="case-heading"><span>05</span><p>TECHNICAL PATH</p><h2>从视觉语言，<br />到可运行的体验。</h2></div>
+        <div className="case-heading"><span>04</span><p>TECHNICAL PATH</p><h2>从视觉语言，<br />到可运行的体验。</h2></div>
         <figure className="tech-figure">
           <div className="tech-canvas" aria-label="视觉、三维动画与头显测试技术路径">
             <div className="tech-stage"><span>01</span><b>VISUAL RESEARCH</b><img src="/projects/tongyun/figma/storyboard.png" alt="古画视觉风格研究" /></div>
@@ -240,7 +234,7 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
       </section>
 
       <section className="tongyun-outcomes" id="tongyun-outcomes">
-        <div className="outcomes-title"><p>06 / SELECTED OUTCOMES</p><h2>设计成果</h2><span>完整图像展示 · FULL IMAGE</span></div>
+        <div className="outcomes-title"><p>05 / SELECTED OUTCOMES</p><h2>设计成果</h2><span>完整图像展示 · FULL IMAGE</span></div>
         <figure><img src="/projects/tongyun/result-01.jpg" alt="通运共生扬州、淮安与通州场景成果" loading="lazy" /><figcaption>01 / 沿线城市场景与交互节点</figcaption></figure>
         <figure><img src="/projects/tongyun/result-02.jpg" alt="通运共生登船、货物装载与杭州场景成果" loading="lazy" /><figcaption>02 / 登船、装载与杭州码头体验</figcaption></figure>
         <figure><img src="/projects/tongyun/result-03.jpg" alt="通运共生漕船MR交互与大运河地图成果" loading="lazy" /><figcaption>03 / MR 漕船搭建、货物装载与路线地图</figcaption></figure>
