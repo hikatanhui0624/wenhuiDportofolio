@@ -136,6 +136,19 @@ const mrFlowFrames = [
   ['04','旋转探索漕船'],['05','进入历史叙事'],['06','选择并装载货物'],
 ];
 
+const outcomeSlides = [
+  ['/projects/tongyun/outcomes/outcome-01.jpg','漕船分层交互拆解'],
+  ['/projects/tongyun/outcomes/outcome-02.png','货物选择与装载'],
+  ['/projects/tongyun/outcomes/outcome-03.jpg','大运河路线地图'],
+  ['/projects/tongyun/outcomes/outcome-04.png','杭州拱宸桥市集'],
+  ['/projects/tongyun/outcomes/outcome-05.jpg','杭州 · 登船启航'],
+  ['/projects/tongyun/outcomes/outcome-06.jpg','杭州 · 货物装载'],
+  ['/projects/tongyun/outcomes/outcome-07.jpg','扬州 · 城市生活'],
+  ['/projects/tongyun/outcomes/outcome-08.jpg','扬州 · 市集贸易'],
+  ['/projects/tongyun/outcomes/outcome-09.jpg','淮安 · 水利枢纽'],
+  ['/projects/tongyun/outcomes/outcome-10.jpg','通州 · 抵达京畿'],
+];
+
 function MrShowcase() {
   const track = useRef<HTMLDivElement>(null);
   const drag = useRef({ active:false, x:0, y:0, left:0, moved:false });
@@ -174,6 +187,92 @@ function MrShowcase() {
           <figcaption>CAO BOAT ASSEMBLY / 漕船解构与搭建</figcaption>
         </figure>
       </div>
+    </div>
+  );
+}
+
+function MrFlowGallery() {
+  const track = useRef<HTMLDivElement>(null);
+  const drag = useRef({ active:false, x:0, y:0, left:0, moved:false });
+  const [active, setActive] = useState(0);
+  const start = (e:React.PointerEvent) => {
+    if (!track.current) return;
+    drag.current = { active:true, x:e.clientX, y:e.clientY, left:track.current.scrollLeft, moved:false };
+  };
+  const move = (e:React.PointerEvent) => {
+    if (!drag.current.active || !track.current) return;
+    const deltaX = e.clientX - drag.current.x;
+    const deltaY = e.clientY - drag.current.y;
+    if (!drag.current.moved && Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      drag.current.moved = true;
+      track.current.setPointerCapture(e.pointerId);
+    }
+    if (drag.current.moved) track.current.scrollLeft = drag.current.left - deltaX;
+  };
+  const end = () => { drag.current.active = false; };
+  const updateActive = () => {
+    if (!track.current) return;
+    const card = track.current.querySelector('figure');
+    if (!card) return;
+    const step = card.getBoundingClientRect().width + 12;
+    setActive(Math.min(mrFlowFrames.length - 1, Math.max(0, Math.round(track.current.scrollLeft / step))));
+  };
+  const nudge = (direction:number) => {
+    if (!track.current) return;
+    const card = track.current.querySelector('figure');
+    const step = card ? card.getBoundingClientRect().width + 12 : track.current.clientWidth * .8;
+    track.current.scrollBy({ left:direction * step, behavior:'smooth' });
+  };
+
+  return (
+    <div className="mr-flow-gallery">
+      <div className="mr-flow-tools"><p>DRAG TO VIEW ALL SIX STEPS <span>{String(active + 1).padStart(2,'0')} / 06</span></p><div><button onClick={()=>nudge(-1)} aria-label="查看上一步">←</button><button onClick={()=>nudge(1)} aria-label="查看下一步">→</button></div></div>
+      <div className="mr-flow-grid" ref={track} aria-label="MR漕船交互六步流程" tabIndex={0} onScroll={updateActive} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end} onKeyDown={e=>{ if (e.key === 'ArrowLeft') nudge(-1); if (e.key === 'ArrowRight') nudge(1); }}>
+        {mrFlowFrames.map(([number,label])=><figure key={number}><img src={`/projects/tongyun/mr-flow-${number}.png`} alt={label} loading="lazy" draggable={false} /><figcaption>{number} / {label}</figcaption></figure>)}
+      </div>
+    </div>
+  );
+}
+
+function OutcomeGallery() {
+  const track = useRef<HTMLDivElement>(null);
+  const drag = useRef({ active:false, x:0, y:0, left:0, moved:false });
+  const [active, setActive] = useState(0);
+  const start = (e:React.PointerEvent) => {
+    if (!track.current) return;
+    drag.current = { active:true, x:e.clientX, y:e.clientY, left:track.current.scrollLeft, moved:false };
+  };
+  const move = (e:React.PointerEvent) => {
+    if (!drag.current.active || !track.current) return;
+    const deltaX = e.clientX - drag.current.x;
+    const deltaY = e.clientY - drag.current.y;
+    if (!drag.current.moved && Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      drag.current.moved = true;
+      track.current.setPointerCapture(e.pointerId);
+    }
+    if (drag.current.moved) track.current.scrollLeft = drag.current.left - deltaX;
+  };
+  const end = () => { drag.current.active = false; };
+  const updateActive = () => {
+    if (!track.current) return;
+    setActive(Math.min(outcomeSlides.length - 1, Math.max(0, Math.round(track.current.scrollLeft / track.current.clientWidth))));
+  };
+  const goTo = (index:number) => {
+    if (!track.current) return;
+    const next = Math.min(outcomeSlides.length - 1, Math.max(0, index));
+    track.current.scrollTo({ left:next * track.current.clientWidth, behavior:'smooth' });
+  };
+
+  return (
+    <div className="outcome-gallery">
+      <div className="outcome-tools">
+        <p>DRAG OR USE ARROWS <span>{String(active + 1).padStart(2,'0')} / {String(outcomeSlides.length).padStart(2,'0')}</span></p>
+        <div><button onClick={()=>goTo(active - 1)} disabled={active === 0} aria-label="查看上一项设计成果">←</button><button onClick={()=>goTo(active + 1)} disabled={active === outcomeSlides.length - 1} aria-label="查看下一项设计成果">→</button></div>
+      </div>
+      <div className="outcome-track" ref={track} tabIndex={0} onScroll={updateActive} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end} onKeyDown={e=>{ if (e.key === 'ArrowLeft') goTo(active - 1); if (e.key === 'ArrowRight') goTo(active + 1); }}>
+        {outcomeSlides.map(([src,label], index)=><figure className="outcome-slide" key={src}><div><img src={src} alt={label} loading={index === 0 ? 'eager' : 'lazy'} draggable={false} /></div><figcaption><span>{String(index + 1).padStart(2,'0')}</span>{label}</figcaption></figure>)}
+      </div>
+      <div className="outcome-dots" aria-label="设计成果页码">{outcomeSlides.map(([,label],index)=><button className={active === index ? 'active' : ''} onClick={()=>goTo(index)} aria-label={`查看${label}`} key={label} />)}</div>
     </div>
   );
 }
@@ -236,9 +335,7 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
       <section className="tongyun-mr" id="tongyun-mr">
         <div className="case-heading"><span>02</span><p>MR INTERACTION</p><h2>解构一艘船，<br />理解一套运输系统。</h2></div>
         <MrShowcase />
-        <div className="mr-flow-grid" aria-label="MR漕船交互六步流程">
-          {mrFlowFrames.map(([number,label])=><figure key={number}><img src={`/projects/tongyun/mr-flow-${number}.png`} alt={label} loading="lazy" /><figcaption>{number} / {label}</figcaption></figure>)}
-        </div>
+        <MrFlowGallery />
       </section>
 
       <section className="tongyun-vr" id="tongyun-vr">
@@ -261,22 +358,15 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
 
       <section className="tongyun-tech">
         <div className="case-heading"><span>04</span><p>TECHNICAL PATH</p><h2>从视觉语言，<br />到可运行的体验。</h2></div>
-        <figure className="tech-figure">
-          <div className="tech-canvas" aria-label="视觉、三维动画与头显测试技术路径">
-            <div className="tech-stage"><span>01</span><b>VISUAL RESEARCH</b><img src="/projects/tongyun/figma/storyboard.png" alt="古画视觉风格研究" /></div>
-            <div className="tech-stage"><span>02</span><b>3D &amp; INTERACTION</b><img src="/projects/tongyun/figma/boat-parts.png" alt="漕船模型与交互结构" /></div>
-            <div className="tech-stage"><span>03</span><b>HEADSET TESTING</b><img src="/projects/tongyun/figma/mr-headset-test.png" alt="MR与VR头显测试" /></div>
-          </div>
-          <figcaption>VISUAL ITERATION → 3D &amp; ANIMATION → UE BLUEPRINT &amp; TESTING</figcaption>
+        <figure className="tech-figure tech-process-figure">
+          <img src="/projects/tongyun/technical-process-frame.png" alt="从古画高清处理、三维模型、C4D与UE5开发到MR和VR头显测试的完整技术过程" loading="lazy" />
+          <figcaption>VISUAL RESEARCH → C4D &amp; UE5 PRODUCTION → HEADSET TESTING</figcaption>
         </figure>
-        <div className="tech-list"><p><b>01</b>古画资料研究与视觉风格迭代</p><p><b>02</b>C4D / UE5 模型、贴图与动画制作</p><p><b>03</b>蓝图交互编写与 HTC 头显串流测试</p></div>
       </section>
 
       <section className="tongyun-outcomes" id="tongyun-outcomes">
-        <div className="outcomes-title"><p>05 / SELECTED OUTCOMES</p><h2>设计成果</h2><span>完整图像展示 · FULL IMAGE</span></div>
-        <figure><img src="/projects/tongyun/result-01.jpg" alt="通运共生扬州、淮安与通州场景成果" loading="lazy" /><figcaption>01 / 沿线城市场景与交互节点</figcaption></figure>
-        <figure><img src="/projects/tongyun/result-02.jpg" alt="通运共生登船、货物装载与杭州场景成果" loading="lazy" /><figcaption>02 / 登船、装载与杭州码头体验</figcaption></figure>
-        <figure><img src="/projects/tongyun/result-03.jpg" alt="通运共生漕船MR交互与大运河地图成果" loading="lazy" /><figcaption>03 / MR 漕船搭建、货物装载与路线地图</figcaption></figure>
+        <div className="outcomes-title"><p>05 / SELECTED OUTCOMES</p><h2>设计成果</h2><span>十项成果 · 左右拖拽查看</span></div>
+        <OutcomeGallery />
       </section>
 
       <details className="tongyun-boards"><summary>VIEW ORIGINAL PROCESS BOARDS <span>查看两张原始设计展板 ＋</span></summary><div><img src="/projects/tongyun/board-01.jpg" alt="通运共生原始设计展板一" loading="lazy" /><img src="/projects/tongyun/board-02.jpg" alt="通运共生原始设计展板二" loading="lazy" /></div></details>
