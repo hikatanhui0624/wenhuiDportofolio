@@ -257,7 +257,6 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
           </div>
           <figcaption>SPATIAL STORYTELLING / 人物叙事与航行交互流程</figcaption>
         </figure>
-        <div className="vr-sequence"><span>查看航线</span><i>→</i><span>选择起点</span><i>→</i><span>登船启航</span><i>→</i><span>触发人物与事件</span><i>→</i><span>抵达城市节点</span></div>
       </section>
 
       <section className="tongyun-tech">
