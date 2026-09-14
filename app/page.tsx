@@ -394,17 +394,18 @@ function LongmenPlatformShowcase() {
   return (
     <div className="lm-platform-showcase">
       <article className="lm-platform-case lm-platform-discover">
-        <header><span>01</span><p>DISCOVER + HOME</p><h3>从发现兴趣，<br />到安排一次到访。</h3></header>
+        <header><span>01</span><p>DISCOVER</p><h3>从发现兴趣，<br />到预约一次文化体验。</h3></header>
         <div className="lm-platform-feature-grid">
           <section className="lm-feature lm-feature-discover">
             <LongmenFeatureNotes title="Discover" eyebrow="SEARCH · FILTER · BOOK" notes={platformNotes.discover} />
             <div className="lm-phone-mockup" aria-label="Discover 手机样机">
-              <img src="/projects/longmen/product-detail/discover-phone.png" alt="LonGO Live Discover 页面手机样机" loading="lazy" />
+              <span className="lm-phone-notch" aria-hidden="true" />
+              <img src="/projects/longmen/app/discover.png" alt="LonGO Live Discover 页面手机样机" loading="lazy" />
             </div>
           </section>
           <section className="lm-feature lm-feature-home-scroll">
-            <LongmenFeatureNotes title="Home" eyebrow="PLAN · ENTER · EARN" notes={platformNotes.home} />
-            <LongmenScrollScreen src="/projects/longmen/product-detail/home-annotated.png" alt="LonGO Live Home 长页面及功能标注" label="Home 长页面" />
+            <LongmenFeatureNotes title="Discover Full Page" eyebrow="P3 · COMPLETE VIEW" notes={platformNotes.discover} />
+            <LongmenScrollScreen src="/projects/longmen/product-detail/discover-phone.png" alt="LonGO Live Discover 完整长页面" label="Discover 完整长页面" />
           </section>
         </div>
       </article>
