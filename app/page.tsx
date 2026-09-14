@@ -398,9 +398,8 @@ function LongmenPlatformShowcase() {
         <div className="lm-platform-feature-grid">
           <section className="lm-feature lm-feature-discover">
             <LongmenFeatureNotes title="Discover" eyebrow="SEARCH · FILTER · BOOK" notes={platformNotes.discover} />
-            <div className="lm-phone-mockup" aria-label="Discover 手机样机">
-              <span className="lm-phone-notch" aria-hidden="true" />
-              <img src="/projects/longmen/app/discover.png" alt="LonGO Live Discover 页面手机样机" loading="lazy" />
+            <div className="lm-phone-mockup lm-phone-mockup-rendered" aria-label="Discover 手机样机">
+              <img src="/projects/longmen/product-detail/discover-mockup.png" alt="LonGO Live Discover 页面手机样机" loading="lazy" />
             </div>
           </section>
           <section className="lm-feature lm-feature-home-scroll">
@@ -415,11 +414,11 @@ function LongmenPlatformShowcase() {
         <div className="lm-platform-duo-grid">
           <section className="lm-feature lm-feature-alerts-static">
             <LongmenFeatureNotes title="Alerts" eyebrow="REMIND · UPDATE · RECORD" notes={platformNotes.alerts} />
-            <figure className="lm-static-screen"><img src="/projects/longmen/app/alerts.png" alt="LonGO Live Alerts 通知页面" loading="lazy" /></figure>
+            <LongmenScrollScreen src="/projects/longmen/product-detail/alerts-annotated.png" alt="LonGO Live Alerts 通知与预约提醒长页面" label="Alerts 长页面" />
           </section>
           <section className="lm-feature">
             <LongmenFeatureNotes title="Maps" eyebrow="LOCATE · NAVIGATE · NEARBY" notes={platformNotes.map} />
-            <LongmenScrollScreen src="/projects/longmen/app/map.png" alt="LonGO Live 古镇地图与附近推荐长页面" label="Maps 长页面" />
+            <LongmenScrollScreen src="/projects/longmen/product-detail/maps-annotated.png" alt="LonGO Live 古镇地图与附近推荐长页面" label="Maps 长页面" />
           </section>
         </div>
       </article>
