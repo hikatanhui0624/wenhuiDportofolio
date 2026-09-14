@@ -296,15 +296,21 @@ const longmenServiceViews = [
   ['/projects/longmen/slides/validation.jpg','FIELD VALIDATION / 9 个触点的积分流动测试'],
 ] as const;
 
-const longmenVisuals = [
-  ['/projects/longmen/visual/folding-front.jpg','折页正面与品牌封套'],
-  ['/projects/longmen/visual/folding-back.jpg','非遗工坊四步体验指南'],
-  ['/projects/longmen/visual/poster-gluten.jpg','龙门面筋主题海报'],
-  ['/projects/longmen/visual/poster-sanbao.jpg','腐乳三宝主题海报'],
-  ['/projects/longmen/visual/postcard-taste.jpg','龙门传统风味明信片'],
-  ['/projects/longmen/visual/postcard-gluten.jpg','龙门面筋明信片'],
-  ['/projects/longmen/visual/postcard-rice.jpg','酒酿与豆腐主题明信片'],
-  ['/projects/longmen/visual/postcard-sanbao.jpg','腐乳三宝明信片'],
+const longmenPostcards = [
+  ['/projects/longmen/visual/postcard-taste.jpg','POSTER CARD 01 / TABLE & TASTE / 龙门传统风味明信片'],
+  ['/projects/longmen/visual/postcard-gluten.jpg','POSTER CARD 02 / LONGMEN GLUTEN / 龙门面筋明信片'],
+  ['/projects/longmen/visual/postcard-rice.jpg','POSTER CARD 03 / RICE WINE & BEAN CURD / 酒酿与豆腐主题明信片'],
+  ['/projects/longmen/visual/postcard-sanbao.jpg','POSTER CARD 04 / FUCHUN SANBAO / 腐乳三宝明信片'],
+] as const;
+
+const longmenPosters = [
+  ['/projects/longmen/visual/poster-gluten.jpg','POSTER 01 / LONGMEN GLUTEN / 龙门面筋主题海报'],
+  ['/projects/longmen/visual/poster-sanbao.jpg','POSTER 02 / FUCHUN SANBAO / 腐乳三宝主题海报'],
+] as const;
+
+const longmenFoldings = [
+  ['/projects/longmen/visual/folding-front.jpg','FOLDING GUIDE 01 / COVER & VISUAL SYSTEM / 折页正面与品牌封套'],
+  ['/projects/longmen/visual/folding-back.jpg','FOLDING GUIDE 02 / WORKSHOP EXPERIENCE / 非遗工坊四步体验指南'],
 ] as const;
 
 function LongmenGallery({ items, label }:{ items:readonly (readonly [string,string])[]; label:string }) {
@@ -332,7 +338,7 @@ function LongmenGallery({ items, label }:{ items:readonly (readonly [string,stri
   };
   return (
     <div className="lm-gallery">
-      <div className="lm-gallery-tools"><p>DRAG TO EXPLORE <span>{String(active + 1).padStart(2,'0')} / {String(items.length).padStart(2,'0')}</span></p><div><button onClick={()=>goTo(active - 1)} disabled={active === 0} aria-label={`查看上一项${label}`}>←</button><button onClick={()=>goTo(active + 1)} disabled={active === items.length - 1} aria-label={`查看下一项${label}`}>→</button></div></div>
+      <div className="lm-gallery-tools"><p>DRAG TO EXPLORE · {label.toUpperCase()} <span>{String(active + 1).padStart(2,'0')} / {String(items.length).padStart(2,'0')}</span></p><div><button onClick={()=>goTo(active - 1)} disabled={active === 0} aria-label={`查看上一项${label}`}>←</button><button onClick={()=>goTo(active + 1)} disabled={active === items.length - 1} aria-label={`查看下一项${label}`}>→</button></div></div>
       <div className="lm-gallery-track" ref={track} tabIndex={0} onScroll={()=>track.current && setActive(Math.max(0,Math.min(items.length - 1,Math.round(track.current.scrollLeft / track.current.clientWidth))))} onPointerDown={start} onPointerMove={move} onPointerUp={()=>drag.current.active=false} onPointerCancel={()=>drag.current.active=false} onKeyDown={e=>{ if (e.key === 'ArrowLeft') goTo(active - 1); if (e.key === 'ArrowRight') goTo(active + 1); }}>
         {items.map(([src,title],index)=><figure key={src}><div><img src={src} alt={title} loading={index === 0 ? 'eager' : 'lazy'} draggable={false} /></div><figcaption><span>{String(index + 1).padStart(2,'0')}</span>{title}</figcaption></figure>)}
       </div>
@@ -515,7 +521,18 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
       <section className="lm-section lm-brand-system" id="longmen-brand">
         <div className="lm-heading"><span>05</span><p>GRAPHIC BRANDING</p><h2>把非遗食物，<br />变成可识别的城市表情。</h2></div>
         <div className="lm-brand-lead"><figure><img src="/projects/longmen/slides/branding.jpg" alt="Gluglu IP 形象、平台标志与龙门美食工坊视觉系统" loading="lazy" /></figure><div><img className="lm-brand-mascot" src="/projects/longmen/mascot-mark.png" alt="GLUGLU IP 角色" /><p>以龙门面筋为原型，将圆润的食物形态、厨师帽与动作表情组合成 IP 角色 GLUGLU。荧光绿、珊瑚红与亮蓝延伸到平台、海报、明信片和折页，让数字体验与现场工坊保持一致的识别度。</p></div></div>
-        <LongmenGallery items={longmenVisuals} label="视觉成果" />
+        <div className="lm-brand-gallery-section">
+          <div className="lm-brand-gallery-head"><p>01 / POSTER CARD</p><h3>把在地风味，<br />带离现场。</h3><span>4 PIECES / 四款主题明信片</span></div>
+          <LongmenGallery items={longmenPostcards} label="Poster Card 明信片" />
+        </div>
+        <div className="lm-brand-gallery-section">
+          <div className="lm-brand-gallery-head"><p>02 / POSTER</p><h3>让传统食物，<br />成为视觉主角。</h3><span>2 PIECES / 两款主题海报</span></div>
+          <LongmenGallery items={longmenPosters} label="Poster 海报" />
+        </div>
+        <div className="lm-brand-gallery-section">
+          <div className="lm-brand-gallery-head"><p>03 / FOLDING GUIDE</p><h3>从品牌封面，<br />展开完整体验。</h3><span>2 SIDES / 折页正反两面</span></div>
+          <LongmenGallery items={longmenFoldings} label="Folding 折页" />
+        </div>
       </section>
 
       <section className="lm-section lm-exhibition">
