@@ -278,11 +278,22 @@ function OutcomeGallery() {
 }
 
 const longmenStoryboard = [
-  ['/projects/longmen/storyboard/01.jpg','临时出行计划触发需求'],
-  ['/projects/longmen/storyboard/04.jpg','扫码入园并由同伴引导'],
-  ['/projects/longmen/storyboard/06.jpg','参与非遗美食制作并获得积分'],
-  ['/projects/longmen/storyboard/08.jpg','在平台内使用积分兑换支持'],
-  ['/projects/longmen/storyboard/10.jpg','从体验者转变为文化分享者'],
+  ['/projects/longmen/storyboard/01.jpg','临时计划 / 临时行程让游客缺乏充分准备'],
+  ['/projects/longmen/storyboard/02.jpg','到访提醒 / 预算与朋友邀约触发出行决定'],
+  ['/projects/longmen/storyboard/03.jpg','线上购票 / 数字入口降低临时决策成本'],
+  ['/projects/longmen/storyboard/04.jpg','扫码入场 / QR 门票连接现场文化体验'],
+  ['/projects/longmen/storyboard/05.jpg','工坊协作 / 与本地传承人共同制作美食'],
+  ['/projects/longmen/storyboard/06.jpg','积分获得 / 完成非遗体验后累积文化积分'],
+  ['/projects/longmen/storyboard/07.jpg','在地消费 / 使用积分支持本地特色产品'],
+  ['/projects/longmen/storyboard/08.jpg','积分支付 / 兑换流程得到即时确认'],
+  ['/projects/longmen/storyboard/09.jpg','文化回流 / 积分转化为社区公益支持'],
+  ['/projects/longmen/storyboard/10.jpg','共享体验 / 一起品尝并留下文化记忆'],
+] as const;
+
+const longmenServiceViews = [
+  ['/projects/longmen/slides/solution.jpg','FINAL SOLUTION / 三层协同方案'],
+  ['/projects/longmen/slides/journey.jpg','PERSONA & JOURNEY MAP / 从计划到离开的体验旅程'],
+  ['/projects/longmen/slides/validation.jpg','FIELD VALIDATION / 9 个触点的积分流动测试'],
 ] as const;
 
 const longmenVisuals = [
@@ -326,6 +337,28 @@ function LongmenGallery({ items, label }:{ items:readonly (readonly [string,stri
         {items.map(([src,title],index)=><figure key={src}><div><img src={src} alt={title} loading={index === 0 ? 'eager' : 'lazy'} draggable={false} /></div><figcaption><span>{String(index + 1).padStart(2,'0')}</span>{title}</figcaption></figure>)}
       </div>
       <div className="lm-gallery-dots">{items.map(([,title],index)=><button key={title} className={active === index ? 'active' : ''} onClick={()=>goTo(index)} aria-label={`查看${title}`} />)}</div>
+    </div>
+  );
+}
+
+function LongmenServiceSwitcher() {
+  const [active, setActive] = useState(0);
+  const [activeSrc, activeTitle] = longmenServiceViews[active];
+
+  return (
+    <div className="lm-service-switcher">
+      <figure className="lm-service-main" key={activeSrc}>
+        <img src={activeSrc} alt={activeTitle} loading="lazy" />
+        <figcaption><span>{String(active + 1).padStart(2,'0')}</span>{activeTitle}</figcaption>
+      </figure>
+      <div className="lm-service-previews" aria-label="方案图预览">
+        {longmenServiceViews.map(([src,title],index)=>index !== active && (
+          <button type="button" key={src} onClick={()=>setActive(index)} aria-label={`放大查看${title}`}>
+            <img src={src} alt="" loading="lazy" />
+            <span>{String(index + 1).padStart(2,'0')} / {title} · CLICK TO VIEW ↗</span>
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
@@ -427,11 +460,7 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
 
       <section className="lm-section lm-service" id="longmen-service">
         <div className="lm-heading"><span>03</span><p>SERVICE SYSTEM</p><h2>让看不见的关系，<br />成为一条可体验的路径。</h2></div>
-        <div className="lm-service-grid">
-          <figure><img src="/projects/longmen/slides/solution.jpg" alt="非遗文化体验工坊、循环经济与数字积分平台组成的最终方案" loading="lazy" /><figcaption>FINAL SOLUTION / 三层协同方案</figcaption></figure>
-          <figure><img src="/projects/longmen/slides/journey.jpg" alt="游客画像与龙门古镇用户旅程地图" loading="lazy" /><figcaption>PERSONA &amp; JOURNEY MAP / 从计划到离开的体验旅程</figcaption></figure>
-          <figure><img src="/projects/longmen/slides/validation.jpg" alt="龙门古镇实地测试路线与积分验证地图" loading="lazy" /><figcaption>FIELD VALIDATION / 9 个触点的积分流动测试</figcaption></figure>
-        </div>
+        <LongmenServiceSwitcher />
         <div className="lm-story-intro"><p>STORYBOARD / SERVICE IN MOTION</p><h3>一个临时到访者，如何成为文化体验的参与者、消费者与传播者。</h3></div>
         <LongmenGallery items={longmenStoryboard} label="故事板" />
       </section>
