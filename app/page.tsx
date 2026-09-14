@@ -367,6 +367,8 @@ function LongmenPhoneRail() {
 }
 
 function LongmenProject({ onClose }:{ onClose:()=>void }) {
+  const [researchFocus, setResearchFocus] = useState<0 | 1>(0);
+
   return (
     <article className="longmen-project" role="dialog" aria-modal="true" aria-label="LonGO Live 龙门古镇项目详情">
       <header className="longmen-topbar">
@@ -410,9 +412,15 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
 
       <section className="lm-section lm-research" id="longmen-research">
         <div className="lm-heading"><span>02</span><p>FIELD RESEARCH</p><h2>从利益相关者之间，<br />找到真正的断点。</h2></div>
-        <div className="lm-research-grid">
-          <figure className="lm-research-primary"><img src="/projects/longmen/research-primary.png" alt="龙门古镇访谈与旅游生态系统图" loading="lazy" /><figcaption>01 / INTERVIEWS &amp; ECOSYSTEM MAP / 访谈与生态系统</figcaption></figure>
-          <figure className="lm-research-secondary"><img src="/projects/longmen/research-secondary.png" alt="龙门古镇自然非遗美食生活方式情绪板" loading="lazy" /><figcaption>02 / VISUAL FIELD NOTES / 在地视觉线索</figcaption></figure>
+        <div className={`lm-research-switcher ${researchFocus === 1 ? 'is-secondary-active' : ''}`}>
+          <button className={`lm-research-view lm-research-one ${researchFocus === 0 ? 'is-active' : 'is-preview'}`} type="button" onClick={()=>setResearchFocus(0)} aria-pressed={researchFocus === 0} aria-label="放大查看访谈与生态系统图">
+            <img src="/projects/longmen/research-primary.png" alt="龙门古镇访谈与旅游生态系统图" loading="lazy" />
+            <span>01 / INTERVIEWS &amp; ECOSYSTEM MAP / 访谈与生态系统</span>
+          </button>
+          <button className={`lm-research-view lm-research-two ${researchFocus === 1 ? 'is-active' : 'is-preview'}`} type="button" onClick={()=>setResearchFocus(1)} aria-pressed={researchFocus === 1} aria-label="放大查看龙门古镇在地视觉线索">
+            <img src="/projects/longmen/research-secondary.png" alt="龙门古镇自然非遗美食生活方式情绪板" loading="lazy" />
+            <span>02 / VISUAL FIELD NOTES / 在地视觉线索</span>
+          </button>
         </div>
         <blockquote><span>HOW MIGHT WE</span>如何平衡传统与现代发展，让在地文化参与真正转化为可持续的经济增长？</blockquote>
       </section>
