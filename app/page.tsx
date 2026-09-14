@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; featured?:boolean };
+type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'; cover?:string; coverAlt?:string };
 
 const masterProjects: Project[] = [
-  { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', featured:true },
-  { number:'M.02', title:'SOFT BOUNDARY', cn:'社会创新服务设计', year:'2025', type:'SERVICE · EXPERIENCE', tone:'acid' },
+  { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'/projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
+  { number:'M.02', title:'LONGMEN TRIBUTE', cn:'LonGO Live—龙门古镇文化体验积分系统', subtitle:'文化体验 · 数字积分 · 社区共创', year:'2025', type:'SERVICE · DIGITAL PLATFORM', tone:'acid', caseStudy:'longmen', cover:'/projects/longmen/visual/poster-gluten.jpg', coverAlt:'龙门古镇非遗美食体验视觉海报' },
   { number:'M.03', title:'TRACES OF LIGHT', cn:'交互装置与叙事', year:'2025', type:'INTERACTION · SPACE', tone:'coral' },
   { number:'M.04', title:'OPEN PROTOCOL', cn:'毕业设计档案', year:'2026', type:'VISUAL · EDITORIAL', tone:'blue' },
 ];
@@ -116,14 +116,14 @@ function ProjectTrack({ projects, label, onOpen }:{ projects:Project[]; label:st
         {projects.map((project, index) => {
           const cardContent = <>
             <div className={`project-art ${project.tone}`}>
-              {project.featured ? <img className="project-card-image" src="/projects/tongyun/hero-frame-59.png" alt="通运共生项目首页封面预览" draggable={false} /> : <><span className="art-grid" /><span className="art-orb" /></>}
+              {project.cover ? <img className="project-card-image" src={project.cover} alt={project.coverAlt || ''} draggable={false} /> : <><span className="art-grid" /><span className="art-orb" /></>}
               <span className="art-mark">{String(index+1).padStart(2,'0')}</span>
-              <span className="view-chip">{project.featured ? 'OPEN CASE STUDY ↗' : 'VIEW PROJECT ↗'}</span>
+              <span className="view-chip">{project.caseStudy ? 'OPEN CASE STUDY ↗' : 'VIEW PROJECT ↗'}</span>
             </div>
             <div className="project-meta"><span>{project.number}</span><h3>{project.title}<small>{project.cn}{project.subtitle && <b>{project.subtitle}</b>}</small></h3><p>{project.year}<br />{project.type}</p></div>
           </>;
-          return project.featured ?
-            <a className="project-card" data-project={project.number} href="#tongyun-case" key={project.number} onClick={e=>{ if (drag.current.moved) { e.preventDefault(); return; } openProject(project); }} aria-label={`查看 ${project.cn} 详情`}>{cardContent}</a> :
+          return project.caseStudy ?
+            <a className="project-card" data-project={project.number} href={`#${project.caseStudy}-case`} key={project.number} onClick={e=>{ e.preventDefault(); if (drag.current.moved) return; openProject(project); }} aria-label={`查看 ${project.cn} 详情`}>{cardContent}</a> :
             <button className="project-card" data-project={project.number} key={project.number} onClick={()=>openProject(project)} aria-label={`查看 ${project.cn} 详情`}>{cardContent}</button>;
         })}
       </div>
@@ -277,6 +277,177 @@ function OutcomeGallery() {
   );
 }
 
+const longmenStoryboard = [
+  ['/projects/longmen/storyboard/01.jpg','临时出行计划触发需求'],
+  ['/projects/longmen/storyboard/04.jpg','扫码入园并由同伴引导'],
+  ['/projects/longmen/storyboard/06.jpg','参与非遗美食制作并获得积分'],
+  ['/projects/longmen/storyboard/08.jpg','在平台内使用积分兑换支持'],
+  ['/projects/longmen/storyboard/10.jpg','从体验者转变为文化分享者'],
+] as const;
+
+const longmenVisuals = [
+  ['/projects/longmen/visual/folding-front.jpg','折页正面与品牌封套'],
+  ['/projects/longmen/visual/folding-back.jpg','非遗工坊四步体验指南'],
+  ['/projects/longmen/visual/poster-gluten.jpg','龙门面筋主题海报'],
+  ['/projects/longmen/visual/poster-sanbao.jpg','腐乳三宝主题海报'],
+  ['/projects/longmen/visual/postcard-taste.jpg','龙门传统风味明信片'],
+  ['/projects/longmen/visual/postcard-gluten.jpg','龙门面筋明信片'],
+  ['/projects/longmen/visual/postcard-rice.jpg','酒酿与豆腐主题明信片'],
+  ['/projects/longmen/visual/postcard-sanbao.jpg','腐乳三宝明信片'],
+] as const;
+
+function LongmenGallery({ items, label }:{ items:readonly (readonly [string,string])[]; label:string }) {
+  const track = useRef<HTMLDivElement>(null);
+  const drag = useRef({ active:false, x:0, y:0, left:0, moved:false });
+  const [active, setActive] = useState(0);
+  const start = (e:React.PointerEvent) => {
+    if (!track.current) return;
+    drag.current = { active:true, x:e.clientX, y:e.clientY, left:track.current.scrollLeft, moved:false };
+  };
+  const move = (e:React.PointerEvent) => {
+    if (!drag.current.active || !track.current) return;
+    const dx = e.clientX - drag.current.x;
+    const dy = e.clientY - drag.current.y;
+    if (!drag.current.moved && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+      drag.current.moved = true;
+      track.current.setPointerCapture(e.pointerId);
+    }
+    if (drag.current.moved) track.current.scrollLeft = drag.current.left - dx;
+  };
+  const goTo = (index:number) => {
+    if (!track.current) return;
+    const next = Math.max(0, Math.min(items.length - 1, index));
+    track.current.scrollTo({ left:next * track.current.clientWidth, behavior:'smooth' });
+  };
+  return (
+    <div className="lm-gallery">
+      <div className="lm-gallery-tools"><p>DRAG TO EXPLORE <span>{String(active + 1).padStart(2,'0')} / {String(items.length).padStart(2,'0')}</span></p><div><button onClick={()=>goTo(active - 1)} disabled={active === 0} aria-label={`查看上一项${label}`}>←</button><button onClick={()=>goTo(active + 1)} disabled={active === items.length - 1} aria-label={`查看下一项${label}`}>→</button></div></div>
+      <div className="lm-gallery-track" ref={track} tabIndex={0} onScroll={()=>track.current && setActive(Math.max(0,Math.min(items.length - 1,Math.round(track.current.scrollLeft / track.current.clientWidth))))} onPointerDown={start} onPointerMove={move} onPointerUp={()=>drag.current.active=false} onPointerCancel={()=>drag.current.active=false} onKeyDown={e=>{ if (e.key === 'ArrowLeft') goTo(active - 1); if (e.key === 'ArrowRight') goTo(active + 1); }}>
+        {items.map(([src,title],index)=><figure key={src}><div><img src={src} alt={title} loading={index === 0 ? 'eager' : 'lazy'} draggable={false} /></div><figcaption><span>{String(index + 1).padStart(2,'0')}</span>{title}</figcaption></figure>)}
+      </div>
+      <div className="lm-gallery-dots">{items.map(([,title],index)=><button key={title} className={active === index ? 'active' : ''} onClick={()=>goTo(index)} aria-label={`查看${title}`} />)}</div>
+    </div>
+  );
+}
+
+const longmenApps = [
+  ['/projects/longmen/app/home.png','HOME / 行程预约与积分商城'],
+  ['/projects/longmen/app/discover.png','DISCOVER / 景点、活动与餐饮发现'],
+  ['/projects/longmen/app/map.png','MAP / 古镇地图与附近推荐'],
+  ['/projects/longmen/app/alerts.png','ALERTS / 预约、排队与积分提醒'],
+  ['/projects/longmen/app/profile.png','PROFILE / 成就、积分与历史记录'],
+] as const;
+
+function LongmenPhoneRail() {
+  const track = useRef<HTMLDivElement>(null);
+  const drag = useRef({ active:false, x:0, y:0, left:0, moved:false });
+  const start = (e:React.PointerEvent) => {
+    if (!track.current) return;
+    drag.current = { active:true, x:e.clientX, y:e.clientY, left:track.current.scrollLeft, moved:false };
+  };
+  const move = (e:React.PointerEvent) => {
+    if (!drag.current.active || !track.current) return;
+    const dx = e.clientX - drag.current.x;
+    const dy = e.clientY - drag.current.y;
+    if (!drag.current.moved && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+      drag.current.moved = true;
+      track.current.setPointerCapture(e.pointerId);
+    }
+    if (drag.current.moved) track.current.scrollLeft = drag.current.left - dx;
+  };
+  const nudge = (direction:number) => track.current?.scrollBy({ left:direction * track.current.clientWidth * .72, behavior:'smooth' });
+  return (
+    <div className="lm-phone-gallery">
+      <div className="lm-phone-tools"><p>FIVE CORE FLOWS <span>横向拖拽浏览</span></p><div><button onClick={()=>nudge(-1)} aria-label="查看上一个应用界面">←</button><button onClick={()=>nudge(1)} aria-label="查看下一个应用界面">→</button></div></div>
+      <div className="lm-phone-track" ref={track} tabIndex={0} onPointerDown={start} onPointerMove={move} onPointerUp={()=>drag.current.active=false} onPointerCancel={()=>drag.current.active=false} onKeyDown={e=>{ if (e.key === 'ArrowLeft') nudge(-1); if (e.key === 'ArrowRight') nudge(1); }}>
+        {longmenApps.map(([src,title],index)=><figure key={src}><span>0{index + 1}</span><img src={src} alt={title} loading={index < 2 ? 'eager' : 'lazy'} draggable={false} /><figcaption>{title}</figcaption></figure>)}
+      </div>
+    </div>
+  );
+}
+
+function LongmenProject({ onClose }:{ onClose:()=>void }) {
+  return (
+    <article className="longmen-project" role="dialog" aria-modal="true" aria-label="LonGO Live 龙门古镇项目详情">
+      <header className="longmen-topbar">
+        <a href="#longmen-top" className="longmen-brand">LonGO LIVE <span>EXPLORE &amp; EARN</span></a>
+        <nav aria-label="项目详情目录"><a href="#longmen-overview">概览</a><a href="#longmen-research">研究</a><a href="#longmen-service">系统</a><a href="#longmen-product">产品</a><a href="#longmen-brand">品牌</a></nav>
+        <button onClick={onClose} aria-label="关闭项目详情">BACK TO WORKS ×</button>
+      </header>
+
+      <section className="longmen-hero" id="longmen-top">
+        <div className="lm-hero-copy">
+          <p>MASTER&apos;S PROJECT · 02 / 2025</p>
+          <div className="lm-hero-logo"><span>LonGO</span><b>LIVE</b></div>
+          <h1>Explore<br />&amp; Earn.</h1>
+          <h2>龙门古镇文化体验积分系统</h2>
+          <p className="lm-hero-intro">以非遗体验为入口，让参与、奖励与再消费形成持续流动的文化循环。</p>
+        </div>
+        <div className="lm-hero-art" aria-label="龙门非遗美食工坊视觉设计">
+          <video className="lm-hero-video" autoPlay muted loop playsInline controls preload="metadata" poster="/projects/longmen/storyboard/04.jpg" aria-label="LonGO Live 龙门古镇项目视频">
+            <source src="/projects/longmen/longmen-film.mp4" type="video/mp4" />
+          </video>
+          <span className="lm-mascot" aria-hidden="true"><i /><b>GLUGLU</b></span>
+        </div>
+        <div className="lm-loop" aria-label="服务循环"><span>PARTICIPATE</span><i>→</i><span>EARN POINTS</span><i>→</i><span>REDEEM</span><i>→</i><span>RECONNECT</span></div>
+      </section>
+
+      <section className="lm-section lm-overview" id="longmen-overview">
+        <div className="lm-heading"><span>01</span><p>PROJECT OVERVIEW</p><h2>把一次到访，<br />变成持续的文化关系。</h2></div>
+        <div className="lm-overview-copy">
+          <div><p>LonGO Live 是一套连接“文化体验＋数字平台”的虚拟积分系统。项目从龙门古镇本地非遗、美食作坊与青年游客之间的关系出发，重新组织体验预约、现场参与、积分获得、兑换消费与二次传播的完整旅程。</p><p>设计目标不是把传统文化包装成一次性景点，而是让游客的每一次参与都能回到本地经营者、传承人与社区，形成文化活力与在地经济共同增长的正向循环。</p></div>
+          <dl><div><dt>ROLE</dt><dd>设计负责人 / Design Lead</dd></div><div><dt>TEAM</dt><dd>Fanta Si · 3 人小组</dd></div><div><dt>METHOD</dt><dd>实地访谈 · 生态系统图<br />服务蓝图 · 原型验证</dd></div><div><dt>OUTPUT</dt><dd>数字积分平台 · 非遗工坊<br />视觉识别 · 展览呈现</dd></div></dl>
+        </div>
+        <div className="lm-cycle" aria-label="龙门文化体验积分循环">
+          <article><span>01</span><b>PLAY</b><h3>参与文化体验</h3><p>预约工坊、探索古镇、完成现场任务。</p></article>
+          <article><span>02</span><b>EARN</b><h3>获得数字积分</h3><p>真实参与被记录为可见、可累积的价值。</p></article>
+          <article><span>03</span><b>RETURN</b><h3>兑换与再连接</h3><p>积分流向本地产品、下一次体验与文化传播。</p></article>
+        </div>
+      </section>
+
+      <section className="lm-section lm-research" id="longmen-research">
+        <div className="lm-heading light"><span>02</span><p>FIELD RESEARCH</p><h2>从利益相关者之间，<br />找到真正的断点。</h2></div>
+        <div className="lm-research-grid">
+          <figure><img src="/projects/longmen/slides/research.jpg" alt="龙门古镇访谈与旅游生态系统图" loading="lazy" /><figcaption>INTERVIEWS &amp; ECOSYSTEM MAP / 访谈与生态系统</figcaption></figure>
+          <figure><img src="/projects/longmen/slides/moodboard.jpg" alt="龙门古镇自然非遗美食生活方式情绪板" loading="lazy" /><figcaption>VISUAL FIELD NOTES / 在地视觉线索</figcaption></figure>
+        </div>
+        <blockquote><span>HOW MIGHT WE</span>如何平衡传统与现代发展，让在地文化参与真正转化为可持续的经济增长？</blockquote>
+      </section>
+
+      <section className="lm-section lm-service" id="longmen-service">
+        <div className="lm-heading"><span>03</span><p>SERVICE SYSTEM</p><h2>让看不见的关系，<br />成为一条可体验的路径。</h2></div>
+        <div className="lm-service-grid">
+          <figure><img src="/projects/longmen/slides/solution.jpg" alt="非遗文化体验工坊、循环经济与数字积分平台组成的最终方案" loading="lazy" /><figcaption>FINAL SOLUTION / 三层协同方案</figcaption></figure>
+          <figure><img src="/projects/longmen/slides/journey.jpg" alt="游客画像与龙门古镇用户旅程地图" loading="lazy" /><figcaption>PERSONA &amp; JOURNEY MAP / 从计划到离开的体验旅程</figcaption></figure>
+          <figure><img src="/projects/longmen/slides/validation.jpg" alt="龙门古镇实地测试路线与积分验证地图" loading="lazy" /><figcaption>FIELD VALIDATION / 9 个触点的积分流动测试</figcaption></figure>
+        </div>
+        <div className="lm-story-intro"><p>STORYBOARD / SERVICE IN MOTION</p><h3>一个临时到访者，如何成为文化体验的参与者、消费者与传播者。</h3></div>
+        <LongmenGallery items={longmenStoryboard} label="故事板" />
+      </section>
+
+      <section className="lm-section lm-product" id="longmen-product">
+        <div className="lm-product-head"><p>04 / DIGITAL PLATFORM</p><h2>一套平台，<br />串联到访前后。</h2><div><span>BOOK</span><span>DISCOVER</span><span>NAVIGATE</span><span>EARN</span><span>REDEEM</span></div></div>
+        <figure className="lm-ia"><img src="/projects/longmen/slides/architecture.jpg" alt="LonGO Live 信息架构与低保真原型" loading="lazy" /><figcaption>INFORMATION ARCHITECTURE &amp; LOW-FI PROTOTYPE</figcaption></figure>
+        <LongmenPhoneRail />
+      </section>
+
+      <section className="lm-section lm-brand-system" id="longmen-brand">
+        <div className="lm-heading"><span>05</span><p>GRAPHIC BRANDING</p><h2>把非遗食物，<br />变成可识别的城市表情。</h2></div>
+        <div className="lm-brand-lead"><figure><img src="/projects/longmen/slides/branding.jpg" alt="Gluglu IP 形象、平台标志与龙门美食工坊视觉系统" loading="lazy" /></figure><div><span className="lm-brand-orb" aria-hidden="true"><i /></span><p>以龙门面筋为原型，将圆润的食物形态、厨师帽与动作表情组合成 IP 角色 GLUGLU。荧光绿、珊瑚红与亮蓝延伸到平台、海报、明信片和折页，让数字体验与现场工坊保持一致的识别度。</p></div></div>
+        <LongmenGallery items={longmenVisuals} label="视觉成果" />
+      </section>
+
+      <section className="lm-section lm-exhibition">
+        <div className="lm-exhibition-copy"><p>06 / EXHIBITION</p><h2>从屏幕，<br />回到真实场域。</h2><p>最终成果以 A0 研究展板、服务系统图、应用界面、故事板和实体印刷品共同呈现，验证数字平台如何与线下文化体验形成完整触点。</p></div>
+        <figure><img src="/projects/longmen/slides/exhibition.jpg" alt="LonGO Live 项目展览现场" loading="lazy" /><figcaption>FINAL EXHIBITION / 2025</figcaption></figure>
+      </section>
+
+      <details className="longmen-boards"><summary>VIEW ORIGINAL A0 BOARDS <span>查看两张原始设计展板 ＋</span></summary><div><img src="/projects/longmen/boards/a0-research.jpg" alt="LonGO Live 原始研究展板" loading="lazy" /><img src="/projects/longmen/boards/a0-system.jpg" alt="LonGO Live 原始系统与成果展板" loading="lazy" /></div></details>
+      <footer className="longmen-footer"><p>LONGMEN TRIBUTE / LonGO LIVE</p><button onClick={onClose}>BACK TO MASTER&apos;S WORK ↑</button></footer>
+    </article>
+  );
+}
+
 function TongyunProject({ onClose }:{ onClose:()=>void }) {
   return (
     <article className="tongyun-project" role="dialog" aria-modal="true" aria-label="通运共生项目详情">
@@ -381,7 +552,7 @@ export default function Home() {
   const closeMenu = () => setMenuOpen(false);
   const openProject = (project:Project) => {
     setActiveProject(project);
-    if (project.number === 'M.01') window.history.replaceState(null, '', '#tongyun-case');
+    if (project.caseStudy) window.history.replaceState(null, '', `#${project.caseStudy}-case`);
   };
   const closeProject = () => {
     setActiveProject(null);
@@ -390,6 +561,7 @@ export default function Home() {
   useEffect(() => {
     const openFromHash = () => {
       if (window.location.hash === '#tongyun-case') setActiveProject(masterProjects[0]);
+      if (window.location.hash === '#longmen-case') setActiveProject(masterProjects[1]);
     };
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
@@ -402,7 +574,7 @@ export default function Home() {
     const closeOnEscape = (event:KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setActiveProject(null);
-      if (window.location.hash === '#tongyun-case') window.history.replaceState(null, '', '#masters');
+      if (window.location.hash === '#tongyun-case' || window.location.hash === '#longmen-case') window.history.replaceState(null, '', '#masters');
     };
     window.addEventListener('keydown', closeOnEscape);
     return () => { document.body.style.overflow = previous; window.removeEventListener('keydown', closeOnEscape); };
@@ -506,7 +678,9 @@ export default function Home() {
 
       {activeProject?.number === 'M.01' && <div className="tongyun-overlay"><TongyunProject onClose={closeProject} /></div>}
 
-      {activeProject && activeProject.number !== 'M.01' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
+      {activeProject?.number === 'M.02' && <div className="longmen-overlay"><LongmenProject onClose={closeProject} /></div>}
+
+      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
         <article className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeProject.cn} 作品详情`} onMouseDown={e=>e.stopPropagation()}>
           <button className="modal-close" onClick={()=>setActiveProject(null)} aria-label="关闭详情">CLOSE ×</button>
           <div className={`modal-art ${activeProject.tone}`}><span>{activeProject.number}</span></div>
