@@ -399,8 +399,7 @@ function LongmenPlatformShowcase() {
           <section className="lm-feature lm-feature-discover">
             <LongmenFeatureNotes title="Discover" eyebrow="SEARCH · FILTER · BOOK" notes={platformNotes.discover} />
             <div className="lm-phone-mockup" aria-label="Discover 手机样机">
-              <span className="lm-phone-notch" aria-hidden="true" />
-              <img src="/projects/longmen/app/discover.png" alt="LonGO Live Discover 页面手机样机" loading="lazy" />
+              <img src="/projects/longmen/product-detail/discover-phone.png" alt="LonGO Live Discover 页面手机样机" loading="lazy" />
             </div>
           </section>
           <section className="lm-feature lm-feature-home-scroll">
