@@ -363,38 +363,80 @@ function LongmenServiceSwitcher() {
   );
 }
 
-const longmenApps = [
-  ['/projects/longmen/app/home.png','HOME / 行程预约与积分商城'],
-  ['/projects/longmen/app/discover.png','DISCOVER / 景点、活动与餐饮发现'],
-  ['/projects/longmen/app/map.png','MAP / 古镇地图与附近推荐'],
-  ['/projects/longmen/app/alerts.png','ALERTS / 预约、排队与积分提醒'],
-  ['/projects/longmen/app/profile.png','PROFILE / 成就、积分与历史记录'],
-] as const;
+const platformNotes = {
+  discover: ['搜索与分类入口', '热门景点推荐', '文化体验预约', '本地餐饮与季节活动'],
+  home: ['快捷功能入口', '行程日期预约', '入场二维码', '积分商城与成就'],
+  alerts: ['预约提醒与确认', '工坊排队进度', '积分增减记录', '全部通知集中管理'],
+  map: ['古镇地图与地标', '附近场所推荐', '路线与距离信息'],
+  profile: ['身份与文化徽章', '积分及兑换记录', '近期预约管理', '个人设置与支持'],
+} as const;
 
-function LongmenPhoneRail() {
-  const track = useRef<HTMLDivElement>(null);
-  const drag = useRef({ active:false, x:0, y:0, left:0, moved:false });
-  const start = (e:React.PointerEvent) => {
-    if (!track.current) return;
-    drag.current = { active:true, x:e.clientX, y:e.clientY, left:track.current.scrollLeft, moved:false };
-  };
-  const move = (e:React.PointerEvent) => {
-    if (!drag.current.active || !track.current) return;
-    const dx = e.clientX - drag.current.x;
-    const dy = e.clientY - drag.current.y;
-    if (!drag.current.moved && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
-      drag.current.moved = true;
-      track.current.setPointerCapture(e.pointerId);
-    }
-    if (drag.current.moved) track.current.scrollLeft = drag.current.left - dx;
-  };
-  const nudge = (direction:number) => track.current?.scrollBy({ left:direction * track.current.clientWidth * .72, behavior:'smooth' });
+function LongmenFeatureNotes({ title, eyebrow, notes }:{ title:string; eyebrow:string; notes:readonly string[] }) {
   return (
-    <div className="lm-phone-gallery">
-      <div className="lm-phone-tools"><p>FIVE CORE FLOWS <span>横向拖拽浏览</span></p><div><button onClick={()=>nudge(-1)} aria-label="查看上一个应用界面">←</button><button onClick={()=>nudge(1)} aria-label="查看下一个应用界面">→</button></div></div>
-      <div className="lm-phone-track" ref={track} tabIndex={0} onPointerDown={start} onPointerMove={move} onPointerUp={()=>drag.current.active=false} onPointerCancel={()=>drag.current.active=false} onKeyDown={e=>{ if (e.key === 'ArrowLeft') nudge(-1); if (e.key === 'ArrowRight') nudge(1); }}>
-        {longmenApps.map(([src,title],index)=><figure key={src}><span>0{index + 1}</span><img src={src} alt={title} loading={index < 2 ? 'eager' : 'lazy'} draggable={false} /><figcaption>{title}</figcaption></figure>)}
-      </div>
+    <div className="lm-platform-notes">
+      <p>{eyebrow}</p>
+      <h4>{title}</h4>
+      <ul>{notes.map(note=><li key={note}>{note}</li>)}</ul>
+    </div>
+  );
+}
+
+function LongmenScrollScreen({ src, alt, label }:{ src:string; alt:string; label:string }) {
+  return (
+    <div className="lm-scroll-screen" tabIndex={0} aria-label={`${label}，可上下滚动查看`}>
+      <div className="lm-scroll-hint"><span>SCROLL</span><i>↓</i></div>
+      <img src={src} alt={alt} loading="lazy" />
+    </div>
+  );
+}
+
+function LongmenPlatformShowcase() {
+  return (
+    <div className="lm-platform-showcase">
+      <article className="lm-platform-case lm-platform-discover">
+        <header><span>01</span><p>DISCOVER + HOME</p><h3>从发现兴趣，<br />到安排一次到访。</h3></header>
+        <div className="lm-platform-feature-grid">
+          <section className="lm-feature lm-feature-discover">
+            <LongmenFeatureNotes title="Discover" eyebrow="SEARCH · FILTER · BOOK" notes={platformNotes.discover} />
+            <div className="lm-phone-mockup" aria-label="Discover 手机样机">
+              <span className="lm-phone-notch" aria-hidden="true" />
+              <img src="/projects/longmen/app/discover.png" alt="LonGO Live Discover 页面手机样机" loading="lazy" />
+            </div>
+          </section>
+          <section className="lm-feature lm-feature-home-scroll">
+            <LongmenFeatureNotes title="Home" eyebrow="PLAN · ENTER · EARN" notes={platformNotes.home} />
+            <LongmenScrollScreen src="/projects/longmen/product-detail/home-annotated.png" alt="LonGO Live Home 长页面及功能标注" label="Home 长页面" />
+          </section>
+        </div>
+      </article>
+
+      <article className="lm-platform-case lm-platform-alerts-map">
+        <header><span>02</span><p>ALERTS + MAPS</p><h3>把现场中的提醒，<br />连接到真实地点。</h3></header>
+        <div className="lm-platform-duo-grid">
+          <section className="lm-feature lm-feature-alerts-static">
+            <LongmenFeatureNotes title="Alerts" eyebrow="REMIND · UPDATE · RECORD" notes={platformNotes.alerts} />
+            <figure className="lm-static-screen"><img src="/projects/longmen/app/alerts.png" alt="LonGO Live Alerts 通知页面" loading="lazy" /></figure>
+          </section>
+          <section className="lm-feature">
+            <LongmenFeatureNotes title="Maps" eyebrow="LOCATE · NAVIGATE · NEARBY" notes={platformNotes.map} />
+            <LongmenScrollScreen src="/projects/longmen/app/map.png" alt="LonGO Live 古镇地图与附近推荐长页面" label="Maps 长页面" />
+          </section>
+        </div>
+      </article>
+
+      <article className="lm-platform-case lm-platform-home-profile">
+        <header><span>03</span><p>HOME + PROFILE</p><h3>在一个持续累积的账户里，<br />看见参与留下的价值。</h3></header>
+        <div className="lm-platform-duo-grid">
+          <section className="lm-feature">
+            <LongmenFeatureNotes title="Home" eyebrow="BOOK · PASS · REWARD" notes={platformNotes.home} />
+            <LongmenScrollScreen src="/projects/longmen/product-detail/home-annotated.png" alt="LonGO Live Home 完整长页面及功能标注" label="Home 完整长页面" />
+          </section>
+          <section className="lm-feature">
+            <LongmenFeatureNotes title="Profile" eyebrow="IDENTITY · POINTS · HISTORY" notes={platformNotes.profile} />
+            <LongmenScrollScreen src="/projects/longmen/product-detail/profile-annotated.png" alt="LonGO Live Profile 完整长页面及功能标注" label="Profile 完整长页面" />
+          </section>
+        </div>
+      </article>
     </div>
   );
 }
@@ -468,7 +510,7 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
       <section className="lm-section lm-product" id="longmen-product">
         <div className="lm-product-head"><p>04 / DIGITAL PLATFORM</p><h2>一套平台，<br />串联到访前后。</h2><div><span>BOOK</span><span>DISCOVER</span><span>NAVIGATE</span><span>EARN</span><span>REDEEM</span></div></div>
         <figure className="lm-ia"><img src="/projects/longmen/slides/architecture.jpg" alt="LonGO Live 信息架构与低保真原型" loading="lazy" /><figcaption>INFORMATION ARCHITECTURE &amp; LOW-FI PROTOTYPE</figcaption></figure>
-        <LongmenPhoneRail />
+        <LongmenPlatformShowcase />
       </section>
 
       <section className="lm-section lm-brand-system" id="longmen-brand">
