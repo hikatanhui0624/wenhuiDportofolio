@@ -387,7 +387,10 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
           <video className="lm-hero-video" autoPlay muted loop playsInline controls preload="metadata" poster="/projects/longmen/storyboard/04.jpg" aria-label="LonGO Live 龙门古镇项目视频">
             <source src="/projects/longmen/longmen-film.mp4" type="video/mp4" />
           </video>
-          <span className="lm-mascot" aria-hidden="true"><i /><b>GLUGLU</b></span>
+          <figure className="lm-mascot-art">
+            <img src="/projects/longmen/mascot-hero.png" alt="GLUGLU 非遗美食 IP 角色" />
+            <figcaption>GLUGLU</figcaption>
+          </figure>
         </div>
         <div className="lm-loop" aria-label="服务循环"><span>PARTICIPATE</span><i>→</i><span>EARN POINTS</span><i>→</i><span>REDEEM</span><i>→</i><span>RECONNECT</span></div>
       </section>
@@ -406,10 +409,10 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
       </section>
 
       <section className="lm-section lm-research" id="longmen-research">
-        <div className="lm-heading light"><span>02</span><p>FIELD RESEARCH</p><h2>从利益相关者之间，<br />找到真正的断点。</h2></div>
+        <div className="lm-heading"><span>02</span><p>FIELD RESEARCH</p><h2>从利益相关者之间，<br />找到真正的断点。</h2></div>
         <div className="lm-research-grid">
-          <figure><img src="/projects/longmen/slides/research.jpg" alt="龙门古镇访谈与旅游生态系统图" loading="lazy" /><figcaption>INTERVIEWS &amp; ECOSYSTEM MAP / 访谈与生态系统</figcaption></figure>
-          <figure><img src="/projects/longmen/slides/moodboard.jpg" alt="龙门古镇自然非遗美食生活方式情绪板" loading="lazy" /><figcaption>VISUAL FIELD NOTES / 在地视觉线索</figcaption></figure>
+          <figure className="lm-research-primary"><img src="/projects/longmen/research-primary.png" alt="龙门古镇访谈与旅游生态系统图" loading="lazy" /><figcaption>01 / INTERVIEWS &amp; ECOSYSTEM MAP / 访谈与生态系统</figcaption></figure>
+          <figure className="lm-research-secondary"><img src="/projects/longmen/research-secondary.png" alt="龙门古镇自然非遗美食生活方式情绪板" loading="lazy" /><figcaption>02 / VISUAL FIELD NOTES / 在地视觉线索</figcaption></figure>
         </div>
         <blockquote><span>HOW MIGHT WE</span>如何平衡传统与现代发展，让在地文化参与真正转化为可持续的经济增长？</blockquote>
       </section>
@@ -433,7 +436,7 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
 
       <section className="lm-section lm-brand-system" id="longmen-brand">
         <div className="lm-heading"><span>05</span><p>GRAPHIC BRANDING</p><h2>把非遗食物，<br />变成可识别的城市表情。</h2></div>
-        <div className="lm-brand-lead"><figure><img src="/projects/longmen/slides/branding.jpg" alt="Gluglu IP 形象、平台标志与龙门美食工坊视觉系统" loading="lazy" /></figure><div><span className="lm-brand-orb" aria-hidden="true"><i /></span><p>以龙门面筋为原型，将圆润的食物形态、厨师帽与动作表情组合成 IP 角色 GLUGLU。荧光绿、珊瑚红与亮蓝延伸到平台、海报、明信片和折页，让数字体验与现场工坊保持一致的识别度。</p></div></div>
+        <div className="lm-brand-lead"><figure><img src="/projects/longmen/slides/branding.jpg" alt="Gluglu IP 形象、平台标志与龙门美食工坊视觉系统" loading="lazy" /></figure><div><img className="lm-brand-mascot" src="/projects/longmen/mascot-mark.png" alt="GLUGLU IP 角色" /><p>以龙门面筋为原型，将圆润的食物形态、厨师帽与动作表情组合成 IP 角色 GLUGLU。荧光绿、珊瑚红与亮蓝延伸到平台、海报、明信片和折页，让数字体验与现场工坊保持一致的识别度。</p></div></div>
         <LongmenGallery items={longmenVisuals} label="视觉成果" />
       </section>
 
