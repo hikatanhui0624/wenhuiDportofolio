@@ -7,7 +7,7 @@ type Project = { number:string; title:string; cn:string; subtitle?:string; year:
 const masterProjects: Project[] = [
   { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'/projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
   { number:'M.02', title:'LONGMEN TRIBUTE', cn:'LonGO Live—龙门古镇文化体验积分系统', subtitle:'文化体验 · 数字积分 · 社区共创', year:'2025', type:'SERVICE · DIGITAL PLATFORM', tone:'acid', caseStudy:'longmen', cover:'/projects/longmen/visual/poster-gluten.jpg', coverAlt:'龙门古镇非遗美食体验视觉海报' },
-  { number:'M.03', title:'FADING PETALS WITH CHAINS', cn:'赏花勿审花—关于女性隐形社会伤害下容貌焦虑的交互视觉探索', subtitle:'动态海报 · 面部识别交互', year:'2025', type:'INTERACTION · VISUAL INSTALLATION', tone:'petals', caseStudy:'petals', cover:'/projects/petals/figma/interactive-rose.png', coverAlt:'赏花勿审花红色玫瑰交互视觉作品封面' },
+  { number:'M.03', title:'FADING PETALS WITH CHAINS', cn:'赏花勿审花—关于女性隐形社会伤害下容貌焦虑的交互视觉探索', subtitle:'动态海报 · 面部识别交互', year:'2025', type:'INTERACTION · VISUAL INSTALLATION', tone:'petals', caseStudy:'petals', cover:'/projects/petals/revision/cover-a4.png', coverAlt:'赏花勿审花三组关系视觉融合预览' },
   { number:'M.04', title:'OPEN PROTOCOL', cn:'毕业设计档案', year:'2026', type:'VISUAL · EDITORIAL', tone:'blue' },
 ];
 
@@ -447,15 +447,15 @@ function LongmenPlatformShowcase() {
 }
 
 const petalsMetaphors = [
-  { key:'rose', index:'01', flower:'Rose / 玫瑰', word:'刺', context:'亲密关系', title:'爱意里的刺', copy:'亲密关系中的评价、比较与审美期待，会以“为你好”的方式进入身体经验。', image:'/projects/petals/figma/rose-model.png' },
-  { key:'lily', index:'02', flower:'Lily / 百合', word:'框', context:'职场环境', title:'规则后的框', copy:'职业形象、年龄与性别气质被写进隐形规则，外貌逐渐成为一项额外劳动。', image:'/projects/petals/figma/lily-model.png' },
-  { key:'daisy', index:'03', flower:'Daisy / 雏菊', word:'眼', context:'同辈关系', title:'周围人的眼', copy:'同伴目光与社交媒体的持续观看，让比较被内化为随时发生的自我审查。', image:'/projects/petals/figma/daisy-model.png' },
+  { key:'rose', index:'01', flower:'Rose / 玫瑰', word:'刺', context:'亲密关系', title:'爱意里的刺', copy:'亲密关系中的评价、比较与审美期待，会以“为你好”的方式进入身体经验。', scene:'/projects/petals/revision/context-intimacy.png', photo:'/projects/petals/revision/photo-rose.jpg', model:'/projects/petals/figma/rose-model.png', transform:'亲密关系 → 隐喻玫瑰 → 缠绕与刺' },
+  { key:'lily', index:'02', flower:'Lily / 百合', word:'框', context:'职场环境', title:'规则后的框', copy:'职业形象、年龄与性别气质被写进隐形规则，外貌逐渐成为一项额外劳动。', scene:'/projects/petals/revision/context-workplace.png', photo:'/projects/petals/revision/photo-lily.jpg', model:'/projects/petals/figma/lily-model.png', transform:'职场环境 → 隐喻百合 → 规训与框定' },
+  { key:'daisy', index:'03', flower:'Daisy / 雏菊', word:'眼', context:'同辈关系', title:'周围人的眼', copy:'同伴目光与社交媒体的持续观看，让比较被内化为随时发生的自我审查。', scene:'/projects/petals/revision/context-peers.png', photo:'/projects/petals/revision/photo-daisy.jpg', model:'/projects/petals/figma/daisy-model.png', transform:'同辈关系 → 隐喻雏菊 → 目光与比较' },
 ];
 
 const petalsDevelopment = [
-  { key:'rose', label:'ROSE / INTIMACY', title:'把“刺”变成缠绕的结构', sketch:'/projects/petals/figma/rose-sketch.png', model:'/projects/petals/figma/rose-model.png' },
-  { key:'lily', label:'LILY / WORKPLACE', title:'把“框”变成受限的生长', sketch:'/projects/petals/figma/lily-sketch.png', model:'/projects/petals/figma/lily-model.png' },
-  { key:'daisy', label:'DAISY / PEERS', title:'把“眼”变成聚集的凝视', sketch:'/projects/petals/figma/daisy-sketch.png', model:'/projects/petals/figma/daisy-model.png' },
+  { key:'rose', label:'ROSE / INTIMACY', title:'把“刺”变成缠绕的结构', sketch:'/projects/petals/figma/rose-sketch.png', model:'/projects/petals/revision/model-rose.png' },
+  { key:'lily', label:'LILY / WORKPLACE', title:'把“框”变成受限的生长', sketch:'/projects/petals/figma/lily-sketch.png', model:'/projects/petals/revision/model-lily.png' },
+  { key:'daisy', label:'DAISY / PEERS', title:'把“眼”变成聚集的凝视', sketch:'/projects/petals/figma/daisy-sketch.png', model:'/projects/petals/revision/model-daisy.png' },
 ];
 
 function PetalsProject({ onClose }:{ onClose:()=>void }) {
@@ -475,10 +475,10 @@ function PetalsProject({ onClose }:{ onClose:()=>void }) {
           <p className="petals-hero-subtitle">关于女性隐形社会伤害下<br />容貌焦虑的交互视觉探索</p>
           <div className="petals-hero-tags"><span>GENERATIVE VISUAL</span><span>FACE TRACKING</span><span>INTERACTIVE INSTALLATION</span></div>
         </div>
-        <div className="petals-hero-visual" aria-label="红色玫瑰人脸交互视觉">
+        <div className="petals-hero-visual" aria-label="三组关系压力融合生成的视觉图像">
           <span className="petals-orbit orbit-one" /><span className="petals-orbit orbit-two" /><span className="petals-orbit orbit-three" />
-          <img className="petals-hero-output" src="/projects/petals/figma/interactive-rose.png" alt="玫瑰粒子与人脸轮廓构成的交互视觉" />
-          <img className="petals-hero-flower" src="/projects/petals/figma/rose-model.png" alt="扭曲缠绕的玫瑰三维花束" />
+          <span className="petals-particle particle-red" /><span className="petals-particle particle-lime" /><span className="petals-particle particle-blue" />
+          <img className="petals-hero-output" src="/projects/petals/revision/cover-a4.png" alt="红黄蓝三组关系视觉融合后的粒子图像" />
           <div className="petals-axis"><span>INTIMACY</span><span>WORKPLACE</span><span>PEERS</span></div>
         </div>
         <p className="petals-scroll-note">SCROLL TO UNFOLD THE INVISIBLE PRESSURE ↓</p>
@@ -498,10 +498,18 @@ function PetalsProject({ onClose }:{ onClose:()=>void }) {
         <div className="petals-metaphor-grid">
           {petalsMetaphors.map((item)=><article className={`petals-metaphor-card ${item.key}`} key={item.key}>
             <header><span>{item.index}</span><p>{item.flower}</p><b>{item.context}</b></header>
-            <img src={item.image} alt={`${item.flower}视觉模型`} loading="lazy" />
-            <div><small>{item.word}</small><h3>{item.title}</h3><p>{item.copy}</p></div>
+            <div className="petals-metaphor-pipeline">
+              <figure><img src={item.scene} alt={`${item.context}真实黑白场景`} loading="lazy" /><figcaption>RELATION / 关系场景</figcaption></figure>
+              <i aria-hidden="true">→</i>
+              <figure><img src={item.photo} alt={`${item.flower}真实花卉照片`} loading="lazy" /><figcaption>METAPHOR / 花的隐喻</figcaption></figure>
+              <i aria-hidden="true">→</i>
+              <figure><img src={item.model} alt={`${item.flower}生成视觉模型`} loading="lazy" /><figcaption>MODEL / 视觉转译</figcaption></figure>
+            </div>
+            <p className="petals-transform-line">{item.transform}</p>
+            <div className="petals-metaphor-copy"><small>{item.word}</small><h3>{item.title}</h3><p>{item.copy}</p></div>
           </article>)}
         </div>
+        <p className="petals-photo-credit">REAL FLOWER REFERENCES / Rose: Jon Sullivan · Public Domain　 Lily: THE GOKUL · CC0　 Daisy: Wilfredor · CC0</p>
       </section>
 
       <section className="petals-section petals-language" id="petals-language">
@@ -518,10 +526,10 @@ function PetalsProject({ onClose }:{ onClose:()=>void }) {
 
       <section className="petals-section petals-system" id="petals-system">
         <div className="petals-heading light"><span>04</span><p>INTERACTION SYSTEM</p><h2>表情成为输入，<br />花的状态成为反馈。</h2></div>
-        <div className="petals-system-grid">
-          <figure className="petals-tech-main"><img src="/projects/petals/figma/touchdesigner.png" alt="TouchDesigner 花瓣粒子系统制作界面" loading="lazy" /><figcaption>TOUCHDESIGNER / 粒子视觉系统</figcaption></figure>
-          <figure className="petals-tech-side"><img src="/projects/petals/figma/mediapipe.png" alt="MediaPipe 人脸关键点捕捉测试" loading="lazy" /><figcaption>MEDIAPIPE / 面部关键点识别</figcaption></figure>
-          <figure className="petals-tech-flow"><img src="/projects/petals/figma/interaction-flow.png" alt="从表情识别到视觉变化的交互流程" loading="lazy" /><figcaption>INTERACTION LOGIC / 交互逻辑</figcaption></figure>
+        <div className="petals-system-grid" id="petals-system-grid">
+          <figure><div className="petals-system-number">01</div><img src="/projects/petals/revision/system-touchdesigner.png" alt="TouchDesigner 粒子系统节点与三组花朵视觉输出" loading="lazy" /><figcaption><b>TOUCHDESIGNER / 粒子视觉系统</b><span>建立玫瑰、百合与雏菊三套生成材质，并统一接入实时粒子反馈。</span></figcaption></figure>
+          <figure><div className="petals-system-number">02</div><img src="/projects/petals/revision/system-face-channels.png" alt="MediaPipe 面部通道选择与数值范围" loading="lazy" /><figcaption><b>MEDIAPIPE / 面部通道映射</b><span>从眉部、眨眼、眯眼、张嘴与微笑通道提取数值，映射到视觉状态。</span></figcaption></figure>
+          <figure><div className="petals-system-number">03</div><img src="/projects/petals/revision/system-interaction-flow.png" alt="摄像头采集观众面部数据并切换屏幕视觉的交互流程" loading="lazy" /><figcaption><b>INTERACTION LOGIC / 观众—镜头—屏幕</b><span>摄像头采集单张人脸，眨眼与微笑触发切换，显示屏同步生成对应反馈。</span></figcaption></figure>
         </div>
         <div className="petals-steps" aria-label="交互步骤"><span><b>01</b>镜头捕捉人脸</span><i>→</i><span><b>02</b>识别眨眼与微笑</span><i>→</i><span><b>03</b>切换花朵状态</span><i>→</i><span><b>04</b>实时生成视觉反馈</span></div>
       </section>
@@ -538,9 +546,7 @@ function PetalsProject({ onClose }:{ onClose:()=>void }) {
       <section className="petals-section petals-results" id="petals-results">
         <div className="petals-heading light"><span>06</span><p>INTERACTIVE VISUAL OUTPUT</p><h2>同一张脸，<br />被关系改写成不同样子。</h2></div>
         <div className="petals-results-grid">
-          <figure><img src="/projects/petals/figma/interactive-rose.png" alt="玫瑰主题实时交互视觉" loading="lazy" /><figcaption>ROSE / INTIMACY</figcaption></figure>
-          <figure><img src="/projects/petals/figma/interactive-lily.png" alt="百合主题实时交互视觉" loading="lazy" /><figcaption>LILY / WORKPLACE</figcaption></figure>
-          <figure><img src="/projects/petals/figma/interactive-daisy.png" alt="雏菊主题实时交互视觉" loading="lazy" /><figcaption>DAISY / PEERS</figcaption></figure>
+          <figure><img src="/projects/petals/revision/output-composite.jpg" alt="玫瑰、百合、雏菊三组关系交互视觉的横向合成输出" loading="lazy" /><figcaption><span>ROSE / INTIMACY</span><span>LILY / WORKPLACE</span><span>DAISY / PEERS</span></figcaption></figure>
         </div>
       </section>
 
