@@ -521,16 +521,18 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
       <section className="lm-section lm-brand-system" id="longmen-brand">
         <div className="lm-heading"><span>05</span><p>GRAPHIC BRANDING</p><h2>把非遗食物，<br />变成可识别的城市表情。</h2></div>
         <div className="lm-brand-lead"><figure><img src="/projects/longmen/slides/branding.jpg" alt="Gluglu IP 形象、平台标志与龙门美食工坊视觉系统" loading="lazy" /></figure><div><img className="lm-brand-mascot" src="/projects/longmen/mascot-mark.png" alt="GLUGLU IP 角色" /><p>以龙门面筋为原型，将圆润的食物形态、厨师帽与动作表情组合成 IP 角色 GLUGLU。荧光绿、珊瑚红与亮蓝延伸到平台、海报、明信片和折页，让数字体验与现场工坊保持一致的识别度。</p></div></div>
-        <div className="lm-brand-gallery-section">
+        <div className="lm-brand-gallery-section lm-brand-postcards">
           <div className="lm-brand-gallery-head"><p>01 / POSTER CARD</p><h3>把在地风味，<br />带离现场。</h3><span>4 PIECES / 四款主题明信片</span></div>
           <LongmenGallery items={longmenPostcards} label="Poster Card 明信片" />
         </div>
-        <div className="lm-brand-gallery-section">
-          <div className="lm-brand-gallery-head"><p>02 / POSTER</p><h3>让传统食物，<br />成为视觉主角。</h3><span>2 PIECES / 两款主题海报</span></div>
-          <LongmenGallery items={longmenPosters} label="Poster 海报" />
+        <div className="lm-brand-gallery-section lm-brand-posters">
+          <div className="lm-brand-gallery-head"><p>02 / POSTER</p><h3>让传统食物，<br />成为视觉主角。</h3><span>2 PIECES / 两款竖版主题海报</span></div>
+          <div className="lm-poster-pair">
+            {longmenPosters.map(([src,title],index)=><figure key={src}><div><img src={src} alt={title} loading="lazy" /></div><figcaption><span>{String(index + 1).padStart(2,'0')}</span>{title}</figcaption></figure>)}
+          </div>
         </div>
-        <div className="lm-brand-gallery-section">
-          <div className="lm-brand-gallery-head"><p>03 / FOLDING GUIDE</p><h3>从品牌封面，<br />展开完整体验。</h3><span>2 SIDES / 折页正反两面</span></div>
+        <div className="lm-brand-gallery-section lm-brand-foldings">
+          <div className="lm-brand-gallery-head"><p>03 / FOLDING GUIDE</p><h3>从品牌封面，<br />展开完整体验。</h3><span>2 SIDES / 折页正反两面完整展示</span></div>
           <LongmenGallery items={longmenFoldings} label="Folding 折页" />
         </div>
       </section>
