@@ -8,7 +8,6 @@ const masterProjects: Project[] = [
   { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'/projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
   { number:'M.02', title:'LONGMEN TRIBUTE', cn:'LonGO Live—龙门古镇文化体验积分系统', subtitle:'文化体验 · 数字积分 · 社区共创', year:'2025', type:'SERVICE · DIGITAL PLATFORM', tone:'acid', caseStudy:'longmen', cover:'/projects/longmen/visual/poster-gluten.jpg', coverAlt:'龙门古镇非遗美食体验视觉海报' },
   { number:'M.03', title:'FADING PETALS WITH CHAINS', cn:'赏花勿审花—关于女性隐形社会伤害下容貌焦虑的交互视觉探索', subtitle:'动态海报 · 面部识别交互', year:'2025', type:'INTERACTION · VISUAL INSTALLATION', tone:'petals', caseStudy:'petals', cover:'/projects/petals/revision/cover-a4.png', coverAlt:'赏花勿审花三组关系视觉融合预览' },
-  { number:'M.04', title:'OPEN PROTOCOL', cn:'毕业设计档案', year:'2026', type:'VISUAL · EDITORIAL', tone:'blue' },
 ];
 
 const bachelorProjects: Project[] = [
@@ -29,32 +28,35 @@ const folders = [
   { number:'01', title:'ABOUT', cn:'基本信息', note:'WHO I AM', href:'#about', image:'/folder-about-objects.png', tone:'folder-pink' },
   { number:'02', title:'MASTER’S WORK', cn:'硕士期间作品', note:'RESEARCH · SERVICE · INTERACTION', href:'#masters', image:'/folder-masters-objects.png', tone:'folder-sage' },
   { number:'03', title:'BACHELOR’S WORK', cn:'本科期间作品', note:'VISUAL · BRAND · INTERACTION', href:'#bachelors', image:'/folder-bachelors-objects.png', tone:'folder-gold' },
-  { number:'04', title:'ILLUSTRATION', cn:'数字绘画 / 插画', note:'DRAWING · PERSONAL WORK', href:'#illustration', image:'/folder-illustration-objects.png', tone:'folder-lilac' },
+  { number:'04', title:'ANIME IP / MERCH', cn:'二次元IP / 衍生品设计', note:'CHARACTER · IP · MERCHANDISE', href:'#anime-ip', image:'/folder-illustration-objects.png', tone:'folder-lilac' },
 ];
 
 function FolderNavigator() {
   const track = useRef<HTMLDivElement>(null);
-  const drag = useRef({ active:false, x:0, left:0, moved:false });
+  const drag = useRef({ active:false, x:0, y:0, left:0, moved:false });
   const start = (e:React.PointerEvent) => {
     if (!track.current) return;
-    drag.current = { active:true, x:e.clientX, left:track.current.scrollLeft, moved:false };
-    track.current.setPointerCapture(e.pointerId);
+    drag.current = { active:true, x:e.clientX, y:e.clientY, left:track.current.scrollLeft, moved:false };
   };
   const move = (e:React.PointerEvent) => {
     if (!drag.current.active || !track.current) return;
-    const delta = e.clientX - drag.current.x;
-    if (Math.abs(delta) > 10) drag.current.moved = true;
-    track.current.scrollLeft = drag.current.left - delta;
-  };
-  const end = () => { drag.current.active = false; };
-  const openFolder = (e:React.MouseEvent<HTMLAnchorElement>, href:string) => {
-    e.preventDefault();
-    if (drag.current.moved) {
-      drag.current.moved = false;
-      return;
+    const deltaX = e.clientX - drag.current.x;
+    const deltaY = e.clientY - drag.current.y;
+    if (!drag.current.moved && Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      drag.current.moved = true;
+      track.current.setPointerCapture(e.pointerId);
     }
-    document.querySelector(href)?.scrollIntoView({ behavior:'smooth', block:'start' });
-    window.history.replaceState(null, '', href);
+    if (drag.current.moved) track.current.scrollLeft = drag.current.left - deltaX;
+  };
+  const end = () => {
+    drag.current.active = false;
+    if (drag.current.moved) window.setTimeout(() => { drag.current.moved = false; }, 0);
+  };
+  const openFolder = (e:React.MouseEvent<HTMLAnchorElement>) => {
+    if (drag.current.moved) {
+      e.preventDefault();
+      drag.current.moved = false;
+    }
   };
 
   return (
@@ -62,7 +64,7 @@ function FolderNavigator() {
       <p className="folder-instruction">DRAG FILES TO EXPLORE <span>↔</span></p>
       <div className="folder-track" ref={track} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end}>
         {folders.map((folder) => (
-          <a className={`folder-card ${folder.tone}`} href={folder.href} key={folder.number} onClick={e=>openFolder(e, folder.href)} aria-label={`进入${folder.cn}`}>
+          <a className={`folder-card ${folder.tone}`} href={folder.href} key={folder.number} onClick={openFolder} aria-label={`进入${folder.cn}`}>
             <div className="folder-back" />
             <img className="folder-objects" src={folder.image} alt="" draggable={false} />
             <div className="folder-front">
@@ -535,7 +537,7 @@ function PetalsProject({ onClose }:{ onClose:()=>void }) {
       </section>
 
       <section className="petals-section petals-posters" id="petals-posters">
-        <div className="petals-heading light"><span>05</span><p>DYNAMIC POSTERS</p><h2>不是三张静态海报，<br />而是三种持续发生的凝视。</h2></div>
+        <div className="petals-heading light"><span>05</span><p>DYNAMIC POSTERS</p><h2 className="petals-heading-single">持续发生的凝视</h2></div>
         <div className="petals-poster-grid">
           <figure className="rose"><video autoPlay muted loop playsInline controls preload="metadata" poster="/projects/petals/video/rose-poster.jpg" aria-label="玫瑰主题动态海报"><source src="/projects/petals/video/rose.mp4" type="video/mp4" /></video><figcaption><span>01 / ROSE</span>亲密关系中的刺</figcaption></figure>
           <figure className="lily"><video autoPlay muted loop playsInline controls preload="metadata" poster="/projects/petals/video/lily-poster.jpg" aria-label="百合主题动态海报"><source src="/projects/petals/video/lily.mp4" type="video/mp4" /></video><figcaption><span>02 / LILY</span>职场规则后的框</figcaption></figure>
@@ -544,7 +546,7 @@ function PetalsProject({ onClose }:{ onClose:()=>void }) {
       </section>
 
       <section className="petals-section petals-results" id="petals-results">
-        <div className="petals-heading light"><span>06</span><p>INTERACTIVE VISUAL OUTPUT</p><h2>同一张脸，<br />被关系改写成不同样子。</h2></div>
+        <div className="petals-heading light"><span>06</span><p>INTERACTIVE VISUAL OUTPUT</p><h2 className="petals-heading-single">被关系改写的脸</h2></div>
         <div className="petals-results-grid">
           <figure><img src="/projects/petals/revision/output-composite.jpg" alt="玫瑰、百合、雏菊三组关系交互视觉的横向合成输出" loading="lazy" /><figcaption><span>ROSE / INTIMACY</span><span>LILY / WORKPLACE</span><span>DAISY / PEERS</span></figcaption></figure>
         </div>
@@ -835,7 +837,7 @@ export default function Home() {
           <a className="index-row" href="#about"><span>01</span><h2>ABOUT<small>关于我</small></h2><b>↘</b></a>
           <a className="index-row" href="#masters"><span>02</span><h2>MASTER&apos;S WORK<small>硕士期间作品</small></h2><b>↘</b></a>
           <a className="index-row" href="#bachelors"><span>03</span><h2>BACHELOR&apos;S WORK<small>本科期间作品</small></h2><b>↘</b></a>
-          <a className="index-row" href="#illustration"><span>04</span><h2>ILLUSTRATION<small>数字绘画 / 插画</small></h2><b>↘</b></a>
+          <a className="index-row" href="#anime-ip"><span>04</span><h2>ANIME IP / MERCH<small>二次元IP / 衍生品设计</small></h2><b>↘</b></a>
         </nav>
       </section>
 
@@ -878,9 +880,9 @@ export default function Home() {
         <ProjectTrack projects={bachelorProjects} label="本科作品" onOpen={setActiveProject} />
       </section>
 
-      <section className="works-section coral-section" id="illustration">
-        <div className="works-head"><div className="section-kicker">05 / ILLUSTRATION <span>数字绘画与插画</span></div><h2>Personal<br /><em>worlds.</em></h2></div>
-        <ProjectTrack projects={illustrationProjects} label="插画作品" onOpen={setActiveProject} />
+      <section className="works-section coral-section" id="anime-ip">
+        <div className="works-head"><div className="section-kicker">05 / ANIME IP &amp; MERCH <span>二次元IP / 衍生品设计</span></div><h2>Characters into<br /><em>worlds.</em></h2></div>
+        <ProjectTrack projects={illustrationProjects} label="二次元IP与衍生品作品" onOpen={setActiveProject} />
       </section>
 
       <footer className="contact-section" id="contact">
@@ -897,7 +899,7 @@ export default function Home() {
 
       <div className={`menu-overlay ${menuOpen ? 'open' : ''}`} aria-hidden={!menuOpen}>
         <div className="overlay-top"><span>PORTFOLIO INDEX</span><button onClick={closeMenu}>CLOSE ×</button></div>
-        <nav><a href="#about" onClick={closeMenu}><i>01</i>ABOUT</a><a href="#masters" onClick={closeMenu}><i>02</i>MASTER&apos;S WORK</a><a href="#bachelors" onClick={closeMenu}><i>03</i>BACHELOR&apos;S WORK</a><a href="#illustration" onClick={closeMenu}><i>04</i>ILLUSTRATION</a><a href="#contact" onClick={closeMenu}><i>05</i>CONTACT</a></nav>
+        <nav><a href="#about" onClick={closeMenu}><i>01</i>ABOUT</a><a href="#masters" onClick={closeMenu}><i>02</i>MASTER&apos;S WORK</a><a href="#bachelors" onClick={closeMenu}><i>03</i>BACHELOR&apos;S WORK</a><a href="#anime-ip" onClick={closeMenu}><i>04</i>ANIME IP / MERCH</a><a href="#contact" onClick={closeMenu}><i>05</i>CONTACT</a></nav>
       </div>
 
       {activeProject?.number === 'M.01' && <div className="tongyun-overlay"><TongyunProject onClose={closeProject} /></div>}
