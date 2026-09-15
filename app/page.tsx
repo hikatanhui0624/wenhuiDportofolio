@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'; cover?:string; coverAlt?:string };
+type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'; cover?:string; coverAlt?:string };
 
 const masterProjects: Project[] = [
   { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'/projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
   { number:'M.02', title:'LONGMEN TRIBUTE', cn:'LonGO Live—龙门古镇文化体验积分系统', subtitle:'文化体验 · 数字积分 · 社区共创', year:'2025', type:'SERVICE · DIGITAL PLATFORM', tone:'acid', caseStudy:'longmen', cover:'/projects/longmen/visual/poster-gluten.jpg', coverAlt:'龙门古镇非遗美食体验视觉海报' },
-  { number:'M.03', title:'TRACES OF LIGHT', cn:'交互装置与叙事', year:'2025', type:'INTERACTION · SPACE', tone:'coral' },
+  { number:'M.03', title:'FADING PETALS WITH CHAINS', cn:'赏花勿审花—关于女性隐形社会伤害下容貌焦虑的交互视觉探索', subtitle:'动态海报 · 面部识别交互', year:'2025', type:'INTERACTION · VISUAL INSTALLATION', tone:'petals', caseStudy:'petals', cover:'/projects/petals/figma/interactive-rose.png', coverAlt:'赏花勿审花红色玫瑰交互视觉作品封面' },
   { number:'M.04', title:'OPEN PROTOCOL', cn:'毕业设计档案', year:'2026', type:'VISUAL · EDITORIAL', tone:'blue' },
 ];
 
@@ -446,6 +446,123 @@ function LongmenPlatformShowcase() {
   );
 }
 
+const petalsMetaphors = [
+  { key:'rose', index:'01', flower:'Rose / 玫瑰', word:'刺', context:'亲密关系', title:'爱意里的刺', copy:'亲密关系中的评价、比较与审美期待，会以“为你好”的方式进入身体经验。', image:'/projects/petals/figma/rose-model.png' },
+  { key:'lily', index:'02', flower:'Lily / 百合', word:'框', context:'职场环境', title:'规则后的框', copy:'职业形象、年龄与性别气质被写进隐形规则，外貌逐渐成为一项额外劳动。', image:'/projects/petals/figma/lily-model.png' },
+  { key:'daisy', index:'03', flower:'Daisy / 雏菊', word:'眼', context:'同辈关系', title:'周围人的眼', copy:'同伴目光与社交媒体的持续观看，让比较被内化为随时发生的自我审查。', image:'/projects/petals/figma/daisy-model.png' },
+];
+
+const petalsDevelopment = [
+  { key:'rose', label:'ROSE / INTIMACY', title:'把“刺”变成缠绕的结构', sketch:'/projects/petals/figma/rose-sketch.png', model:'/projects/petals/figma/rose-model.png' },
+  { key:'lily', label:'LILY / WORKPLACE', title:'把“框”变成受限的生长', sketch:'/projects/petals/figma/lily-sketch.png', model:'/projects/petals/figma/lily-model.png' },
+  { key:'daisy', label:'DAISY / PEERS', title:'把“眼”变成聚集的凝视', sketch:'/projects/petals/figma/daisy-sketch.png', model:'/projects/petals/figma/daisy-model.png' },
+];
+
+function PetalsProject({ onClose }:{ onClose:()=>void }) {
+  return (
+    <article className="petals-project" role="dialog" aria-modal="true" aria-label="赏花勿审花项目详情">
+      <header className="petals-topbar">
+        <a href="#petals-top" className="petals-brand">赏花勿审花 <span>FADING PETALS</span></a>
+        <nav aria-label="项目详情目录"><a href="#petals-overview">概览</a><a href="#petals-language">视觉</a><a href="#petals-system">交互</a><a href="#petals-posters">动态海报</a><a href="#petals-exhibition">现场</a></nav>
+        <button onClick={onClose} aria-label="关闭项目详情">BACK TO WORKS ×</button>
+      </header>
+
+      <section className="petals-hero" id="petals-top">
+        <div className="petals-hero-copy">
+          <p>MASTER&apos;S PROJECT · 03 / 2025</p>
+          <h1>Fading petals<br />with chains.</h1>
+          <h2>赏花勿审花</h2>
+          <p className="petals-hero-subtitle">关于女性隐形社会伤害下<br />容貌焦虑的交互视觉探索</p>
+          <div className="petals-hero-tags"><span>GENERATIVE VISUAL</span><span>FACE TRACKING</span><span>INTERACTIVE INSTALLATION</span></div>
+        </div>
+        <div className="petals-hero-visual" aria-label="红色玫瑰人脸交互视觉">
+          <span className="petals-orbit orbit-one" /><span className="petals-orbit orbit-two" /><span className="petals-orbit orbit-three" />
+          <img className="petals-hero-output" src="/projects/petals/figma/interactive-rose.png" alt="玫瑰粒子与人脸轮廓构成的交互视觉" />
+          <img className="petals-hero-flower" src="/projects/petals/figma/rose-model.png" alt="扭曲缠绕的玫瑰三维花束" />
+          <div className="petals-axis"><span>INTIMACY</span><span>WORKPLACE</span><span>PEERS</span></div>
+        </div>
+        <p className="petals-scroll-note">SCROLL TO UNFOLD THE INVISIBLE PRESSURE ↓</p>
+      </section>
+
+      <section className="petals-section petals-overview" id="petals-overview">
+        <div className="petals-heading"><span>01</span><p>PROJECT OVERVIEW</p><h2>把无形的凝视，<br />转译成可见的花。</h2></div>
+        <div className="petals-overview-grid">
+          <div className="petals-overview-copy"><p>项目以“花”作为女性外貌评价的隐喻：花被欣赏，也被分类、修剪与审视。设计从亲密关系、职场环境与同辈关系三类社会场景出发，把难以指认的言语、标准与凝视转化为可感知的视觉形变。</p><p>观众的脸成为交互入口。镜头捕捉眨眼与微笑等表情，实时驱动花朵粒子聚合、扭曲与消散，让观看者同时成为“被看见的人”和“观看的人”。</p></div>
+          <dl><div><dt>ROLE</dt><dd>视觉设计 · 交互设计<br />动态影像制作</dd></div><div><dt>TOOLS</dt><dd>TouchDesigner · MediaPipe<br />AI Image Generation</dd></div><div><dt>OUTPUT</dt><dd>三组动态海报 · 实时交互<br />视觉装置 · 展览呈现</dd></div></dl>
+        </div>
+        <div className="petals-question"><small>CORE QUESTION / 核心问题</small><p>当审美标准被包装成关心、规则与玩笑，<br />我们如何看见它留下的伤害？</p></div>
+      </section>
+
+      <section className="petals-section petals-metaphor" id="petals-research">
+        <div className="petals-heading light"><span>02</span><p>RESEARCH &amp; METAPHOR</p><h2>三种关系，<br />三种隐形压力。</h2></div>
+        <div className="petals-metaphor-grid">
+          {petalsMetaphors.map((item)=><article className={`petals-metaphor-card ${item.key}`} key={item.key}>
+            <header><span>{item.index}</span><p>{item.flower}</p><b>{item.context}</b></header>
+            <img src={item.image} alt={`${item.flower}视觉模型`} loading="lazy" />
+            <div><small>{item.word}</small><h3>{item.title}</h3><p>{item.copy}</p></div>
+          </article>)}
+        </div>
+      </section>
+
+      <section className="petals-section petals-language" id="petals-language">
+        <div className="petals-heading"><span>03</span><p>VISUAL DEVELOPMENT</p><h2>从花的轮廓，<br />长出情绪的结构。</h2></div>
+        <div className="petals-development">
+          {petalsDevelopment.map((item,index)=><article className={`petals-development-row ${item.key}`} key={item.key}>
+            <div className="petals-development-copy"><span>{String(index+1).padStart(2,'0')}</span><p>{item.label}</p><h3>{item.title}</h3><small>SHAPE STUDY → GENERATED MATERIAL → 3D COMPOSITION</small></div>
+            <figure><img src={item.sketch} alt={`${item.label}形态草图`} loading="lazy" /><figcaption>FORM / 形态提取</figcaption></figure>
+            <i aria-hidden="true">→</i>
+            <figure><img src={item.model} alt={`${item.label}生成花束模型`} loading="lazy" /><figcaption>MODEL / 生成与重组</figcaption></figure>
+          </article>)}
+        </div>
+      </section>
+
+      <section className="petals-section petals-system" id="petals-system">
+        <div className="petals-heading light"><span>04</span><p>INTERACTION SYSTEM</p><h2>表情成为输入，<br />花的状态成为反馈。</h2></div>
+        <div className="petals-system-grid">
+          <figure className="petals-tech-main"><img src="/projects/petals/figma/touchdesigner.png" alt="TouchDesigner 花瓣粒子系统制作界面" loading="lazy" /><figcaption>TOUCHDESIGNER / 粒子视觉系统</figcaption></figure>
+          <figure className="petals-tech-side"><img src="/projects/petals/figma/mediapipe.png" alt="MediaPipe 人脸关键点捕捉测试" loading="lazy" /><figcaption>MEDIAPIPE / 面部关键点识别</figcaption></figure>
+          <figure className="petals-tech-flow"><img src="/projects/petals/figma/interaction-flow.png" alt="从表情识别到视觉变化的交互流程" loading="lazy" /><figcaption>INTERACTION LOGIC / 交互逻辑</figcaption></figure>
+        </div>
+        <div className="petals-steps" aria-label="交互步骤"><span><b>01</b>镜头捕捉人脸</span><i>→</i><span><b>02</b>识别眨眼与微笑</span><i>→</i><span><b>03</b>切换花朵状态</span><i>→</i><span><b>04</b>实时生成视觉反馈</span></div>
+      </section>
+
+      <section className="petals-section petals-posters" id="petals-posters">
+        <div className="petals-heading light"><span>05</span><p>DYNAMIC POSTERS</p><h2>不是三张静态海报，<br />而是三种持续发生的凝视。</h2></div>
+        <div className="petals-poster-grid">
+          <figure className="rose"><video autoPlay muted loop playsInline controls preload="metadata" poster="/projects/petals/video/rose-poster.jpg" aria-label="玫瑰主题动态海报"><source src="/projects/petals/video/rose.mp4" type="video/mp4" /></video><figcaption><span>01 / ROSE</span>亲密关系中的刺</figcaption></figure>
+          <figure className="lily"><video autoPlay muted loop playsInline controls preload="metadata" poster="/projects/petals/video/lily-poster.jpg" aria-label="百合主题动态海报"><source src="/projects/petals/video/lily.mp4" type="video/mp4" /></video><figcaption><span>02 / LILY</span>职场规则后的框</figcaption></figure>
+          <figure className="daisy"><video autoPlay muted loop playsInline controls preload="metadata" poster="/projects/petals/video/daisy-poster.jpg" aria-label="雏菊主题动态海报"><source src="/projects/petals/video/daisy.mp4" type="video/mp4" /></video><figcaption><span>03 / DAISY</span>同辈关系之间的眼</figcaption></figure>
+        </div>
+      </section>
+
+      <section className="petals-section petals-results" id="petals-results">
+        <div className="petals-heading light"><span>06</span><p>INTERACTIVE VISUAL OUTPUT</p><h2>同一张脸，<br />被关系改写成不同样子。</h2></div>
+        <div className="petals-results-grid">
+          <figure><img src="/projects/petals/figma/interactive-rose.png" alt="玫瑰主题实时交互视觉" loading="lazy" /><figcaption>ROSE / INTIMACY</figcaption></figure>
+          <figure><img src="/projects/petals/figma/interactive-lily.png" alt="百合主题实时交互视觉" loading="lazy" /><figcaption>LILY / WORKPLACE</figcaption></figure>
+          <figure><img src="/projects/petals/figma/interactive-daisy.png" alt="雏菊主题实时交互视觉" loading="lazy" /><figcaption>DAISY / PEERS</figcaption></figure>
+        </div>
+      </section>
+
+      <details className="petals-board"><summary>VIEW ORIGINAL RESEARCH BOARD <span>查看完整原始展板 ＋</span></summary><div><img src="/projects/petals/board.jpg" alt="赏花勿审花完整设计研究展板" loading="lazy" /></div></details>
+
+      <section className="petals-section petals-exhibition" id="petals-exhibition">
+        <div className="petals-heading light"><span>07</span><p>FINAL EXHIBITION</p><h2>让视觉从屏幕溢出，<br />回到被观看的现场。</h2></div>
+        <div className="petals-final-grid">
+          <figure className="petals-final-video"><video controls playsInline preload="metadata" poster="/projects/petals/video/final-poster.jpg" aria-label="赏花勿审花最终交互演示视频"><source src="/projects/petals/video/final.mp4" type="video/mp4" /></video><figcaption>FINAL INTERACTION FILM / 最终交互演示</figcaption></figure>
+          <div className="petals-photo-grid">
+            <figure><img src="/projects/petals/exhibition/view-01.jpg" alt="电脑与平板共同展示玫瑰主题交互视觉的现场" loading="lazy" /><figcaption>01 / LIVE SETUP</figcaption></figure>
+            <figure><img src="/projects/petals/exhibition/view-02.jpg" alt="交互设备与设计展板现场细节" loading="lazy" /><figcaption>02 / INTERACTION DETAIL</figcaption></figure>
+            <figure><img src="/projects/petals/exhibition/view-03.jpg" alt="赏花勿审花完整展板与设备陈列现场" loading="lazy" /><figcaption>03 / FINAL DISPLAY</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <footer className="petals-footer"><p>FADING PETALS WITH CHAINS / 赏花勿审花</p><button onClick={onClose}>BACK TO MASTER&apos;S WORK ↑</button></footer>
+    </article>
+  );
+}
+
 function LongmenProject({ onClose }:{ onClose:()=>void }) {
   const [researchFocus, setResearchFocus] = useState<0 | 1>(0);
 
@@ -662,6 +779,7 @@ export default function Home() {
     const openFromHash = () => {
       if (window.location.hash === '#tongyun-case') setActiveProject(masterProjects[0]);
       if (window.location.hash === '#longmen-case') setActiveProject(masterProjects[1]);
+      if (window.location.hash === '#petals-case') setActiveProject(masterProjects[2]);
     };
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
@@ -674,7 +792,7 @@ export default function Home() {
     const closeOnEscape = (event:KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setActiveProject(null);
-      if (window.location.hash === '#tongyun-case' || window.location.hash === '#longmen-case') window.history.replaceState(null, '', '#masters');
+      if (window.location.hash === '#tongyun-case' || window.location.hash === '#longmen-case' || window.location.hash === '#petals-case') window.history.replaceState(null, '', '#masters');
     };
     window.addEventListener('keydown', closeOnEscape);
     return () => { document.body.style.overflow = previous; window.removeEventListener('keydown', closeOnEscape); };
@@ -780,7 +898,9 @@ export default function Home() {
 
       {activeProject?.number === 'M.02' && <div className="longmen-overlay"><LongmenProject onClose={closeProject} /></div>}
 
-      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
+      {activeProject?.number === 'M.03' && <div className="petals-overlay"><PetalsProject onClose={closeProject} /></div>}
+
+      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
         <article className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeProject.cn} 作品详情`} onMouseDown={e=>e.stopPropagation()}>
           <button className="modal-close" onClick={()=>setActiveProject(null)} aria-label="关闭详情">CLOSE ×</button>
           <div className={`modal-art ${activeProject.tone}`}><span>{activeProject.number}</span></div>
