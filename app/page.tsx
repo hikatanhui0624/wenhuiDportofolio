@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'; cover?:string; coverAlt?:string };
+type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'|'animals'; cover?:string; coverAlt?:string };
 
 const masterProjects: Project[] = [
   { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'/projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
@@ -11,10 +11,9 @@ const masterProjects: Project[] = [
 ];
 
 const bachelorProjects: Project[] = [
-  { number:'B.01', title:'CITY FREQUENCY', cn:'城市视觉识别系统', year:'2022', type:'BRANDING · SYSTEM', tone:'blue' },
+  { number:'B.01', title:'ANIMALS’ CHARACTERISTICS IDENTIFICATION', cn:'热门动物鉴定—青年亚文化现象的图形设计及衍生', subtitle:'六种青年人格 · IP视觉系统 · H5测试', year:'2024', type:'IP DESIGN · VISUAL SYSTEM · H5', tone:'animals', caseStudy:'animals', cover:'/projects/animals/main-poster.jpg', coverAlt:'热门动物鉴定六个IP角色主视觉海报' },
   { number:'B.02', title:'MATERIAL MEMORY', cn:'材料语言实验', year:'2023', type:'OBJECT · RESEARCH', tone:'coral' },
   { number:'B.03', title:'ANOTHER DAILY', cn:'日常用品再设计', year:'2023', type:'PRODUCT · UX', tone:'violet' },
-  { number:'B.04', title:'LOCAL SIGNALS', cn:'地方文化视觉档案', year:'2024', type:'EDITORIAL · TYPE', tone:'acid' },
 ];
 
 const illustrationProjects: Project[] = [
@@ -448,6 +447,140 @@ function LongmenPlatformShowcase() {
   );
 }
 
+const animalCharacters = [
+  { key:'monkey', index:'01', name:'吗喽', animal:'MONKEY', title:'随时发疯的开拓者', traits:'反内卷 · 爱冒险 · 行动力', copy:'用“发疯”抵抗规训，以主动出走回应高压生活。', profile:'/projects/animals/ip/monkey-profile.jpg', poster:'/projects/animals/posters/monkey.jpg' },
+  { key:'mouse', index:'02', name:'鼠鼠', animal:'MOUSE', title:'敏感但努力的小人物', traits:'细腻 · 悲观 · 有韧性', copy:'看似胆怯，却持续用微小声音回应不平等权力。', profile:'/projects/animals/ip/mouse-profile.jpg', poster:'/projects/animals/posters/mouse.jpg' },
+  { key:'capybara', index:'03', name:'卡皮巴拉', animal:'CAPYBARA', title:'情绪稳定的养生派', traits:'佛系 · 平和 · 不竞争', copy:'把“躺平”转化为主动降噪，守住自己的生活节奏。', profile:'/projects/animals/ip/capybara-profile.jpg', poster:'/projects/animals/posters/capybara.jpg' },
+  { key:'parrot', index:'04', name:'多巴鹉', animal:'PARROT', title:'多巴胺潮流捕手', traits:'时髦 · 热烈 · 高能量', copy:'以高饱和穿搭和大胆表达，把情绪变成可见的色彩。', profile:'/projects/animals/ip/parrot-profile.jpg', poster:'/projects/animals/posters/parrot.jpg' },
+  { key:'peacock', index:'05', name:'雀里', animal:'PEACOCK', title:'拒绝标签的社交玩家', traits:'独立 · 勇敢 · 自洽', copy:'在社交中保持边界，不被单一标准定义自己的光芒。', profile:'/projects/animals/ip/peacock-profile.jpg', poster:'/projects/animals/posters/peacock.jpg' },
+  { key:'raccoon', index:'06', name:'打工浣', animal:'RACCOON', title:'清醒的职场螺丝钉', traits:'努力 · 克制 · 低社交', copy:'看见内卷，也看见普通劳动者在系统中的疲惫与坚持。', profile:'/projects/animals/ip/raccoon-profile.jpg', poster:'/projects/animals/posters/raccoon.jpg' },
+];
+
+const animalPlaces = [
+  ['01','森林学院','成长与学习'],['02','树桩食堂','日常与基本需要'],['03','水池疗养馆','健康与情绪修复'],
+  ['04','派对舞池','娱乐与社交表达'],['05','喷泉公园','公共生活与相遇'],['06','木桩公司','劳动与城市规则'],
+];
+
+const animalH5Steps = [
+  ['01','进入动物人格鉴定','/projects/animals/h5/step-01.jpg'],
+  ['02','森林学院','/projects/animals/h5/step-02.jpg'],
+  ['03','树桩食堂','/projects/animals/h5/step-03.jpg'],
+  ['04','水池疗养馆','/projects/animals/h5/step-04.jpg'],
+  ['05','派对舞池','/projects/animals/h5/step-05.jpg'],
+  ['06','喷泉公园','/projects/animals/h5/step-06.jpg'],
+  ['07','木桩公司','/projects/animals/h5/step-07.jpg'],
+  ['08','生成鉴定结果','/projects/animals/h5/step-08.jpg'],
+];
+
+const animalMerch = [
+  ['/projects/animals/merch/postcards-01.jpg','POSTCARD / 明信片'],['/projects/animals/merch/postcards-02.jpg','POSTCARD / 明信片'],
+  ['/projects/animals/merch/keychain-01.jpg','KEYCHAIN / 钥匙扣'],['/projects/animals/merch/keychain-02.jpg','KEYCHAIN / 钥匙扣'],
+  ['/projects/animals/merch/acrylic-01.jpg','ACRYLIC STAND / 亚克力立牌'],['/projects/animals/merch/acrylic-02.jpg','ACRYLIC STAND / 亚克力立牌'],
+  ['/projects/animals/merch/bag.jpg','PAPER BAG / 手提袋'],['/projects/animals/merch/phone-01.jpg','PHONE CASE / 手机壳'],
+  ['/projects/animals/merch/phone-02.jpg','PHONE CASE / 手机壳'],['/projects/animals/merch/shirt-01.jpg','T-SHIRT / 服饰'],
+  ['/projects/animals/merch/shirt-02.jpg','T-SHIRT / 服饰'],['/projects/animals/merch/badges.jpg','BADGE / 徽章'],
+  ['/projects/animals/merch/coaster-01.jpg','COASTER / 杯垫'],['/projects/animals/merch/coaster-02.jpg','COASTER / 杯垫'],
+];
+
+function AnimalsProject({ onClose }:{ onClose:()=>void }) {
+  return (
+    <article className="animals-project" role="dialog" aria-modal="true" aria-label="热门动物鉴定项目详情">
+      <header className="animals-topbar">
+        <a href="#animals-top" className="animals-brand">热门动物鉴定 <span>ANIMAL ID</span></a>
+        <nav aria-label="项目详情目录"><a href="#animals-ip">IP设定</a><a href="#animals-map">世界地图</a><a href="#animals-posters">海报</a><a href="#animals-h5">H5测试</a><a href="#animals-merch">衍生</a></nav>
+        <button onClick={onClose} aria-label="关闭项目详情">BACK TO WORKS ×</button>
+      </header>
+
+      <section className="animals-hero" id="animals-top">
+        <div className="animals-hero-copy">
+          <p>BACHELOR&apos;S PROJECT · 01 / 2024</p>
+          <h1>Animals&apos;<br />Characteristics<br />Identification</h1>
+          <h2>热门动物鉴定</h2>
+          <p className="animals-hero-subtitle">青年亚文化现象的图形设计及衍生</p>
+          <div className="animals-hero-tags"><span>IP DESIGN</span><span>VISUAL SYSTEM</span><span>H5 INTERACTION</span></div>
+        </div>
+        <figure className="animals-hero-poster"><img src="/projects/animals/main-poster.jpg" alt="热门动物鉴定六个IP角色主视觉" /><figcaption>MAIN VISUAL / 主视觉</figcaption></figure>
+        <img className="animals-wall-decor animals-heads" src="/projects/animals/decor/heads.png" alt="" />
+        <img className="animals-wall-decor animals-arrow" src="/projects/animals/decor/arrows.png" alt="" />
+      </section>
+
+      <section className="animals-section animals-overview" id="animals-overview">
+        <div className="animals-heading"><span>01</span><p>PROJECT OVERVIEW</p><h2>把网络里的“动物文学”，<br />变成一套青年人格图鉴。</h2></div>
+        <div className="animals-overview-grid">
+          <div><p>项目从鼠鼠文学、吗喽文学、卡皮巴拉等青年亚文化切入。可爱的动物头像既是情绪出口，也是身份认同与群体共鸣的符号。</p><p>设计以六种动物为原型，通过几何化、卡通化与高明度配色建立统一IP系统，再以生态公园、系列海报、社交表情和H5人格测试构成完整世界观，让自嘲式表达转向可共享的情绪疗愈。</p></div>
+          <dl><div><dt>ROLE</dt><dd>品牌视觉 · IP设计<br />交互与衍生设计</dd></div><div><dt>METHOD</dt><dd>青年亚文化研究<br />角色原型 · 世界构建</dd></div><div><dt>OUTPUT</dt><dd>6组IP · 6张海报 · 地图<br />表情包 · H5 · 衍生品</dd></div></dl>
+        </div>
+        <div className="animals-question"><small>DESIGN QUESTION / 设计问题</small><p>当年轻人借动物说出真实情绪，<br />视觉设计如何让这种共鸣被看见、被分享？</p></div>
+      </section>
+
+      <section className="animals-section animals-ip" id="animals-ip">
+        <div className="animals-heading"><span>02</span><p>IP CHARACTER SYSTEM</p><h2>六种动物，<br />六种当代青年人格。</h2></div>
+        <figure className="animals-lineup"><img src="/projects/animals/ip/lineup.jpg" alt="六个动物IP的角色比例图" loading="lazy" /><figcaption>CHARACTER LINEUP / 角色比例与家族关系</figcaption></figure>
+        <div className="animals-character-grid">
+          {animalCharacters.map((item)=><article className={`animals-character-card ${item.key}`} key={item.key}>
+            <header><span>{item.index}</span><p>{item.animal}</p><b>{item.name}</b></header>
+            <img src={item.profile} alt={`${item.name}角色档案与造型设定`} loading="lazy" />
+            <div><small>{item.traits}</small><h3>{item.title}</h3><p>{item.copy}</p></div>
+          </article>)}
+        </div>
+      </section>
+
+      <section className="animals-section animals-map" id="animals-map">
+        <div className="animals-heading"><span>03</span><p>WORLD BUILDING</p><h2>一座公园，<br />一套微缩的社会结构。</h2></div>
+        <div className="animals-map-layout">
+          <figure><img src="/projects/animals/map.jpg" alt="热门动物鉴定生态公园完整地图" loading="lazy" /><figcaption>ECO PARK MAP / 六个角色共同生活的生态公园</figcaption></figure>
+          <div className="animals-place-list">{animalPlaces.map(place=><div key={place[0]}><span>{place[0]}</span><h3>{place[1]}</h3><p>{place[2]}</p></div>)}</div>
+        </div>
+        <img className="animals-wall-decor animals-flower animals-flower-yellow" src="/projects/animals/decor/flower-yellow.png" alt="" />
+        <img className="animals-wall-decor animals-flower animals-flower-blue" src="/projects/animals/decor/flower-blue.png" alt="" />
+      </section>
+
+      <section className="animals-section animals-posters" id="animals-posters">
+        <div className="animals-heading"><span>04</span><p>CHARACTER POSTERS</p><h2>让性格进入场景，<br />让一句话成为角色宣言。</h2></div>
+        <div className="animals-poster-track">
+          {animalCharacters.map(item=><figure key={item.key}><img src={item.poster} alt={`${item.name}角色海报`} loading="lazy" /><figcaption><span>{item.index} / {item.animal}</span>{item.name} · {item.title}</figcaption></figure>)}
+        </div>
+        <p className="animals-drag-note">← DRAG TO VIEW SIX POSTERS / 左右拖拽查看六张角色海报 →</p>
+      </section>
+
+      <section className="animals-section animals-emoji" id="animals-emoji">
+        <div className="animals-heading"><span>05</span><p>SOCIAL STICKERS</p><h2>从角色设定，<br />进入年轻人的聊天现场。</h2></div>
+        <p className="animals-section-intro">表情包把六种人格放进加班、摆烂、社交、焦虑与自我鼓励等日常语境；夸张动作与手写语言，让角色成为可以直接使用的情绪替身。</p>
+        <div className="animals-emoji-grid">{Array.from({length:12},(_,i)=><img key={i} src={`/projects/animals/emoji/emoji-${String(i+1).padStart(2,'0')}.jpg`} alt={`热门动物鉴定社交表情 ${i+1}`} loading="lazy" />)}</div>
+        <img className="animals-wall-decor animals-flower animals-flower-purple" src="/projects/animals/decor/flower-purple.png" alt="" />
+      </section>
+
+      <section className="animals-section animals-h5" id="animals-h5">
+        <div className="animals-heading"><span>06</span><p>H5 PERSONALITY TEST</p><h2>走过六个场景，<br />找到你的热门动物人格。</h2></div>
+        <div className="animals-h5-intro"><p>测试把完整地图拆解为六个生活场景，以连续问题模拟学习、饮食、养生、娱乐、公共生活与工作选择；系统依据选择累计分值，分流到六种人格结果。</p><div><span>场景推进</span><i>→</i><span>选择计分</span><i>→</i><span>结果分流</span></div></div>
+        <div className="animals-phone-track">{animalH5Steps.map(step=><figure key={step[0]}><img src={step[2]} alt={`H5测试步骤：${step[1]}`} loading="lazy" /><figcaption><span>{step[0]}</span>{step[1]}</figcaption></figure>)}</div>
+        <div className="animals-results-layout">
+          <div className="animals-result-grid">{animalCharacters.map((item,i)=><figure key={item.key}><img src={`/projects/animals/h5/result-${String(i+1).padStart(2,'0')}.jpg`} alt={`${item.name}人格测试结果页`} loading="lazy" /><figcaption>{item.name} / {item.animal}</figcaption></figure>)}</div>
+          <aside className="animals-qr"><p>SCAN TO TEST</p><img src="/projects/animals/qr.png" alt="热门动物人格鉴定H5二维码" /><h3>测一测，<br />你是哪种热门动物？</h3><small>使用手机扫码进入原始H5互动页面</small></aside>
+        </div>
+      </section>
+
+      <section className="animals-section animals-merch" id="animals-merch">
+        <div className="animals-heading"><span>07</span><p>DERIVATIVE DESIGN</p><h2>把人格图鉴，<br />带进真实生活。</h2></div>
+        <div className="animals-merch-grid">{animalMerch.map((item,i)=><figure className={`animals-merch-${(i%5)+1}`} key={`${item[0]}-${i}`}><img src={item[0]} alt={item[1]} loading="lazy" /><figcaption>{item[1]}</figcaption></figure>)}</div>
+      </section>
+
+      <section className="animals-section animals-exhibition" id="animals-exhibition">
+        <div className="animals-heading"><span>08</span><p>FINAL EXHIBITION</p><h2>从屏幕测试，<br />走进完整的动物世界。</h2></div>
+        <div className="animals-exhibition-grid">
+          <figure className="animals-exhibition-tall"><img src="/projects/animals/exhibition/exhibition-01.jpg" alt="热门动物鉴定毕业展墙全景" loading="lazy" /></figure>
+          <figure><img src="/projects/animals/exhibition/exhibition-02.jpg" alt="热门动物鉴定地图与海报展墙" loading="lazy" /></figure>
+          <figure><img src="/projects/animals/exhibition/exhibition-03.jpg" alt="热门动物鉴定展览地图细节" loading="lazy" /></figure>
+          <figure className="animals-exhibition-tall"><img src="/projects/animals/exhibition/exhibition-04.jpg" alt="热门动物鉴定衍生品展示墙" loading="lazy" /></figure>
+          <figure><img src="/projects/animals/exhibition/exhibition-05.jpg" alt="热门动物鉴定手提袋实物" loading="lazy" /></figure>
+        </div>
+      </section>
+
+      <footer className="animals-footer"><p>热门动物鉴定 / ANIMALS&apos; CHARACTERISTICS IDENTIFICATION</p><button onClick={onClose}>BACK TO BACHELOR&apos;S WORK ↑</button></footer>
+    </article>
+  );
+}
+
 const petalsMetaphors = [
   { key:'rose', index:'01', flower:'Rose / 玫瑰', word:'刺', context:'亲密关系', title:'爱意里的刺', copy:'亲密关系中的评价、比较与审美期待，会以“为你好”的方式进入身体经验。', scene:'/projects/petals/revision/context-intimacy.png', photo:'/projects/petals/revision/photo-rose.jpg', model:'/projects/petals/figma/rose-model.png', transform:'亲密关系 → 隐喻玫瑰 → 缠绕与刺' },
   { key:'lily', index:'02', flower:'Lily / 百合', word:'框', context:'职场环境', title:'规则后的框', copy:'职业形象、年龄与性别气质被写进隐形规则，外貌逐渐成为一项额外劳动。', scene:'/projects/petals/revision/context-workplace.png', photo:'/projects/petals/revision/photo-lily.jpg', model:'/projects/petals/figma/lily-model.png', transform:'职场环境 → 隐喻百合 → 规训与框定' },
@@ -781,13 +914,14 @@ export default function Home() {
   };
   const closeProject = () => {
     setActiveProject(null);
-    window.history.replaceState(null, '', '#masters');
+    window.history.replaceState(null, '', activeProject?.number.startsWith('B.') ? '#bachelors' : '#masters');
   };
   useEffect(() => {
     const openFromHash = () => {
       if (window.location.hash === '#tongyun-case') setActiveProject(masterProjects[0]);
       if (window.location.hash === '#longmen-case') setActiveProject(masterProjects[1]);
       if (window.location.hash === '#petals-case') setActiveProject(masterProjects[2]);
+      if (window.location.hash === '#animals-case') setActiveProject(bachelorProjects[0]);
     };
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
@@ -800,6 +934,7 @@ export default function Home() {
     const closeOnEscape = (event:KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setActiveProject(null);
+      if (window.location.hash === '#animals-case') window.history.replaceState(null, '', '#bachelors');
       if (window.location.hash === '#tongyun-case' || window.location.hash === '#longmen-case' || window.location.hash === '#petals-case') window.history.replaceState(null, '', '#masters');
     };
     window.addEventListener('keydown', closeOnEscape);
@@ -877,7 +1012,7 @@ export default function Home() {
 
       <section className="works-section dark" id="bachelors">
         <div className="works-head"><div className="section-kicker light">04 / BACHELOR&apos;S WORK <span>本科期间作品</span></div><h2>Learning by<br /><em>making.</em></h2></div>
-        <ProjectTrack projects={bachelorProjects} label="本科作品" onOpen={setActiveProject} />
+        <ProjectTrack projects={bachelorProjects} label="本科作品" onOpen={openProject} />
       </section>
 
       <section className="works-section coral-section" id="anime-ip">
@@ -908,7 +1043,9 @@ export default function Home() {
 
       {activeProject?.number === 'M.03' && <div className="petals-overlay"><PetalsProject onClose={closeProject} /></div>}
 
-      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
+      {activeProject?.number === 'B.01' && <div className="animals-overlay"><AnimalsProject onClose={closeProject} /></div>}
+
+      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && activeProject.number !== 'B.01' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
         <article className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeProject.cn} 作品详情`} onMouseDown={e=>e.stopPropagation()}>
           <button className="modal-close" onClick={()=>setActiveProject(null)} aria-label="关闭详情">CLOSE ×</button>
           <div className={`modal-art ${activeProject.tone}`}><span>{activeProject.number}</span></div>
