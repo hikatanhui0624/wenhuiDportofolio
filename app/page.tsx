@@ -473,13 +473,11 @@ const animalH5Steps = [
 ];
 
 const animalMerch = [
-  ['/projects/animals/merch/postcards-01.jpg','POSTCARD / 明信片'],['/projects/animals/merch/postcards-02.jpg','POSTCARD / 明信片'],
-  ['/projects/animals/merch/keychain-01.jpg','KEYCHAIN / 钥匙扣'],['/projects/animals/merch/keychain-02.jpg','KEYCHAIN / 钥匙扣'],
-  ['/projects/animals/merch/acrylic-01.jpg','ACRYLIC STAND / 亚克力立牌'],['/projects/animals/merch/acrylic-02.jpg','ACRYLIC STAND / 亚克力立牌'],
-  ['/projects/animals/merch/bag.jpg','PAPER BAG / 手提袋'],['/projects/animals/merch/phone-01.jpg','PHONE CASE / 手机壳'],
-  ['/projects/animals/merch/phone-02.jpg','PHONE CASE / 手机壳'],['/projects/animals/merch/shirt-01.jpg','T-SHIRT / 服饰'],
-  ['/projects/animals/merch/shirt-02.jpg','T-SHIRT / 服饰'],['/projects/animals/merch/badges.jpg','BADGE / 徽章'],
-  ['/projects/animals/merch/coaster-01.jpg','COASTER / 杯垫'],['/projects/animals/merch/coaster-02.jpg','COASTER / 杯垫'],
+  ['/projects/animals/merch/postcard-hires.jpg','POSTCARD / 明信片'],
+  ['/projects/animals/merch/acrylic-mouse-hires.jpg','ACRYLIC STAND / 鼠鼠亚克力立牌'],
+  ['/projects/animals/merch/acrylic-parrot-hires.jpg','ACRYLIC STAND / 鹦鹉亚克力立牌'],
+  ['/projects/animals/merch/badge-hires.jpg','BADGE / 徽章'],
+  ['/projects/animals/merch/bag-hires.jpg','PAPER BAG / 手提袋'],
 ];
 
 function AnimalsProject({ onClose }:{ onClose:()=>void }) {
@@ -515,7 +513,15 @@ function AnimalsProject({ onClose }:{ onClose:()=>void }) {
 
       <section className="animals-section animals-ip" id="animals-ip">
         <div className="animals-heading"><span>02</span><p>IP CHARACTER SYSTEM</p><h2>六种动物，<br />六种当代青年人格。</h2></div>
-        <figure className="animals-lineup"><img src="/projects/animals/ip/lineup.jpg" alt="六个动物IP的角色比例图" loading="lazy" /><figcaption>CHARACTER LINEUP / 角色比例与家族关系</figcaption></figure>
+        <div className="animals-lineup-row">
+          <figure className="animals-lineup"><img src="/projects/animals/ip/lineup.jpg" alt="六个动物IP的角色比例图" loading="lazy" /><figcaption>CHARACTER LINEUP / 角色比例与家族关系</figcaption></figure>
+          <aside className="animals-lineup-note">
+            <p>VISUAL SYSTEM / 视觉系统</p>
+            <h3>同一世界，<br />六种不同的身体语言。</h3>
+            <p>统一的几何轮廓、高明度色彩与拟人表情，让六个角色保持家族感，也保留各自的人格差异。</p>
+            <div className="animals-color-dots" aria-label="角色系统配色"><i /><i /><i /><i /><i /><i /></div>
+          </aside>
+        </div>
         <div className="animals-character-grid">
           {animalCharacters.map((item)=><article className={`animals-character-card ${item.key}`} key={item.key}>
             <header><span>{item.index}</span><p>{item.animal}</p><b>{item.name}</b></header>
