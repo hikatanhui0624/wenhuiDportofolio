@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'|'animals'|'qingtour'|'nannan'; cover?:string; coverAlt?:string };
+type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'|'animals'|'qingtour'|'nannan'|'flowers'; cover?:string; coverAlt?:string };
 
 const masterProjects: Project[] = [
   { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'/projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
@@ -14,6 +14,7 @@ const bachelorProjects: Project[] = [
   { number:'B.01', title:'ANIMALS’ CHARACTERISTICS IDENTIFICATION', cn:'热门动物鉴定—青年亚文化现象的图形设计及衍生', subtitle:'六种青年人格 · IP视觉系统 · H5测试', year:'2024', type:'IP DESIGN · VISUAL SYSTEM · H5', tone:'animals', caseStudy:'animals', cover:'/projects/animals/main-poster.jpg', coverAlt:'热门动物鉴定六个IP角色主视觉海报' },
   { number:'B.02', title:'QINGTOUR', cn:'轻途—适老化日常出行服务 APP', subtitle:'天气 · 实时交通 · 导航 · 家庭关怀', year:'2023', type:'UI/UX · APP DESIGN', tone:'qingtour', caseStudy:'qingtour', cover:'/projects/qingtour/boards/board-01.jpg', coverAlt:'轻途适老化出行应用主视觉' },
   { number:'B.03', title:'NANNAN RABBIT FAMILY', cn:'兔团团一家—大白兔奶糖品牌IP再改造', subtitle:'海派文化 · 家庭IP · 视觉延展', year:'2024', type:'BRAND IP · VISUAL SYSTEM', tone:'nannan', caseStudy:'nannan', cover:'/projects/nannan/boards/board-01.jpg', coverAlt:'兔团团一家大白兔奶糖品牌IP改造主视觉' },
+  { number:'B.04', title:'FLOWERS / EXPERIMENTAL TYPE', cn:'造“花”—实验性字体海报设计', subtitle:'字体实验 · 系列海报 · 应用延展', year:'2021', type:'TYPOGRAPHY · POSTER DESIGN', tone:'flowers', caseStudy:'flowers', cover:'/projects/flowers/boards/board-01.jpg', coverAlt:'造花实验性字体海报设计主视觉' },
 ];
 
 const illustrationProjects: Project[] = [
@@ -946,7 +947,7 @@ function QingTourProject({ onClose }:{ onClose:()=>void }) {
       </section>
 
       <section className="qingtour-boards" aria-label="轻途项目完整设计版面">
-        <header className="qingtour-boards-head"><p>COMPLETE PROCESS / 完整设计过程</p><h2>从调研、架构到界面，<br />把完整设计过程清楚展开。</h2><span>九张原始版面按设计流程完整呈现</span></header>
+        <header className="qingtour-boards-head"><p>COMPLETE PROCESS / 完整设计过程</p><h2>从调研、架构到界面，把完整设计过程清楚展开。</h2><span>九张原始版面按设计流程完整呈现</span></header>
         <div className="qingtour-board-list">
           {qingtourBoards.map(([src,caption],index)=><figure key={src} id={index === 1 ? 'qingtour-research' : index === 3 ? 'qingtour-design' : index === 8 ? 'qingtour-results' : undefined}>
             <figcaption><span>{String(index + 1).padStart(2,'0')}</span><p>{caption}</p></figcaption>
@@ -996,7 +997,7 @@ function NannanProject({ onClose }:{ onClose:()=>void }) {
       </section>
 
       <section className="nannan-boards" aria-label="兔团团一家项目完整设计版面">
-        <header className="nannan-boards-head"><p>COMPLETE PROCESS / 完整设计过程</p><h2>从品牌记忆出发，建立一个完整、<br />可延展的家庭 IP 系统。</h2><span>九张原始版面按设计流程完整呈现</span></header>
+        <header className="nannan-boards-head"><p>COMPLETE PROCESS / 完整设计过程</p><h2>从品牌记忆出发，建立一个完整、可延展的家庭 IP 系统。</h2><span>九张原始版面按设计流程完整呈现</span></header>
         <div className="nannan-board-list">
           {nannanBoards.map(([src,caption],index)=><figure key={src} id={index === 1 ? 'nannan-brand' : index === 3 ? 'nannan-character' : index === 8 ? 'nannan-results' : undefined}>
             <figcaption><span>{String(index + 1).padStart(2,'0')}</span><p>{caption}</p></figcaption>
@@ -1006,6 +1007,54 @@ function NannanProject({ onClose }:{ onClose:()=>void }) {
       </section>
 
       <footer className="nannan-footer"><p>兔团团一家 / NANNAN RABBIT FAMILY</p><button onClick={onClose}>BACK TO BACHELOR&apos;S WORK ↑</button></footer>
+    </article>
+  );
+}
+
+const flowerBoards = [
+  ['/projects/flowers/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与三组主题'],
+  ['/projects/flowers/boards/board-02.jpg','MOOD BOARD / 墨花、狂花与梦花情绪板'],
+  ['/projects/flowers/boards/board-03.jpg','DESIGN PROCESS / 草稿推演与视觉加工'],
+  ['/projects/flowers/boards/board-04.jpg','POSTER DESIGN / 狂花与墨花海报'],
+  ['/projects/flowers/boards/board-05.jpg','POSTER & APPLICATION / 梦花海报与场景应用'],
+  ['/projects/flowers/boards/board-06.jpg','RESULTS DISPLAY / 数字媒介与成品展示'],
+];
+
+function FlowersProject({ onClose }:{ onClose:()=>void }) {
+  return (
+    <article className="flowers-project" role="dialog" aria-modal="true" aria-label="造花实验性字体海报设计项目详情">
+      <header className="flowers-topbar">
+        <a href="#flowers-top" className="flowers-brand">造“花” <span>EXPERIMENTAL FONT POSTER DESIGN</span></a>
+        <nav aria-label="造花项目目录"><a href="#flowers-overview">概览</a><a href="#flowers-mood">情绪</a><a href="#flowers-process">过程</a><a href="#flowers-results">成果</a></nav>
+        <button onClick={onClose} aria-label="关闭项目详情">BACK TO WORKS ×</button>
+      </header>
+
+      <section className="flowers-hero" id="flowers-top">
+        <div className="flowers-hero-crop"><img src="/projects/flowers/boards/board-01.jpg" alt="造花实验性字体海报设计左侧主视觉" /></div>
+        <div className="flowers-hero-strip"><p>BACHELOR&apos;S PROJECT · 04 / 2021</p><span>TYPOGRAPHY · POSTER DESIGN</span></div>
+      </section>
+
+      <section className="flowers-intro" id="flowers-overview">
+        <div className="flowers-intro-index"><span>＋</span><p>PROJECT OVERVIEW / 项目概览</p><b>04</b></div>
+        <h1>以一个“花”字，展开三种完全不同的视觉情绪。</h1>
+        <div className="flowers-intro-grid">
+          <div className="flowers-intro-copy"><p>项目以汉字“花”为视觉原型，通过笔画替换、图像拼贴与数字故障等方式，将文字从信息载体转化为具有情绪与叙事性的图形语言。</p><p>三组海报分别围绕“狂花”“墨花”“梦花”展开：水彩与颜料制造失控的活力，水墨与花卉建立克制的东方意境，线圈与数字元素构成游离、梦幻的视觉节奏。</p></div>
+          <dl><div><dt>THEMES</dt><dd>狂花 · 墨花 · 梦花</dd></div><div><dt>METHOD</dt><dd>字体解构 · 笔画替换<br />图像拼贴 · 数字实验</dd></div><div><dt>OUTPUT</dt><dd>三组系列海报<br />屏幕与空间应用</dd></div></dl>
+        </div>
+        <div className="flowers-theme-row"><span>01 / INK</span><span>02 / FRENZY</span><span>03 / DREAM</span></div>
+      </section>
+
+      <section className="flowers-boards" aria-label="造花项目完整设计版面">
+        <header className="flowers-boards-head"><p>COMPLETE PROCESS / 完整设计过程</p><h2>从情绪采样到字体重构，再把三种“花”延展到海报与媒介。</h2><span>六张原始版面完整呈现</span></header>
+        <div className="flowers-board-list">
+          {flowerBoards.map(([src,caption],index)=><figure key={src} id={index === 1 ? 'flowers-mood' : index === 2 ? 'flowers-process' : index === 5 ? 'flowers-results' : undefined}>
+            <figcaption><span>{String(index + 1).padStart(2,'0')}</span><p>{caption}</p></figcaption>
+            <div className="flowers-board-frame"><img src={src} alt={caption.split(' / ')[1]} loading={index > 1 ? 'lazy' : undefined} /></div>
+          </figure>)}
+        </div>
+      </section>
+
+      <footer className="flowers-footer"><p>造“花” / FLOWERS &amp; TYPE</p><button onClick={onClose}>BACK TO BACHELOR&apos;S WORK ↑</button></footer>
     </article>
   );
 }
@@ -1030,6 +1079,7 @@ export default function Home() {
       if (window.location.hash === '#animals-case') setActiveProject(bachelorProjects[0]);
       if (window.location.hash === '#qingtour-case') setActiveProject(bachelorProjects[1]);
       if (window.location.hash === '#nannan-case') setActiveProject(bachelorProjects[2]);
+      if (window.location.hash === '#flowers-case') setActiveProject(bachelorProjects[3]);
     };
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
@@ -1042,7 +1092,7 @@ export default function Home() {
     const closeOnEscape = (event:KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setActiveProject(null);
-      if (window.location.hash === '#animals-case' || window.location.hash === '#qingtour-case' || window.location.hash === '#nannan-case') window.history.replaceState(null, '', '#bachelors');
+      if (window.location.hash === '#animals-case' || window.location.hash === '#qingtour-case' || window.location.hash === '#nannan-case' || window.location.hash === '#flowers-case') window.history.replaceState(null, '', '#bachelors');
       if (window.location.hash === '#tongyun-case' || window.location.hash === '#longmen-case' || window.location.hash === '#petals-case') window.history.replaceState(null, '', '#masters');
     };
     window.addEventListener('keydown', closeOnEscape);
@@ -1157,7 +1207,9 @@ export default function Home() {
 
       {activeProject?.number === 'B.03' && <div className="nannan-overlay"><NannanProject onClose={closeProject} /></div>}
 
-      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && activeProject.number !== 'B.01' && activeProject.number !== 'B.02' && activeProject.number !== 'B.03' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
+      {activeProject?.number === 'B.04' && <div className="flowers-overlay"><FlowersProject onClose={closeProject} /></div>}
+
+      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && activeProject.number !== 'B.01' && activeProject.number !== 'B.02' && activeProject.number !== 'B.03' && activeProject.number !== 'B.04' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
         <article className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeProject.cn} 作品详情`} onMouseDown={e=>e.stopPropagation()}>
           <button className="modal-close" onClick={()=>setActiveProject(null)} aria-label="关闭详情">CLOSE ×</button>
           <div className={`modal-art ${activeProject.tone}`}><span>{activeProject.number}</span></div>
