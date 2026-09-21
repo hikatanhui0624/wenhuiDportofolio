@@ -51,6 +51,74 @@ button { cursor:pointer; }
   .contact-section { padding:22px 16px 18px; }.contact-main h2 { font-size:23vw; }.contact-details { grid-template-columns:86px 1fr; gap:24px 18px; }.contact-details>div:nth-child(3) { grid-column:2; }.top-link { grid-column:1/-1; justify-self:start; }.qr-placeholder { width:82px; }.menu-overlay { padding:18px 16px; }.menu-overlay nav a { grid-template-columns:34px 1fr; font-size:13vw; padding:14px 0; }.modal-backdrop { padding:10px; }.project-modal { max-height:calc(100svh - 20px); }.modal-art { min-height:42vh; border-width:7px; }.modal-copy { padding:28px 20px; }.modal-copy h3 { margin-bottom:32px; }
 }
 
+/* QINGTOUR / Bachelor project 02 */
+.project-art.qingtour { background:#59c296; }
+.project-art.qingtour:after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(180deg,rgba(13,80,60,.02) 52%,rgba(13,80,60,.42)); }
+.project-art.qingtour .project-card-image { width:200%; max-width:none; object-fit:cover; object-position:left center; filter:saturate(1.12) brightness(1.025) contrast(1.015); }
+.project-art.qingtour .art-mark { z-index:2; color:#f6e88a; text-shadow:0 2px 18px rgba(14,82,62,.34); }
+.project-art.qingtour .view-chip { z-index:3; color:#174f3f; background:#f6e88a; opacity:1; transform:none; font-weight:800; }
+
+.qingtour-overlay { position:fixed; inset:0; z-index:70; overflow-y:auto; overscroll-behavior:contain; scroll-behavior:smooth; color:#174f3f; background:#f8fbf7; }
+.qingtour-project { --qt-green:#59c296; --qt-deep:#174f3f; --qt-mint:#e8f5e9; --qt-yellow:#f3e78a; min-height:100%; font-family:var(--font-geist-sans),"PingFang SC",sans-serif; background:#f8fbf7; }
+.qingtour-project figure { margin:0; }
+.qingtour-project img { display:block; max-width:100%; }
+.qingtour-topbar { position:sticky; top:0; z-index:30; height:58px; padding:0 24px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; color:white; background:rgba(23,79,63,.95); border-bottom:1px solid rgba(255,255,255,.24); backdrop-filter:blur(12px); }
+.qingtour-brand { width:max-content; font-size:16px; font-weight:800; letter-spacing:.04em; }
+.qingtour-brand span { margin-left:8px; font-size:7px; font-weight:600; letter-spacing:.16em; opacity:.58; }
+.qingtour-topbar nav { display:flex; gap:24px; font-size:9px; letter-spacing:.12em; }
+.qingtour-topbar nav a { opacity:.68; }
+.qingtour-topbar nav a:hover { color:var(--qt-yellow); opacity:1; }
+.qingtour-topbar button { justify-self:end; padding:8px 12px; color:inherit; background:transparent; border:1px solid rgba(255,255,255,.46); border-radius:99px; font-size:8px; letter-spacing:.08em; }
+.qingtour-hero { position:relative; min-height:calc(100svh - 58px); display:grid; grid-template-rows:minmax(0,1fr) auto; overflow:hidden; background:var(--qt-green); }
+.qingtour-hero-crop { position:relative; min-height:0; overflow:hidden; }
+.qingtour-hero-crop img { width:200%; max-width:none; height:100%; object-fit:cover; object-position:left center; filter:saturate(1.12) brightness(1.025) contrast(1.015); }
+.qingtour-hero-crop:after { content:""; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 -90px 90px -100px rgba(23,79,63,.5); }
+.qingtour-hero-strip { min-height:62px; padding:0 5vw; display:flex; align-items:center; justify-content:space-between; gap:24px; color:#174f3f; background:var(--qt-yellow); border-top:1px solid rgba(23,79,63,.28); font-size:8px; font-weight:700; letter-spacing:.14em; }
+.qingtour-hero-strip p { margin:0; }
+.qingtour-intro { padding:clamp(80px,10vw,150px) 6vw 96px; background:#fff; }
+.qingtour-intro-title { display:grid; grid-template-columns:minmax(170px,.38fr) minmax(0,1.62fr); gap:5vw; align-items:start; }
+.qingtour-intro-title>p { margin:10px 0 0; font-size:8px; font-weight:800; letter-spacing:.16em; }
+.qingtour-intro-title h1 { margin:0; color:var(--qt-deep); font-size:clamp(42px,4.8vw,82px); font-weight:650; line-height:1.02; letter-spacing:-.055em; }
+.qingtour-intro-grid { margin:80px 0 0 calc(23% + 3vw); display:grid; grid-template-columns:minmax(0,1.4fr) minmax(270px,.6fr); gap:7vw; align-items:start; }
+.qingtour-intro-copy p { margin:0 0 22px; max-width:720px; font-size:13px; line-height:1.9; }
+.qingtour-intro-grid dl { margin:0; border-top:1px solid rgba(23,79,63,.45); }
+.qingtour-intro-grid dl div { padding:17px 0; display:grid; grid-template-columns:72px 1fr; border-bottom:1px solid rgba(23,79,63,.28); }
+.qingtour-intro-grid dt { font-size:7px; font-weight:800; letter-spacing:.15em; }
+.qingtour-intro-grid dd { margin:0; font-size:10px; line-height:1.65; }
+.qingtour-principles { margin:76px 0 0 calc(23% + 3vw); display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--qt-deep); }
+.qingtour-principles span { min-height:92px; padding:18px; display:flex; align-items:flex-end; border-right:1px solid var(--qt-deep); font-size:11px; font-weight:750; }
+.qingtour-principles span:last-child { border-right:0; }
+.qingtour-boards { padding:110px 5vw 130px; background:var(--qt-mint); }
+.qingtour-boards-head { margin-bottom:78px; display:grid; grid-template-columns:.48fr 1fr .48fr; gap:5vw; align-items:end; }
+.qingtour-boards-head p,.qingtour-boards-head span { margin:0; font-size:8px; font-weight:800; letter-spacing:.15em; }
+.qingtour-boards-head span { text-align:right; opacity:.58; }
+.qingtour-boards-head h2 { margin:0; font-size:clamp(38px,5.3vw,82px); font-weight:650; line-height:.98; letter-spacing:-.06em; }
+.qingtour-board-list { max-width:1760px; margin:0 auto; display:grid; gap:58px; }
+.qingtour-board-list figure { scroll-margin-top:84px; }
+.qingtour-board-list figcaption { min-height:46px; display:grid; grid-template-columns:54px 1fr; align-items:center; border-top:1px solid rgba(23,79,63,.35); }
+.qingtour-board-list figcaption span { font-size:8px; font-weight:800; }
+.qingtour-board-list figcaption p { margin:0; font-size:8px; letter-spacing:.12em; }
+.qingtour-board-frame { padding:8px; overflow:hidden; background:#fff; border:1px solid rgba(23,79,63,.2); box-shadow:14px 14px 0 rgba(89,194,150,.28); }
+.qingtour-board-frame img { width:100%; height:auto; filter:saturate(1.1) brightness(1.025) contrast(1.01); }
+.qingtour-footer { min-height:180px; padding:40px 5vw; display:flex; align-items:center; justify-content:space-between; color:var(--qt-deep); background:var(--qt-yellow); }
+.qingtour-footer p { font-size:12px; font-weight:850; letter-spacing:.08em; }
+.qingtour-footer button { padding:12px 16px; color:var(--qt-deep); background:transparent; border:1px solid var(--qt-deep); border-radius:99px; font-size:8px; letter-spacing:.09em; }
+
+@media (max-width:900px) {
+  .qingtour-topbar { grid-template-columns:1fr auto; }.qingtour-topbar nav { display:none; }
+  .qingtour-hero { min-height:72svh; }.qingtour-intro-title { grid-template-columns:1fr; }.qingtour-intro-grid { margin-left:0; grid-template-columns:1fr; }.qingtour-principles { margin-left:0; grid-template-columns:1fr 1fr; }.qingtour-principles span:nth-child(2) { border-right:0; }.qingtour-principles span:nth-child(-n+2) { border-bottom:1px solid var(--qt-deep); }
+  .qingtour-boards-head { grid-template-columns:1fr; align-items:start; }.qingtour-boards-head span { text-align:left; }
+}
+
+@media (max-width:700px) {
+  .project-art.qingtour .project-card-image { width:200%; object-fit:cover; object-position:left center; }
+  .qingtour-topbar { height:52px; padding:0 14px; }.qingtour-brand { font-size:12px; }.qingtour-brand span { display:none; }.qingtour-topbar button { font-size:7px; }
+  .qingtour-hero { min-height:61svh; grid-template-rows:minmax(0,1fr) auto; }.qingtour-hero-strip { min-height:54px; padding:0 18px; font-size:6px; }
+  .qingtour-intro { padding:76px 18px; }.qingtour-intro-title h1 { font-size:12.5vw; }.qingtour-intro-grid { margin-top:52px; gap:32px; }.qingtour-intro-copy p { font-size:12px; }.qingtour-principles { margin-top:48px; }.qingtour-principles span { min-height:76px; padding:14px; font-size:10px; }
+  .qingtour-boards { padding:76px 18px 90px; }.qingtour-boards-head { margin-bottom:52px; gap:20px; }.qingtour-boards-head h2 { font-size:11.5vw; }.qingtour-board-list { gap:42px; }.qingtour-board-list figcaption { grid-template-columns:42px 1fr; }.qingtour-board-frame { overflow-x:auto; box-shadow:7px 7px 0 rgba(89,194,150,.32); scrollbar-width:thin; }.qingtour-board-frame img { width:1100px; max-width:none; }
+  .qingtour-footer { min-height:150px; padding:30px 18px; gap:20px; }.qingtour-footer p { font-size:9px; }.qingtour-footer button { font-size:7px; }
+}
+
 /* Animals' Characteristics Identification case study */
 .project-art.animals { background:#fff; }.project-art.animals:after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 62%,rgba(59,13,45,.38)); pointer-events:none; }.project-art.animals .project-card-image { object-fit:cover; object-position:center top; background:#fff; }.project-art.animals .art-mark { z-index:2; color:#3b0d2d; text-shadow:0 2px 16px rgba(255,255,255,.8); }.project-art.animals .view-chip { z-index:3; color:#3b0d2d; background:#ffd64d; opacity:1; transform:none; font-weight:800; }
 .animals-overlay { position:fixed; inset:0; z-index:70; overflow-y:auto; overscroll-behavior:contain; scroll-behavior:smooth; color:#3b0d2d; background:#fffdf5; }

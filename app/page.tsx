@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'|'animals'; cover?:string; coverAlt?:string };
+type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'|'animals'|'qingtour'; cover?:string; coverAlt?:string };
 
 const masterProjects: Project[] = [
   { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'/projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
@@ -12,7 +12,7 @@ const masterProjects: Project[] = [
 
 const bachelorProjects: Project[] = [
   { number:'B.01', title:'ANIMALS’ CHARACTERISTICS IDENTIFICATION', cn:'热门动物鉴定—青年亚文化现象的图形设计及衍生', subtitle:'六种青年人格 · IP视觉系统 · H5测试', year:'2024', type:'IP DESIGN · VISUAL SYSTEM · H5', tone:'animals', caseStudy:'animals', cover:'/projects/animals/main-poster.jpg', coverAlt:'热门动物鉴定六个IP角色主视觉海报' },
-  { number:'B.02', title:'MATERIAL MEMORY', cn:'材料语言实验', year:'2023', type:'OBJECT · RESEARCH', tone:'coral' },
+  { number:'B.02', title:'QINGTOUR', cn:'轻途—适老化日常出行服务 APP', subtitle:'天气 · 实时交通 · 导航 · 家庭关怀', year:'2023', type:'UI/UX · APP DESIGN', tone:'qingtour', caseStudy:'qingtour', cover:'/projects/qingtour/boards/board-01.jpg', coverAlt:'轻途适老化出行应用主视觉' },
   { number:'B.03', title:'ANOTHER DAILY', cn:'日常用品再设计', year:'2023', type:'PRODUCT · UX', tone:'violet' },
 ];
 
@@ -910,6 +910,56 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
   );
 }
 
+const qingtourBoards = [
+  ['/projects/qingtour/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与设计流程'],
+  ['/projects/qingtour/boards/board-02.jpg','PRIMARY RESEARCH / 项目背景与问卷调查'],
+  ['/projects/qingtour/boards/board-03.jpg','USER INSIGHT / 用户画像与出行情境'],
+  ['/projects/qingtour/boards/board-04.jpg','FUNCTION ARCHITECTURE / 功能架构'],
+  ['/projects/qingtour/boards/board-05.jpg','LOW FIDELITY / 低保真原型与登录流程'],
+  ['/projects/qingtour/boards/board-06.jpg','CORE PAGES / 天气与实时交通'],
+  ['/projects/qingtour/boards/board-07.jpg','SERVICE PAGES / 收藏、聊天、打车与附近'],
+  ['/projects/qingtour/boards/board-08.jpg','VISUAL SYSTEM / 新手引导与视觉规范'],
+  ['/projects/qingtour/boards/board-09.jpg','RESULTS DISPLAY / 最终界面展示'],
+];
+
+function QingTourProject({ onClose }:{ onClose:()=>void }) {
+  return (
+    <article className="qingtour-project" role="dialog" aria-modal="true" aria-label="轻途适老化出行应用项目详情">
+      <header className="qingtour-topbar">
+        <a href="#qingtour-top" className="qingtour-brand">轻途 <span>QINGTOUR</span></a>
+        <nav aria-label="轻途项目目录"><a href="#qingtour-overview">概览</a><a href="#qingtour-research">研究</a><a href="#qingtour-design">设计</a><a href="#qingtour-results">成果</a></nav>
+        <button onClick={onClose} aria-label="关闭项目详情">BACK TO WORKS ×</button>
+      </header>
+
+      <section className="qingtour-hero" id="qingtour-top">
+        <div className="qingtour-hero-crop"><img src="/projects/qingtour/boards/board-01.jpg" alt="轻途适老化出行应用主视觉与界面展示" /></div>
+        <div className="qingtour-hero-strip"><p>BACHELOR&apos;S PROJECT · 02 / 2023</p><span>UI/UX · APP DESIGN</span></div>
+      </section>
+
+      <section className="qingtour-intro" id="qingtour-overview">
+        <div className="qingtour-intro-title"><p>PROJECT OVERVIEW / 项目概览</p><h1>让老年人的每一次出行，<br />轻松一点，也安心一点。</h1></div>
+        <div className="qingtour-intro-grid">
+          <div className="qingtour-intro-copy"><p>“轻途”是一款面向城市中老年用户的日常出行服务 APP。项目从社区走访、问卷调查与用户画像出发，聚焦导航信息复杂、公共交通查询困难、独立出行缺乏安全感等问题。</p><p>界面以低认知负担为原则，将天气、实时公交与地铁、路线导航、一键打车、附近服务、家庭聊天室与收藏整合进清晰的大卡片系统，让信息更易读、操作更直接。</p></div>
+          <dl><div><dt>ROLE</dt><dd>用户研究 · 信息架构<br />界面与视觉设计</dd></div><div><dt>METHOD</dt><dd>社区走访 · 问卷调查<br />用户画像 · 情境旅程</dd></div><div><dt>OUTPUT</dt><dd>适老化出行 APP<br />高保真界面 · 视觉规范</dd></div></dl>
+        </div>
+        <div className="qingtour-principles"><span>大字号与高对比</span><span>关键功能前置</span><span>减少操作层级</span><span>连接家庭关怀</span></div>
+      </section>
+
+      <section className="qingtour-boards" aria-label="轻途项目完整设计版面">
+        <header className="qingtour-boards-head"><p>COMPLETE PROCESS / 完整设计过程</p><h2>从调研、架构到界面，<br />把完整设计过程清楚展开。</h2><span>九张原始版面按设计流程完整呈现</span></header>
+        <div className="qingtour-board-list">
+          {qingtourBoards.map(([src,caption],index)=><figure key={src} id={index === 1 ? 'qingtour-research' : index === 3 ? 'qingtour-design' : index === 8 ? 'qingtour-results' : undefined}>
+            <figcaption><span>{String(index + 1).padStart(2,'0')}</span><p>{caption}</p></figcaption>
+            <div className="qingtour-board-frame"><img src={src} alt={caption.split(' / ')[1]} loading={index > 1 ? 'lazy' : undefined} /></div>
+          </figure>)}
+        </div>
+      </section>
+
+      <footer className="qingtour-footer"><p>轻途 / QINGTOUR</p><button onClick={onClose}>BACK TO BACHELOR&apos;S WORK ↑</button></footer>
+    </article>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
@@ -928,6 +978,7 @@ export default function Home() {
       if (window.location.hash === '#longmen-case') setActiveProject(masterProjects[1]);
       if (window.location.hash === '#petals-case') setActiveProject(masterProjects[2]);
       if (window.location.hash === '#animals-case') setActiveProject(bachelorProjects[0]);
+      if (window.location.hash === '#qingtour-case') setActiveProject(bachelorProjects[1]);
     };
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
@@ -940,7 +991,7 @@ export default function Home() {
     const closeOnEscape = (event:KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setActiveProject(null);
-      if (window.location.hash === '#animals-case') window.history.replaceState(null, '', '#bachelors');
+      if (window.location.hash === '#animals-case' || window.location.hash === '#qingtour-case') window.history.replaceState(null, '', '#bachelors');
       if (window.location.hash === '#tongyun-case' || window.location.hash === '#longmen-case' || window.location.hash === '#petals-case') window.history.replaceState(null, '', '#masters');
     };
     window.addEventListener('keydown', closeOnEscape);
@@ -1051,7 +1102,9 @@ export default function Home() {
 
       {activeProject?.number === 'B.01' && <div className="animals-overlay"><AnimalsProject onClose={closeProject} /></div>}
 
-      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && activeProject.number !== 'B.01' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
+      {activeProject?.number === 'B.02' && <div className="qingtour-overlay"><QingTourProject onClose={closeProject} /></div>}
+
+      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && activeProject.number !== 'B.01' && activeProject.number !== 'B.02' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
         <article className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeProject.cn} 作品详情`} onMouseDown={e=>e.stopPropagation()}>
           <button className="modal-close" onClick={()=>setActiveProject(null)} aria-label="关闭详情">CLOSE ×</button>
           <div className={`modal-art ${activeProject.tone}`}><span>{activeProject.number}</span></div>
