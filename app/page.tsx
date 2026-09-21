@@ -25,6 +25,8 @@ const illustrationProjects: Project[] = [
   { number:'I.04', title:'SMALL UNIVERSE', cn:'微小宇宙', year:'2024', type:'PERSONAL WORK', tone:'acid' },
 ];
 
+const SHOW_ANIME_IP = false;
+
 const folders = [
   { number:'01', title:'ABOUT', cn:'基本信息', note:'WHO I AM', href:'#about', image:'/folder-about-objects.png', tone:'folder-pink' },
   { number:'02', title:'MASTER’S WORK', cn:'硕士期间作品', note:'RESEARCH · SERVICE · INTERACTION', href:'#masters', image:'/folder-masters-objects.png', tone:'folder-sage' },
@@ -64,7 +66,7 @@ function FolderNavigator() {
     <div className="folder-nav">
       <p className="folder-instruction">DRAG FILES TO EXPLORE <span>↔</span></p>
       <div className="folder-track" ref={track} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end}>
-        {folders.map((folder) => (
+        {folders.filter((folder) => SHOW_ANIME_IP || folder.href !== '#anime-ip').map((folder) => (
           <a className={`folder-card ${folder.tone}`} href={folder.href} key={folder.number} onClick={openFolder} aria-label={`进入${folder.cn}`}>
             <div className="folder-back" />
             <img className="folder-objects" src={folder.image} alt="" draggable={false} />
@@ -1153,7 +1155,7 @@ export default function Home() {
         <header className="topbar">
           <a className="wordmark" href="#home" aria-label="返回首页">WENHUI®</a>
           <p className="availability"><span /> AVAILABLE FOR OPPORTUNITIES</p>
-          <button className="menu-pill" onClick={()=>setMenuOpen(true)}>INDEX <b>04</b></button>
+          <button className="menu-pill" onClick={()=>setMenuOpen(true)}>INDEX <b>03</b></button>
         </header>
         <div className="hero-stage" aria-label="可拖动的作品集章节文件夹"><FolderNavigator /></div>
         <div className="hero-copy">
@@ -1178,7 +1180,7 @@ export default function Home() {
           <a className="index-row" href="#about"><span>01</span><h2>ABOUT<small>关于我</small></h2><b>↘</b></a>
           <a className="index-row" href="#masters"><span>02</span><h2>MASTER&apos;S WORK<small>硕士期间作品</small></h2><b>↘</b></a>
           <a className="index-row" href="#bachelors"><span>03</span><h2>BACHELOR&apos;S WORK<small>本科期间作品</small></h2><b>↘</b></a>
-          <a className="index-row" href="#anime-ip"><span>04</span><h2>ANIME IP / MERCH<small>二次元IP / 衍生品设计</small></h2><b>↘</b></a>
+          {SHOW_ANIME_IP && <a className="index-row" href="#anime-ip"><span>04</span><h2>ANIME IP / MERCH<small>二次元IP / 衍生品设计</small></h2><b>↘</b></a>}
         </nav>
       </section>
 
@@ -1221,17 +1223,17 @@ export default function Home() {
         <ProjectTrack projects={bachelorProjects} label="本科作品" onOpen={openProject} />
       </section>
 
-      <section className="works-section coral-section" id="anime-ip">
+      {SHOW_ANIME_IP && <section className="works-section coral-section" id="anime-ip">
         <div className="works-head"><div className="section-kicker">05 / ANIME IP &amp; MERCH <span>二次元IP / 衍生品设计</span></div><h2>Characters into<br /><em>worlds.</em></h2></div>
         <ProjectTrack projects={illustrationProjects} label="二次元IP与衍生品作品" onOpen={setActiveProject} />
-      </section>
+      </section>}
 
       <footer className="contact-section" id="contact">
-        <div className="section-kicker light">06 / CONTACT <span>联络</span></div>
+        <div className="section-kicker light">05 / CONTACT <span>联络</span></div>
         <div className="contact-main"><p>HAVE A PROJECT IN MIND?</p><h2>Let&apos;s make<br /><em>something.</em></h2></div>
         <div className="contact-details">
-          <div className="qr-placeholder"><span>WECHAT<br />QR</span></div>
-          <div><small>EMAIL</small><a href="mailto:hikatanhui0624@gmail.com">HIKATANHUI0624@GMAIL.COM</a></div>
+          <div className="qr-placeholder"><img src="/contact/wechat-qr.jpg" alt="微信二维码" /></div>
+          <div><small>EMAIL</small><a href="mailto:hikatanhui0624@gmail.com">hikatanhui0624@gmail.com</a></div>
           <div><small>PHONE</small><p>+86 151 6215 3449</p></div>
           <a className="top-link" href="#home">BACK TO TOP ↑</a>
         </div>
@@ -1240,7 +1242,7 @@ export default function Home() {
 
       <div className={`menu-overlay ${menuOpen ? 'open' : ''}`} aria-hidden={!menuOpen}>
         <div className="overlay-top"><span>PORTFOLIO INDEX</span><button onClick={closeMenu}>CLOSE ×</button></div>
-        <nav><a href="#about" onClick={closeMenu}><i>01</i>ABOUT</a><a href="#masters" onClick={closeMenu}><i>02</i>MASTER&apos;S WORK</a><a href="#bachelors" onClick={closeMenu}><i>03</i>BACHELOR&apos;S WORK</a><a href="#anime-ip" onClick={closeMenu}><i>04</i>ANIME IP / MERCH</a><a href="#contact" onClick={closeMenu}><i>05</i>CONTACT</a></nav>
+        <nav><a href="#about" onClick={closeMenu}><i>01</i>ABOUT</a><a href="#masters" onClick={closeMenu}><i>02</i>MASTER&apos;S WORK</a><a href="#bachelors" onClick={closeMenu}><i>03</i>BACHELOR&apos;S WORK</a>{SHOW_ANIME_IP && <a href="#anime-ip" onClick={closeMenu}><i>04</i>ANIME IP / MERCH</a>}<a href="#contact" onClick={closeMenu}><i>04</i>CONTACT</a></nav>
       </div>
 
       {activeProject?.number === 'M.01' && <div className="tongyun-overlay"><TongyunProject onClose={closeProject} /></div>}

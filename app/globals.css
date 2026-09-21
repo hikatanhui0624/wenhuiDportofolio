@@ -51,6 +51,11 @@ button { cursor:pointer; }
   .contact-section { padding:22px 16px 18px; }.contact-main h2 { font-size:23vw; }.contact-details { grid-template-columns:86px 1fr; gap:24px 18px; }.contact-details>div:nth-child(3) { grid-column:2; }.top-link { grid-column:1/-1; justify-self:start; }.qr-placeholder { width:82px; }.menu-overlay { padding:18px 16px; }.menu-overlay nav a { grid-template-columns:34px 1fr; font-size:13vw; padding:14px 0; }.modal-backdrop { padding:10px; }.project-modal { max-height:calc(100svh - 20px); }.modal-art { min-height:42vh; border-width:7px; }.modal-copy { padding:28px 20px; }.modal-copy h3 { margin-bottom:32px; }
 }
 
+.index-section:before { content:"ARCHIVE / 03 FILES"; }
+.qr-placeholder { width:120px; aspect-ratio:1; padding:8px; display:grid; place-items:center; overflow:hidden; border:0; border-radius:2px; color:inherit; background:#fff; }
+.qr-placeholder img { width:100%; height:100%; object-fit:contain; }
+@media (max-width:700px) { .qr-placeholder { width:86px; padding:5px; } }
+
 /* Bachelor project 05 — Dress With Sense */
 .dress-overlay { position:fixed; inset:0; z-index:110; overflow-y:auto; background:#f8f1f6; }
 .dress-project { --dr-pink:#d65091; --dr-deep:#552342; --dr-ice:#e7f6f5; --dr-acid:#f1f5b8; --dr-blue:#a8dbe7; --dr-peach:#f0b6a4; min-height:100%; color:var(--dr-deep); background:#f8f1f6; font-family:var(--font-geist-sans),"PingFang SC",sans-serif; }
