@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'|'animals'|'qingtour'; cover?:string; coverAlt?:string };
+type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'|'animals'|'qingtour'|'nannan'; cover?:string; coverAlt?:string };
 
 const masterProjects: Project[] = [
   { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'/projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
@@ -13,7 +13,7 @@ const masterProjects: Project[] = [
 const bachelorProjects: Project[] = [
   { number:'B.01', title:'ANIMALS’ CHARACTERISTICS IDENTIFICATION', cn:'热门动物鉴定—青年亚文化现象的图形设计及衍生', subtitle:'六种青年人格 · IP视觉系统 · H5测试', year:'2024', type:'IP DESIGN · VISUAL SYSTEM · H5', tone:'animals', caseStudy:'animals', cover:'/projects/animals/main-poster.jpg', coverAlt:'热门动物鉴定六个IP角色主视觉海报' },
   { number:'B.02', title:'QINGTOUR', cn:'轻途—适老化日常出行服务 APP', subtitle:'天气 · 实时交通 · 导航 · 家庭关怀', year:'2023', type:'UI/UX · APP DESIGN', tone:'qingtour', caseStudy:'qingtour', cover:'/projects/qingtour/boards/board-01.jpg', coverAlt:'轻途适老化出行应用主视觉' },
-  { number:'B.03', title:'ANOTHER DAILY', cn:'日常用品再设计', year:'2023', type:'PRODUCT · UX', tone:'violet' },
+  { number:'B.03', title:'NANNAN RABBIT FAMILY', cn:'兔团团一家—大白兔奶糖品牌IP再改造', subtitle:'海派文化 · 家庭IP · 视觉延展', year:'2024', type:'BRAND IP · VISUAL SYSTEM', tone:'nannan', caseStudy:'nannan', cover:'/projects/nannan/boards/board-01.jpg', coverAlt:'兔团团一家大白兔奶糖品牌IP改造主视觉' },
 ];
 
 const illustrationProjects: Project[] = [
@@ -960,6 +960,56 @@ function QingTourProject({ onClose }:{ onClose:()=>void }) {
   );
 }
 
+const nannanBoards = [
+  ['/projects/nannan/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与设计流程'],
+  ['/projects/nannan/boards/board-02.jpg','BRAND REVIEW / 品牌梳理与升级目标'],
+  ['/projects/nannan/boards/board-03.jpg','CULTURE VISION / 海派文化背景与元素提取'],
+  ['/projects/nannan/boards/board-04.jpg','FAMILY CHARACTER / 家庭角色设定与三视图'],
+  ['/projects/nannan/boards/board-05.jpg','CHARACTER SYSTEM / 儿童角色与家族比例'],
+  ['/projects/nannan/boards/board-06.jpg','STYLE EXTENSION / 海派造型与服饰延展'],
+  ['/projects/nannan/boards/board-07.jpg','POSTER & ACTION / 海报与动作延展'],
+  ['/projects/nannan/boards/board-08.jpg','COLOR SYSTEM / 品牌色彩与角色背景'],
+  ['/projects/nannan/boards/board-09.jpg','RESULTS DISPLAY / 包装与衍生成果'],
+];
+
+function NannanProject({ onClose }:{ onClose:()=>void }) {
+  return (
+    <article className="nannan-project" role="dialog" aria-modal="true" aria-label="兔团团一家大白兔奶糖品牌IP改造项目详情">
+      <header className="nannan-topbar">
+        <a href="#nannan-top" className="nannan-brand">兔团团一家 <span>NANNAN RABBIT FAMILY</span></a>
+        <nav aria-label="兔团团一家项目目录"><a href="#nannan-overview">概览</a><a href="#nannan-brand">品牌</a><a href="#nannan-character">角色</a><a href="#nannan-results">成果</a></nav>
+        <button onClick={onClose} aria-label="关闭项目详情">BACK TO WORKS ×</button>
+      </header>
+
+      <section className="nannan-hero" id="nannan-top">
+        <div className="nannan-hero-crop"><img src="/projects/nannan/boards/board-01.jpg" alt="兔团团一家四个家庭角色主视觉" /></div>
+        <div className="nannan-hero-strip"><p>BACHELOR&apos;S PROJECT · 03 / 2024</p><span>BRAND IP · VISUAL SYSTEM</span></div>
+      </section>
+
+      <section className="nannan-intro" id="nannan-overview">
+        <div className="nannan-intro-title"><p>PROJECT OVERVIEW / 项目概览</p><h1>让一颗熟悉的奶糖，<br />拥有一个会讲故事的家庭。</h1></div>
+        <div className="nannan-intro-grid">
+          <div className="nannan-intro-copy"><p>“兔团团一家”以大白兔奶糖为品牌原型，围绕原有形象缺少情感共鸣、角色系统与文化延展的问题，重新建立由父亲、母亲、儿子与女儿组成的家庭 IP。</p><p>项目从上海印象与海派文化中提取建筑、服饰、方言和都市生活线索，将怀旧品牌记忆转化为更亲近、可互动的角色叙事，并延展至角色造型、系列海报、动作表情、色彩规范、包装与衍生品。</p></div>
+          <dl><div><dt>ROLE</dt><dd>品牌研究 · IP设计<br />视觉系统与衍生</dd></div><div><dt>METHOD</dt><dd>品牌梳理 · 文化提取<br />角色设定 · 视觉延展</dd></div><div><dt>OUTPUT</dt><dd>四组家庭角色<br />海报 · 包装 · 衍生品</dd></div></dl>
+        </div>
+        <div className="nannan-principles"><span>家庭化叙事</span><span>海派文化转译</span><span>角色系统统一</span><span>多触点延展</span></div>
+      </section>
+
+      <section className="nannan-boards" aria-label="兔团团一家项目完整设计版面">
+        <header className="nannan-boards-head"><p>COMPLETE PROCESS / 完整设计过程</p><h2>从品牌记忆出发，建立一个完整、<br />可延展的家庭 IP 系统。</h2><span>九张原始版面按设计流程完整呈现</span></header>
+        <div className="nannan-board-list">
+          {nannanBoards.map(([src,caption],index)=><figure key={src} id={index === 1 ? 'nannan-brand' : index === 3 ? 'nannan-character' : index === 8 ? 'nannan-results' : undefined}>
+            <figcaption><span>{String(index + 1).padStart(2,'0')}</span><p>{caption}</p></figcaption>
+            <div className="nannan-board-frame"><img src={src} alt={caption.split(' / ')[1]} loading={index > 1 ? 'lazy' : undefined} /></div>
+          </figure>)}
+        </div>
+      </section>
+
+      <footer className="nannan-footer"><p>兔团团一家 / NANNAN RABBIT FAMILY</p><button onClick={onClose}>BACK TO BACHELOR&apos;S WORK ↑</button></footer>
+    </article>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
@@ -979,6 +1029,7 @@ export default function Home() {
       if (window.location.hash === '#petals-case') setActiveProject(masterProjects[2]);
       if (window.location.hash === '#animals-case') setActiveProject(bachelorProjects[0]);
       if (window.location.hash === '#qingtour-case') setActiveProject(bachelorProjects[1]);
+      if (window.location.hash === '#nannan-case') setActiveProject(bachelorProjects[2]);
     };
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
@@ -991,7 +1042,7 @@ export default function Home() {
     const closeOnEscape = (event:KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setActiveProject(null);
-      if (window.location.hash === '#animals-case' || window.location.hash === '#qingtour-case') window.history.replaceState(null, '', '#bachelors');
+      if (window.location.hash === '#animals-case' || window.location.hash === '#qingtour-case' || window.location.hash === '#nannan-case') window.history.replaceState(null, '', '#bachelors');
       if (window.location.hash === '#tongyun-case' || window.location.hash === '#longmen-case' || window.location.hash === '#petals-case') window.history.replaceState(null, '', '#masters');
     };
     window.addEventListener('keydown', closeOnEscape);
@@ -1104,7 +1155,9 @@ export default function Home() {
 
       {activeProject?.number === 'B.02' && <div className="qingtour-overlay"><QingTourProject onClose={closeProject} /></div>}
 
-      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && activeProject.number !== 'B.01' && activeProject.number !== 'B.02' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
+      {activeProject?.number === 'B.03' && <div className="nannan-overlay"><NannanProject onClose={closeProject} /></div>}
+
+      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && activeProject.number !== 'B.01' && activeProject.number !== 'B.02' && activeProject.number !== 'B.03' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
         <article className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeProject.cn} 作品详情`} onMouseDown={e=>e.stopPropagation()}>
           <button className="modal-close" onClick={()=>setActiveProject(null)} aria-label="关闭详情">CLOSE ×</button>
           <div className={`modal-art ${activeProject.tone}`}><span>{activeProject.number}</span></div>
