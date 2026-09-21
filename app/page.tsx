@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'|'animals'|'qingtour'|'nannan'|'flowers'; cover?:string; coverAlt?:string };
+type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'|'animals'|'qingtour'|'nannan'|'flowers'|'dress'; cover?:string; coverAlt?:string };
 
 const masterProjects: Project[] = [
   { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'/projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
@@ -15,6 +15,7 @@ const bachelorProjects: Project[] = [
   { number:'B.02', title:'QINGTOUR', cn:'轻途—适老化日常出行服务 APP', subtitle:'天气 · 实时交通 · 导航 · 家庭关怀', year:'2023', type:'UI/UX · APP DESIGN', tone:'qingtour', caseStudy:'qingtour', cover:'/projects/qingtour/boards/board-01.jpg', coverAlt:'轻途适老化出行应用主视觉' },
   { number:'B.03', title:'NANNAN RABBIT FAMILY', cn:'兔团团一家—大白兔奶糖品牌IP再改造', subtitle:'海派文化 · 家庭IP · 视觉延展', year:'2024', type:'BRAND IP · VISUAL SYSTEM', tone:'nannan', caseStudy:'nannan', cover:'/projects/nannan/boards/board-01.jpg', coverAlt:'兔团团一家大白兔奶糖品牌IP改造主视觉' },
   { number:'B.04', title:'FLOWERS / EXPERIMENTAL TYPE', cn:'造“花”—实验性字体海报设计', subtitle:'字体实验 · 系列海报 · 应用延展', year:'2021', type:'TYPOGRAPHY · POSTER DESIGN', tone:'flowers', caseStudy:'flowers', cover:'/projects/flowers/boards/board-01.jpg', coverAlt:'造花实验性字体海报设计主视觉' },
+  { number:'B.05', title:'DRESS WITH SENSE', cn:'不撞衫—小众服装品牌编辑书籍设计', subtitle:'服装品牌 · 编辑设计 · 手工书籍', year:'2021', type:'EDITORIAL · BOOK DESIGN', tone:'dress', caseStudy:'dress', cover:'/projects/dress/boards/board-01.jpg', coverAlt:'不撞衫小众服装品牌编辑书籍主视觉' },
 ];
 
 const illustrationProjects: Project[] = [
@@ -1059,6 +1060,52 @@ function FlowersProject({ onClose }:{ onClose:()=>void }) {
   );
 }
 
+const dressBoards = [
+  ['/projects/dress/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与成品预览'],
+  ['/projects/dress/boards/board-02.jpg','RESEARCH / 设计背景、问卷与访谈'],
+  ['/projects/dress/boards/board-03.jpg','PAGES DISPLAY / 封面与系列内页设计'],
+  ['/projects/dress/boards/board-04.jpg','HANDMADE BOOK / 书皮制作与实体展示'],
+];
+
+function DressProject({ onClose }:{ onClose:()=>void }) {
+  return (
+    <article className="dress-project" role="dialog" aria-modal="true" aria-label="不撞衫小众服装品牌编辑书籍设计项目详情">
+      <header className="dress-topbar">
+        <a href="#dress-top" className="dress-brand">不撞衫 <span>DRESS WITH SENSE</span></a>
+        <nav aria-label="不撞衫项目目录"><a href="#dress-overview">概览</a><a href="#dress-research">调研</a><a href="#dress-pages">内页</a><a href="#dress-results">成品</a></nav>
+        <button onClick={onClose} aria-label="关闭项目详情">BACK TO WORKS ×</button>
+      </header>
+
+      <section className="dress-hero" id="dress-top">
+        <div className="dress-hero-crop"><img src="/projects/dress/boards/board-01.jpg" alt="不撞衫编辑书籍项目左侧主视觉" /></div>
+        <div className="dress-hero-strip"><p>BACHELOR&apos;S PROJECT · 05 / 2021</p><span>EDITORIAL · BOOK DESIGN</span></div>
+      </section>
+
+      <section className="dress-intro" id="dress-overview">
+        <div className="dress-intro-index"><span>05</span><p>PROJECT OVERVIEW / 项目概览</p><b>BOOK / FASHION / MATERIAL</b></div>
+        <h1>把风格穿在身上，也把不同的时尚态度装进一本书。</h1>
+        <div className="dress-intro-grid">
+          <div className="dress-intro-copy"><p>“不撞衫”以小众服装品牌为主题，从年轻用户对个性表达与穿搭差异的需求出发，通过问卷和访谈梳理受众对品牌、风格与服装信息的关注点。</p><p>书籍以杂志式编辑结构收录不同风格品牌，通过高饱和色彩、错位文字、拼贴图像与多样版式建立视觉差异；成品采用手工装订，并将针织、蕾丝、薄纱等服装面料延伸到书皮，强化可触摸的阅读体验。</p></div>
+          <dl><div><dt>ROLE</dt><dd>调研 · 内容策划<br />编辑与视觉设计</dd></div><div><dt>METHOD</dt><dd>问卷 · 访谈<br />版式实验 · 材料拼贴</dd></div><div><dt>OUTPUT</dt><dd>手工装帧书籍<br />系列内页 · 实体展示</dd></div></dl>
+        </div>
+        <div className="dress-principles"><span>个性表达</span><span>多风格并置</span><span>材料触感</span><span>手工装帧</span></div>
+      </section>
+
+      <section className="dress-boards" aria-label="不撞衫项目完整设计版面">
+        <header className="dress-boards-head"><p>COMPLETE PROCESS / 完整设计过程</p><h2>从用户调研到书籍装帧，把不同风格整理成可触摸的编辑叙事。</h2><span>四张原始版面完整呈现</span></header>
+        <div className="dress-board-list">
+          {dressBoards.map(([src,caption],index)=><figure key={src} id={index === 1 ? 'dress-research' : index === 2 ? 'dress-pages' : index === 3 ? 'dress-results' : undefined}>
+            <figcaption><span>{String(index + 1).padStart(2,'0')}</span><p>{caption}</p></figcaption>
+            <div className="dress-board-frame"><img src={src} alt={caption.split(' / ')[1]} loading={index > 0 ? 'lazy' : undefined} /></div>
+          </figure>)}
+        </div>
+      </section>
+
+      <footer className="dress-footer"><p>不撞衫 / DRESS WITH SENSE</p><button onClick={onClose}>BACK TO BACHELOR&apos;S WORK ↑</button></footer>
+    </article>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
@@ -1080,6 +1127,7 @@ export default function Home() {
       if (window.location.hash === '#qingtour-case') setActiveProject(bachelorProjects[1]);
       if (window.location.hash === '#nannan-case') setActiveProject(bachelorProjects[2]);
       if (window.location.hash === '#flowers-case') setActiveProject(bachelorProjects[3]);
+      if (window.location.hash === '#dress-case') setActiveProject(bachelorProjects[4]);
     };
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
@@ -1092,7 +1140,7 @@ export default function Home() {
     const closeOnEscape = (event:KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setActiveProject(null);
-      if (window.location.hash === '#animals-case' || window.location.hash === '#qingtour-case' || window.location.hash === '#nannan-case' || window.location.hash === '#flowers-case') window.history.replaceState(null, '', '#bachelors');
+      if (window.location.hash === '#animals-case' || window.location.hash === '#qingtour-case' || window.location.hash === '#nannan-case' || window.location.hash === '#flowers-case' || window.location.hash === '#dress-case') window.history.replaceState(null, '', '#bachelors');
       if (window.location.hash === '#tongyun-case' || window.location.hash === '#longmen-case' || window.location.hash === '#petals-case') window.history.replaceState(null, '', '#masters');
     };
     window.addEventListener('keydown', closeOnEscape);
@@ -1209,7 +1257,9 @@ export default function Home() {
 
       {activeProject?.number === 'B.04' && <div className="flowers-overlay"><FlowersProject onClose={closeProject} /></div>}
 
-      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && activeProject.number !== 'B.01' && activeProject.number !== 'B.02' && activeProject.number !== 'B.03' && activeProject.number !== 'B.04' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
+      {activeProject?.number === 'B.05' && <div className="dress-overlay"><DressProject onClose={closeProject} /></div>}
+
+      {activeProject && activeProject.number !== 'M.01' && activeProject.number !== 'M.02' && activeProject.number !== 'M.03' && activeProject.number !== 'B.01' && activeProject.number !== 'B.02' && activeProject.number !== 'B.03' && activeProject.number !== 'B.04' && activeProject.number !== 'B.05' && <div className="modal-backdrop" role="presentation" onMouseDown={()=>setActiveProject(null)}>
         <article className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeProject.cn} 作品详情`} onMouseDown={e=>e.stopPropagation()}>
           <button className="modal-close" onClick={()=>setActiveProject(null)} aria-label="关闭详情">CLOSE ×</button>
           <div className={`modal-art ${activeProject.tone}`}><span>{activeProject.number}</span></div>
