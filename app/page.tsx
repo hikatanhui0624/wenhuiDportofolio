@@ -5,17 +5,17 @@ import { useEffect, useRef, useState } from 'react';
 type Project = { number:string; title:string; cn:string; subtitle?:string; year:string; type:string; tone:string; caseStudy?:'tongyun'|'longmen'|'petals'|'animals'|'qingtour'|'nannan'|'flowers'|'dress'; cover?:string; coverAlt?:string };
 
 const masterProjects: Project[] = [
-  { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'/projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
-  { number:'M.02', title:'LONGMEN TRIBUTE', cn:'LonGO Live—龙门古镇文化体验积分系统', subtitle:'文化体验 · 数字积分 · 社区共创', year:'2025', type:'SERVICE · DIGITAL PLATFORM', tone:'acid', caseStudy:'longmen', cover:'/projects/longmen/visual/poster-gluten.jpg', coverAlt:'龙门古镇非遗美食体验视觉海报' },
-  { number:'M.03', title:'FADING PETALS WITH CHAINS', cn:'赏花勿审花—关于女性隐形社会伤害下容貌焦虑的交互视觉探索', subtitle:'动态海报 · 面部识别交互', year:'2025', type:'INTERACTION · VISUAL INSTALLATION', tone:'petals', caseStudy:'petals', cover:'/projects/petals/revision/cover-a4.png', coverAlt:'赏花勿审花三组关系视觉融合预览' },
+  { number:'M.01', title:'TONGYUN CONFLUENCE', cn:'通运共生—基于漕运文化的XR数字交互体验设计', subtitle:'未来博物馆 XR 交互', year:'2025—2026', type:'XR · CULTURAL HERITAGE', tone:'tongyun', caseStudy:'tongyun', cover:'./projects/tongyun/hero-frame-59.png', coverAlt:'通运共生项目首页封面预览' },
+  { number:'M.02', title:'LONGMEN TRIBUTE', cn:'LonGO Live—龙门古镇文化体验积分系统', subtitle:'文化体验 · 数字积分 · 社区共创', year:'2025', type:'SERVICE · DIGITAL PLATFORM', tone:'acid', caseStudy:'longmen', cover:'./projects/longmen/visual/poster-gluten.jpg', coverAlt:'龙门古镇非遗美食体验视觉海报' },
+  { number:'M.03', title:'FADING PETALS WITH CHAINS', cn:'赏花勿审花—关于女性隐形社会伤害下容貌焦虑的交互视觉探索', subtitle:'动态海报 · 面部识别交互', year:'2025', type:'INTERACTION · VISUAL INSTALLATION', tone:'petals', caseStudy:'petals', cover:'./projects/petals/revision/cover-a4.png', coverAlt:'赏花勿审花三组关系视觉融合预览' },
 ];
 
 const bachelorProjects: Project[] = [
-  { number:'B.01', title:'ANIMALS’ CHARACTERISTICS IDENTIFICATION', cn:'热门动物鉴定—青年亚文化现象的图形设计及衍生', subtitle:'六种青年人格 · IP视觉系统 · H5测试', year:'2024', type:'IP DESIGN · VISUAL SYSTEM · H5', tone:'animals', caseStudy:'animals', cover:'/projects/animals/main-poster.jpg', coverAlt:'热门动物鉴定六个IP角色主视觉海报' },
-  { number:'B.02', title:'QINGTOUR', cn:'轻途—适老化日常出行服务 APP', subtitle:'天气 · 实时交通 · 导航 · 家庭关怀', year:'2023', type:'UI/UX · APP DESIGN', tone:'qingtour', caseStudy:'qingtour', cover:'/projects/qingtour/boards/board-01.jpg', coverAlt:'轻途适老化出行应用主视觉' },
-  { number:'B.03', title:'NANNAN RABBIT FAMILY', cn:'兔团团一家—大白兔奶糖品牌IP再改造', subtitle:'海派文化 · 家庭IP · 视觉延展', year:'2024', type:'BRAND IP · VISUAL SYSTEM', tone:'nannan', caseStudy:'nannan', cover:'/projects/nannan/boards/board-01.jpg', coverAlt:'兔团团一家大白兔奶糖品牌IP改造主视觉' },
-  { number:'B.04', title:'FLOWERS / EXPERIMENTAL TYPE', cn:'造“花”—实验性字体海报设计', subtitle:'字体实验 · 系列海报 · 应用延展', year:'2021', type:'TYPOGRAPHY · POSTER DESIGN', tone:'flowers', caseStudy:'flowers', cover:'/projects/flowers/boards/board-01.jpg', coverAlt:'造花实验性字体海报设计主视觉' },
-  { number:'B.05', title:'DRESS WITH SENSE', cn:'不撞衫—小众服装品牌编辑书籍设计', subtitle:'服装品牌 · 编辑设计 · 手工书籍', year:'2021', type:'EDITORIAL · BOOK DESIGN', tone:'dress', caseStudy:'dress', cover:'/projects/dress/boards/board-01.jpg', coverAlt:'不撞衫小众服装品牌编辑书籍主视觉' },
+  { number:'B.01', title:'ANIMALS’ CHARACTERISTICS IDENTIFICATION', cn:'热门动物鉴定—青年亚文化现象的图形设计及衍生', subtitle:'六种青年人格 · IP视觉系统 · H5测试', year:'2024', type:'IP DESIGN · VISUAL SYSTEM · H5', tone:'animals', caseStudy:'animals', cover:'./projects/animals/main-poster.jpg', coverAlt:'热门动物鉴定六个IP角色主视觉海报' },
+  { number:'B.02', title:'QINGTOUR', cn:'轻途—适老化日常出行服务 APP', subtitle:'天气 · 实时交通 · 导航 · 家庭关怀', year:'2023', type:'UI/UX · APP DESIGN', tone:'qingtour', caseStudy:'qingtour', cover:'./projects/qingtour/boards/board-01.jpg', coverAlt:'轻途适老化出行应用主视觉' },
+  { number:'B.03', title:'NANNAN RABBIT FAMILY', cn:'兔团团一家—大白兔奶糖品牌IP再改造', subtitle:'海派文化 · 家庭IP · 视觉延展', year:'2024', type:'BRAND IP · VISUAL SYSTEM', tone:'nannan', caseStudy:'nannan', cover:'./projects/nannan/boards/board-01.jpg', coverAlt:'兔团团一家大白兔奶糖品牌IP改造主视觉' },
+  { number:'B.04', title:'FLOWERS / EXPERIMENTAL TYPE', cn:'造“花”—实验性字体海报设计', subtitle:'字体实验 · 系列海报 · 应用延展', year:'2021', type:'TYPOGRAPHY · POSTER DESIGN', tone:'flowers', caseStudy:'flowers', cover:'./projects/flowers/boards/board-01.jpg', coverAlt:'造花实验性字体海报设计主视觉' },
+  { number:'B.05', title:'DRESS WITH SENSE', cn:'不撞衫—小众服装品牌编辑书籍设计', subtitle:'服装品牌 · 编辑设计 · 手工书籍', year:'2021', type:'EDITORIAL · BOOK DESIGN', tone:'dress', caseStudy:'dress', cover:'./projects/dress/boards/board-01.jpg', coverAlt:'不撞衫小众服装品牌编辑书籍主视觉' },
 ];
 
 const illustrationProjects: Project[] = [
@@ -28,10 +28,10 @@ const illustrationProjects: Project[] = [
 const SHOW_ANIME_IP = false;
 
 const folders = [
-  { number:'01', title:'ABOUT', cn:'基本信息', note:'WHO I AM', href:'#about', image:'/folder-about-objects.png', tone:'folder-pink' },
-  { number:'02', title:'MASTER’S WORK', cn:'硕士期间作品', note:'RESEARCH · SERVICE · INTERACTION', href:'#masters', image:'/folder-masters-objects.png', tone:'folder-sage' },
-  { number:'03', title:'BACHELOR’S WORK', cn:'本科期间作品', note:'VISUAL · BRAND · INTERACTION', href:'#bachelors', image:'/folder-bachelors-objects.png', tone:'folder-gold' },
-  { number:'04', title:'ANIME IP / MERCH', cn:'二次元IP / 衍生品设计', note:'CHARACTER · IP · MERCHANDISE', href:'#anime-ip', image:'/folder-illustration-objects.png', tone:'folder-lilac' },
+  { number:'01', title:'ABOUT', cn:'基本信息', note:'WHO I AM', href:'#about', image:'./folder-about-objects.png', tone:'folder-pink' },
+  { number:'02', title:'MASTER’S WORK', cn:'硕士期间作品', note:'RESEARCH · SERVICE · INTERACTION', href:'#masters', image:'./folder-masters-objects.png', tone:'folder-sage' },
+  { number:'03', title:'BACHELOR’S WORK', cn:'本科期间作品', note:'VISUAL · BRAND · INTERACTION', href:'#bachelors', image:'./folder-bachelors-objects.png', tone:'folder-gold' },
+  { number:'04', title:'ANIME IP / MERCH', cn:'二次元IP / 衍生品设计', note:'CHARACTER · IP · MERCHANDISE', href:'#anime-ip', image:'./folder-illustration-objects.png', tone:'folder-lilac' },
 ];
 
 function FolderNavigator() {
@@ -142,16 +142,16 @@ const mrFlowFrames = [
 ];
 
 const outcomeSlides = [
-  ['/projects/tongyun/outcomes/outcome-01.jpg','漕船分层交互拆解'],
-  ['/projects/tongyun/outcomes/outcome-02.png','货物选择与装载'],
-  ['/projects/tongyun/outcomes/outcome-03.jpg','大运河路线地图'],
-  ['/projects/tongyun/outcomes/outcome-04.png','杭州拱宸桥市集'],
-  ['/projects/tongyun/outcomes/outcome-05.jpg','杭州 · 登船启航'],
-  ['/projects/tongyun/outcomes/outcome-06.jpg','杭州 · 货物装载'],
-  ['/projects/tongyun/outcomes/outcome-07.jpg','扬州 · 城市生活'],
-  ['/projects/tongyun/outcomes/outcome-08.jpg','扬州 · 市集贸易'],
-  ['/projects/tongyun/outcomes/outcome-09.jpg','淮安 · 水利枢纽'],
-  ['/projects/tongyun/outcomes/outcome-10.jpg','通州 · 抵达京畿'],
+  ['./projects/tongyun/outcomes/outcome-01.jpg','漕船分层交互拆解'],
+  ['./projects/tongyun/outcomes/outcome-02.png','货物选择与装载'],
+  ['./projects/tongyun/outcomes/outcome-03.jpg','大运河路线地图'],
+  ['./projects/tongyun/outcomes/outcome-04.png','杭州拱宸桥市集'],
+  ['./projects/tongyun/outcomes/outcome-05.jpg','杭州 · 登船启航'],
+  ['./projects/tongyun/outcomes/outcome-06.jpg','杭州 · 货物装载'],
+  ['./projects/tongyun/outcomes/outcome-07.jpg','扬州 · 城市生活'],
+  ['./projects/tongyun/outcomes/outcome-08.jpg','扬州 · 市集贸易'],
+  ['./projects/tongyun/outcomes/outcome-09.jpg','淮安 · 水利枢纽'],
+  ['./projects/tongyun/outcomes/outcome-10.jpg','通州 · 抵达京畿'],
 ];
 
 function MrShowcase() {
@@ -179,14 +179,14 @@ function MrShowcase() {
       <div className="mr-drag-tools"><span>DRAG LEFT TO EXPLORE <b>01 / 02</b></span><div><button onClick={()=>nudge(-1)} aria-label="查看上一页">←</button><button onClick={()=>nudge(1)} aria-label="查看下一页">→</button></div></div>
       <div className="mr-drag-track" ref={track} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end}>
         <figure className="mr-boat-figure mr-slide">
-          <div className="mr-image-page"><img src="/projects/tongyun/mr-interaction-frame.png" alt="漕船部件拖拽拼装与三百六十度旋转交互" draggable={false} /></div>
+          <div className="mr-image-page"><img src="./projects/tongyun/mr-interaction-frame.png" alt="漕船部件拖拽拼装与三百六十度旋转交互" draggable={false} /></div>
           <figcaption>MR INTERACTION / 拖拽拼装与旋转探索</figcaption>
         </figure>
         <figure className="mr-boat-figure mr-slide">
           <div className="mr-boat-canvas" aria-label="漕船结构拆解与货舱剖层">
             <span className="mr-index">01—07</span>
-            <img className="mr-parts" src="/projects/tongyun/figma/boat-parts.png" alt="船型、后船舱、后桨、桅杆、大货舱与漕工室拆解" draggable={false} />
-            <img className="mr-cutaway" src="/projects/tongyun/figma/cargo-cutaway.png" alt="漕船货物与甲板分层结构" draggable={false} />
+            <img className="mr-parts" src="./projects/tongyun/figma/boat-parts.png" alt="船型、后船舱、后桨、桅杆、大货舱与漕工室拆解" draggable={false} />
+            <img className="mr-cutaway" src="./projects/tongyun/figma/cargo-cutaway.png" alt="漕船货物与甲板分层结构" draggable={false} />
             <p><b>ASSEMBLE THE BOAT</b><span>识别结构，拖拽拼装，旋转探索</span></p>
           </div>
           <figcaption>CAO BOAT ASSEMBLY / 漕船解构与搭建</figcaption>
@@ -233,7 +233,7 @@ function MrFlowGallery() {
     <div className="mr-flow-gallery">
       <div className="mr-flow-tools"><p>DRAG TO VIEW ALL SIX STEPS <span>{String(active + 1).padStart(2,'0')} / 06</span></p><div><button onClick={()=>nudge(-1)} aria-label="查看上一步">←</button><button onClick={()=>nudge(1)} aria-label="查看下一步">→</button></div></div>
       <div className="mr-flow-grid" ref={track} aria-label="MR漕船交互六步流程" tabIndex={0} onScroll={updateActive} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end} onKeyDown={e=>{ if (e.key === 'ArrowLeft') nudge(-1); if (e.key === 'ArrowRight') nudge(1); }}>
-        {mrFlowFrames.map(([number,label])=><figure key={number}><img src={`/projects/tongyun/mr-flow-${number}.png`} alt={label} loading="lazy" draggable={false} /><figcaption>{number} / {label}</figcaption></figure>)}
+        {mrFlowFrames.map(([number,label])=><figure key={number}><img src={`./projects/tongyun/mr-flow-${number}.png`} alt={label} loading="lazy" draggable={false} /><figcaption>{number} / {label}</figcaption></figure>)}
       </div>
     </div>
   );
@@ -283,39 +283,39 @@ function OutcomeGallery() {
 }
 
 const longmenStoryboard = [
-  ['/projects/longmen/storyboard/01.jpg','临时计划 / 临时行程让游客缺乏充分准备'],
-  ['/projects/longmen/storyboard/02.jpg','到访提醒 / 预算与朋友邀约触发出行决定'],
-  ['/projects/longmen/storyboard/03.jpg','线上购票 / 数字入口降低临时决策成本'],
-  ['/projects/longmen/storyboard/04.jpg','扫码入场 / QR 门票连接现场文化体验'],
-  ['/projects/longmen/storyboard/05.jpg','工坊协作 / 与本地传承人共同制作美食'],
-  ['/projects/longmen/storyboard/06.jpg','积分获得 / 完成非遗体验后累积文化积分'],
-  ['/projects/longmen/storyboard/07.jpg','在地消费 / 使用积分支持本地特色产品'],
-  ['/projects/longmen/storyboard/08.jpg','积分支付 / 兑换流程得到即时确认'],
-  ['/projects/longmen/storyboard/09.jpg','文化回流 / 积分转化为社区公益支持'],
-  ['/projects/longmen/storyboard/10.jpg','共享体验 / 一起品尝并留下文化记忆'],
+  ['./projects/longmen/storyboard/01.jpg','临时计划 / 临时行程让游客缺乏充分准备'],
+  ['./projects/longmen/storyboard/02.jpg','到访提醒 / 预算与朋友邀约触发出行决定'],
+  ['./projects/longmen/storyboard/03.jpg','线上购票 / 数字入口降低临时决策成本'],
+  ['./projects/longmen/storyboard/04.jpg','扫码入场 / QR 门票连接现场文化体验'],
+  ['./projects/longmen/storyboard/05.jpg','工坊协作 / 与本地传承人共同制作美食'],
+  ['./projects/longmen/storyboard/06.jpg','积分获得 / 完成非遗体验后累积文化积分'],
+  ['./projects/longmen/storyboard/07.jpg','在地消费 / 使用积分支持本地特色产品'],
+  ['./projects/longmen/storyboard/08.jpg','积分支付 / 兑换流程得到即时确认'],
+  ['./projects/longmen/storyboard/09.jpg','文化回流 / 积分转化为社区公益支持'],
+  ['./projects/longmen/storyboard/10.jpg','共享体验 / 一起品尝并留下文化记忆'],
 ] as const;
 
 const longmenServiceViews = [
-  ['/projects/longmen/slides/solution.jpg','FINAL SOLUTION / 三层协同方案'],
-  ['/projects/longmen/slides/journey.jpg','PERSONA & JOURNEY MAP / 从计划到离开的体验旅程'],
-  ['/projects/longmen/slides/validation.jpg','FIELD VALIDATION / 9 个触点的积分流动测试'],
+  ['./projects/longmen/slides/solution.jpg','FINAL SOLUTION / 三层协同方案'],
+  ['./projects/longmen/slides/journey.jpg','PERSONA & JOURNEY MAP / 从计划到离开的体验旅程'],
+  ['./projects/longmen/slides/validation.jpg','FIELD VALIDATION / 9 个触点的积分流动测试'],
 ] as const;
 
 const longmenPostcards = [
-  ['/projects/longmen/visual/postcard-taste.jpg','POSTER CARD 01 / TABLE & TASTE / 龙门传统风味明信片'],
-  ['/projects/longmen/visual/postcard-gluten.jpg','POSTER CARD 02 / LONGMEN GLUTEN / 龙门面筋明信片'],
-  ['/projects/longmen/visual/postcard-rice.jpg','POSTER CARD 03 / RICE WINE & BEAN CURD / 酒酿与豆腐主题明信片'],
-  ['/projects/longmen/visual/postcard-sanbao.jpg','POSTER CARD 04 / FUCHUN SANBAO / 腐乳三宝明信片'],
+  ['./projects/longmen/visual/postcard-taste.jpg','POSTER CARD 01 / TABLE & TASTE / 龙门传统风味明信片'],
+  ['./projects/longmen/visual/postcard-gluten.jpg','POSTER CARD 02 / LONGMEN GLUTEN / 龙门面筋明信片'],
+  ['./projects/longmen/visual/postcard-rice.jpg','POSTER CARD 03 / RICE WINE & BEAN CURD / 酒酿与豆腐主题明信片'],
+  ['./projects/longmen/visual/postcard-sanbao.jpg','POSTER CARD 04 / FUCHUN SANBAO / 腐乳三宝明信片'],
 ] as const;
 
 const longmenPosters = [
-  ['/projects/longmen/visual/poster-gluten.jpg','POSTER 01 / LONGMEN GLUTEN / 龙门面筋主题海报'],
-  ['/projects/longmen/visual/poster-sanbao.jpg','POSTER 02 / FUCHUN SANBAO / 腐乳三宝主题海报'],
+  ['./projects/longmen/visual/poster-gluten.jpg','POSTER 01 / LONGMEN GLUTEN / 龙门面筋主题海报'],
+  ['./projects/longmen/visual/poster-sanbao.jpg','POSTER 02 / FUCHUN SANBAO / 腐乳三宝主题海报'],
 ] as const;
 
 const longmenFoldings = [
-  ['/projects/longmen/visual/folding-front.jpg','FOLDING GUIDE 01 / COVER & VISUAL SYSTEM / 折页正面与品牌封套'],
-  ['/projects/longmen/visual/folding-back.jpg','FOLDING GUIDE 02 / WORKSHOP EXPERIENCE / 非遗工坊四步体验指南'],
+  ['./projects/longmen/visual/folding-front.jpg','FOLDING GUIDE 01 / COVER & VISUAL SYSTEM / 折页正面与品牌封套'],
+  ['./projects/longmen/visual/folding-back.jpg','FOLDING GUIDE 02 / WORKSHOP EXPERIENCE / 非遗工坊四步体验指南'],
 ] as const;
 
 function LongmenGallery({ items, label }:{ items:readonly (readonly [string,string])[]; label:string }) {
@@ -410,12 +410,12 @@ function LongmenPlatformShowcase() {
           <section className="lm-feature lm-feature-discover">
             <LongmenFeatureNotes title="Discover" eyebrow="SEARCH · FILTER · BOOK" notes={platformNotes.discover} />
             <div className="lm-phone-mockup lm-phone-mockup-rendered" aria-label="Discover 手机样机">
-              <img src="/projects/longmen/product-detail/discover-mockup.png" alt="LonGO Live Discover 页面手机样机" loading="lazy" />
+              <img src="./projects/longmen/product-detail/discover-mockup.png" alt="LonGO Live Discover 页面手机样机" loading="lazy" />
             </div>
           </section>
           <section className="lm-feature lm-feature-home-scroll">
             <LongmenFeatureNotes title="Discover Full Page" eyebrow="P3 · COMPLETE VIEW" notes={platformNotes.discover} />
-            <LongmenScrollScreen src="/projects/longmen/product-detail/discover-phone.png" alt="LonGO Live Discover 完整长页面" label="Discover 完整长页面" />
+            <LongmenScrollScreen src="./projects/longmen/product-detail/discover-phone.png" alt="LonGO Live Discover 完整长页面" label="Discover 完整长页面" />
           </section>
         </div>
       </article>
@@ -425,11 +425,11 @@ function LongmenPlatformShowcase() {
         <div className="lm-platform-duo-grid">
           <section className="lm-feature lm-feature-alerts-static">
             <LongmenFeatureNotes title="Alerts" eyebrow="REMIND · UPDATE · RECORD" notes={platformNotes.alerts} />
-            <LongmenScrollScreen src="/projects/longmen/product-detail/alerts-annotated.png" alt="LonGO Live Alerts 通知与预约提醒长页面" label="Alerts 长页面" />
+            <LongmenScrollScreen src="./projects/longmen/product-detail/alerts-annotated.png" alt="LonGO Live Alerts 通知与预约提醒长页面" label="Alerts 长页面" />
           </section>
           <section className="lm-feature">
             <LongmenFeatureNotes title="Maps" eyebrow="LOCATE · NAVIGATE · NEARBY" notes={platformNotes.map} />
-            <LongmenScrollScreen src="/projects/longmen/product-detail/maps-annotated.png" alt="LonGO Live 古镇地图与附近推荐长页面" label="Maps 长页面" />
+            <LongmenScrollScreen src="./projects/longmen/product-detail/maps-annotated.png" alt="LonGO Live 古镇地图与附近推荐长页面" label="Maps 长页面" />
           </section>
         </div>
       </article>
@@ -439,11 +439,11 @@ function LongmenPlatformShowcase() {
         <div className="lm-platform-duo-grid">
           <section className="lm-feature">
             <LongmenFeatureNotes title="Home" eyebrow="BOOK · PASS · REWARD" notes={platformNotes.home} />
-            <LongmenScrollScreen src="/projects/longmen/product-detail/home-annotated.png" alt="LonGO Live Home 完整长页面及功能标注" label="Home 完整长页面" />
+            <LongmenScrollScreen src="./projects/longmen/product-detail/home-annotated.png" alt="LonGO Live Home 完整长页面及功能标注" label="Home 完整长页面" />
           </section>
           <section className="lm-feature">
             <LongmenFeatureNotes title="Profile" eyebrow="IDENTITY · POINTS · HISTORY" notes={platformNotes.profile} />
-            <LongmenScrollScreen src="/projects/longmen/product-detail/profile-annotated.png" alt="LonGO Live Profile 完整长页面及功能标注" label="Profile 完整长页面" />
+            <LongmenScrollScreen src="./projects/longmen/product-detail/profile-annotated.png" alt="LonGO Live Profile 完整长页面及功能标注" label="Profile 完整长页面" />
           </section>
         </div>
       </article>
@@ -452,12 +452,12 @@ function LongmenPlatformShowcase() {
 }
 
 const animalCharacters = [
-  { key:'monkey', index:'01', name:'吗喽', animal:'MONKEY', title:'随时发疯的开拓者', traits:'反内卷 · 爱冒险 · 行动力', copy:'用“发疯”抵抗规训，以主动出走回应高压生活。', profile:'/projects/animals/ip/monkey-profile.jpg', poster:'/projects/animals/posters/monkey.jpg' },
-  { key:'mouse', index:'02', name:'鼠鼠', animal:'MOUSE', title:'敏感但努力的小人物', traits:'细腻 · 悲观 · 有韧性', copy:'看似胆怯，却持续用微小声音回应不平等权力。', profile:'/projects/animals/ip/mouse-profile.jpg', poster:'/projects/animals/posters/mouse.jpg' },
-  { key:'capybara', index:'03', name:'卡皮巴拉', animal:'CAPYBARA', title:'情绪稳定的养生派', traits:'佛系 · 平和 · 不竞争', copy:'把“躺平”转化为主动降噪，守住自己的生活节奏。', profile:'/projects/animals/ip/capybara-profile.jpg', poster:'/projects/animals/posters/capybara.jpg' },
-  { key:'parrot', index:'04', name:'多巴鹉', animal:'PARROT', title:'多巴胺潮流捕手', traits:'时髦 · 热烈 · 高能量', copy:'以高饱和穿搭和大胆表达，把情绪变成可见的色彩。', profile:'/projects/animals/ip/parrot-profile.jpg', poster:'/projects/animals/posters/parrot.jpg' },
-  { key:'peacock', index:'05', name:'雀里', animal:'PEACOCK', title:'拒绝标签的社交玩家', traits:'独立 · 勇敢 · 自洽', copy:'在社交中保持边界，不被单一标准定义自己的光芒。', profile:'/projects/animals/ip/peacock-profile.jpg', poster:'/projects/animals/posters/peacock.jpg' },
-  { key:'raccoon', index:'06', name:'打工浣', animal:'RACCOON', title:'清醒的职场螺丝钉', traits:'努力 · 克制 · 低社交', copy:'看见内卷，也看见普通劳动者在系统中的疲惫与坚持。', profile:'/projects/animals/ip/raccoon-profile.jpg', poster:'/projects/animals/posters/raccoon.jpg' },
+  { key:'monkey', index:'01', name:'吗喽', animal:'MONKEY', title:'随时发疯的开拓者', traits:'反内卷 · 爱冒险 · 行动力', copy:'用“发疯”抵抗规训，以主动出走回应高压生活。', profile:'./projects/animals/ip/monkey-profile.jpg', poster:'./projects/animals/posters/monkey.jpg' },
+  { key:'mouse', index:'02', name:'鼠鼠', animal:'MOUSE', title:'敏感但努力的小人物', traits:'细腻 · 悲观 · 有韧性', copy:'看似胆怯，却持续用微小声音回应不平等权力。', profile:'./projects/animals/ip/mouse-profile.jpg', poster:'./projects/animals/posters/mouse.jpg' },
+  { key:'capybara', index:'03', name:'卡皮巴拉', animal:'CAPYBARA', title:'情绪稳定的养生派', traits:'佛系 · 平和 · 不竞争', copy:'把“躺平”转化为主动降噪，守住自己的生活节奏。', profile:'./projects/animals/ip/capybara-profile.jpg', poster:'./projects/animals/posters/capybara.jpg' },
+  { key:'parrot', index:'04', name:'多巴鹉', animal:'PARROT', title:'多巴胺潮流捕手', traits:'时髦 · 热烈 · 高能量', copy:'以高饱和穿搭和大胆表达，把情绪变成可见的色彩。', profile:'./projects/animals/ip/parrot-profile.jpg', poster:'./projects/animals/posters/parrot.jpg' },
+  { key:'peacock', index:'05', name:'雀里', animal:'PEACOCK', title:'拒绝标签的社交玩家', traits:'独立 · 勇敢 · 自洽', copy:'在社交中保持边界，不被单一标准定义自己的光芒。', profile:'./projects/animals/ip/peacock-profile.jpg', poster:'./projects/animals/posters/peacock.jpg' },
+  { key:'raccoon', index:'06', name:'打工浣', animal:'RACCOON', title:'清醒的职场螺丝钉', traits:'努力 · 克制 · 低社交', copy:'看见内卷，也看见普通劳动者在系统中的疲惫与坚持。', profile:'./projects/animals/ip/raccoon-profile.jpg', poster:'./projects/animals/posters/raccoon.jpg' },
 ];
 
 const animalPlaces = [
@@ -466,22 +466,22 @@ const animalPlaces = [
 ];
 
 const animalH5Steps = [
-  ['01','进入动物人格鉴定','/projects/animals/h5/step-01.jpg'],
-  ['02','森林学院','/projects/animals/h5/step-02.jpg'],
-  ['03','树桩食堂','/projects/animals/h5/step-03.jpg'],
-  ['04','水池疗养馆','/projects/animals/h5/step-04.jpg'],
-  ['05','派对舞池','/projects/animals/h5/step-05.jpg'],
-  ['06','喷泉公园','/projects/animals/h5/step-06.jpg'],
-  ['07','木桩公司','/projects/animals/h5/step-07.jpg'],
-  ['08','生成鉴定结果','/projects/animals/h5/step-08.jpg'],
+  ['01','进入动物人格鉴定','./projects/animals/h5/step-01.jpg'],
+  ['02','森林学院','./projects/animals/h5/step-02.jpg'],
+  ['03','树桩食堂','./projects/animals/h5/step-03.jpg'],
+  ['04','水池疗养馆','./projects/animals/h5/step-04.jpg'],
+  ['05','派对舞池','./projects/animals/h5/step-05.jpg'],
+  ['06','喷泉公园','./projects/animals/h5/step-06.jpg'],
+  ['07','木桩公司','./projects/animals/h5/step-07.jpg'],
+  ['08','生成鉴定结果','./projects/animals/h5/step-08.jpg'],
 ];
 
 const animalMerch = [
-  ['/projects/animals/merch/postcard-hires.jpg','POSTCARD / 明信片'],
-  ['/projects/animals/merch/acrylic-mouse-hires.jpg','ACRYLIC STAND / 鼠鼠亚克力立牌'],
-  ['/projects/animals/merch/acrylic-parrot-hires.jpg','ACRYLIC STAND / 鹦鹉亚克力立牌'],
-  ['/projects/animals/merch/badge-hires.jpg','BADGE / 徽章'],
-  ['/projects/animals/merch/bag-hires.jpg','PAPER BAG / 手提袋'],
+  ['./projects/animals/merch/postcard-hires.jpg','POSTCARD / 明信片'],
+  ['./projects/animals/merch/acrylic-mouse-hires.jpg','ACRYLIC STAND / 鼠鼠亚克力立牌'],
+  ['./projects/animals/merch/acrylic-parrot-hires.jpg','ACRYLIC STAND / 鹦鹉亚克力立牌'],
+  ['./projects/animals/merch/badge-hires.jpg','BADGE / 徽章'],
+  ['./projects/animals/merch/bag-hires.jpg','PAPER BAG / 手提袋'],
 ];
 
 function AnimalsProject({ onClose }:{ onClose:()=>void }) {
@@ -501,9 +501,9 @@ function AnimalsProject({ onClose }:{ onClose:()=>void }) {
           <p className="animals-hero-subtitle">青年亚文化现象的图形设计及衍生</p>
           <div className="animals-hero-tags"><span>IP DESIGN</span><span>VISUAL SYSTEM</span><span>H5 INTERACTION</span></div>
         </div>
-        <figure className="animals-hero-poster"><img src="/projects/animals/main-poster.jpg" alt="热门动物鉴定六个IP角色主视觉" /><figcaption>MAIN VISUAL / 主视觉</figcaption></figure>
-        <img className="animals-wall-decor animals-heads" src="/projects/animals/decor/heads.png" alt="" />
-        <img className="animals-wall-decor animals-arrow" src="/projects/animals/decor/arrows.png" alt="" />
+        <figure className="animals-hero-poster"><img src="./projects/animals/main-poster.jpg" alt="热门动物鉴定六个IP角色主视觉" /><figcaption>MAIN VISUAL / 主视觉</figcaption></figure>
+        <img className="animals-wall-decor animals-heads" src="./projects/animals/decor/heads.png" alt="" />
+        <img className="animals-wall-decor animals-arrow" src="./projects/animals/decor/arrows.png" alt="" />
       </section>
 
       <section className="animals-section animals-overview" id="animals-overview">
@@ -518,7 +518,7 @@ function AnimalsProject({ onClose }:{ onClose:()=>void }) {
       <section className="animals-section animals-ip" id="animals-ip">
         <div className="animals-heading"><span>02</span><p>IP CHARACTER SYSTEM</p><h2>六种动物，<br />六种当代青年人格。</h2></div>
         <div className="animals-lineup-row">
-          <figure className="animals-lineup"><img src="/projects/animals/ip/lineup.jpg" alt="六个动物IP的角色比例图" loading="lazy" /><figcaption>CHARACTER LINEUP / 角色比例与家族关系</figcaption></figure>
+          <figure className="animals-lineup"><img src="./projects/animals/ip/lineup.jpg" alt="六个动物IP的角色比例图" loading="lazy" /><figcaption>CHARACTER LINEUP / 角色比例与家族关系</figcaption></figure>
           <aside className="animals-lineup-note">
             <p>VISUAL SYSTEM / 视觉系统</p>
             <h3>同一世界，<br />六种不同的身体语言。</h3>
@@ -538,11 +538,11 @@ function AnimalsProject({ onClose }:{ onClose:()=>void }) {
       <section className="animals-section animals-map" id="animals-map">
         <div className="animals-heading"><span>03</span><p>WORLD BUILDING</p><h2>一座公园，<br />一套微缩的社会结构。</h2></div>
         <div className="animals-map-layout">
-          <figure><img src="/projects/animals/map.jpg" alt="热门动物鉴定生态公园完整地图" loading="lazy" /><figcaption>ECO PARK MAP / 六个角色共同生活的生态公园</figcaption></figure>
+          <figure><img src="./projects/animals/map.jpg" alt="热门动物鉴定生态公园完整地图" loading="lazy" /><figcaption>ECO PARK MAP / 六个角色共同生活的生态公园</figcaption></figure>
           <div className="animals-place-list">{animalPlaces.map(place=><div key={place[0]}><span>{place[0]}</span><h3>{place[1]}</h3><p>{place[2]}</p></div>)}</div>
         </div>
-        <img className="animals-wall-decor animals-flower animals-flower-yellow" src="/projects/animals/decor/flower-yellow.png" alt="" />
-        <img className="animals-wall-decor animals-flower animals-flower-blue" src="/projects/animals/decor/flower-blue.png" alt="" />
+        <img className="animals-wall-decor animals-flower animals-flower-yellow" src="./projects/animals/decor/flower-yellow.png" alt="" />
+        <img className="animals-wall-decor animals-flower animals-flower-blue" src="./projects/animals/decor/flower-blue.png" alt="" />
       </section>
 
       <section className="animals-section animals-posters" id="animals-posters">
@@ -556,8 +556,8 @@ function AnimalsProject({ onClose }:{ onClose:()=>void }) {
       <section className="animals-section animals-emoji" id="animals-emoji">
         <div className="animals-heading"><span>05</span><p>SOCIAL STICKERS</p><h2>从角色设定，<br />进入年轻人的聊天现场。</h2></div>
         <p className="animals-section-intro">表情包把六种人格放进加班、摆烂、社交、焦虑与自我鼓励等日常语境；夸张动作与手写语言，让角色成为可以直接使用的情绪替身。</p>
-        <div className="animals-emoji-grid">{Array.from({length:12},(_,i)=><img key={i} src={`/projects/animals/emoji/emoji-${String(i+1).padStart(2,'0')}.jpg`} alt={`热门动物鉴定社交表情 ${i+1}`} loading="lazy" />)}</div>
-        <img className="animals-wall-decor animals-flower animals-flower-purple" src="/projects/animals/decor/flower-purple.png" alt="" />
+        <div className="animals-emoji-grid">{Array.from({length:12},(_,i)=><img key={i} src={`./projects/animals/emoji/emoji-${String(i+1).padStart(2,'0')}.jpg`} alt={`热门动物鉴定社交表情 ${i+1}`} loading="lazy" />)}</div>
+        <img className="animals-wall-decor animals-flower animals-flower-purple" src="./projects/animals/decor/flower-purple.png" alt="" />
       </section>
 
       <section className="animals-section animals-h5" id="animals-h5">
@@ -565,8 +565,8 @@ function AnimalsProject({ onClose }:{ onClose:()=>void }) {
         <div className="animals-h5-intro"><p>测试把完整地图拆解为六个生活场景，以连续问题模拟学习、饮食、养生、娱乐、公共生活与工作选择；系统依据选择累计分值，分流到六种人格结果。</p><div><span>场景推进</span><i>→</i><span>选择计分</span><i>→</i><span>结果分流</span></div></div>
         <div className="animals-phone-track">{animalH5Steps.map(step=><figure key={step[0]}><img src={step[2]} alt={`H5测试步骤：${step[1]}`} loading="lazy" /><figcaption><span>{step[0]}</span>{step[1]}</figcaption></figure>)}</div>
         <div className="animals-results-layout">
-          <div className="animals-result-grid">{animalCharacters.map((item,i)=><figure key={item.key}><img src={`/projects/animals/h5/result-${String(i+1).padStart(2,'0')}.jpg`} alt={`${item.name}人格测试结果页`} loading="lazy" /><figcaption>{item.name} / {item.animal}</figcaption></figure>)}</div>
-          <aside className="animals-qr"><p>SCAN TO TEST</p><img src="/projects/animals/qr.png" alt="热门动物人格鉴定H5二维码" /><h3>测一测，<br />你是哪种热门动物？</h3><small>使用手机扫码进入原始H5互动页面</small></aside>
+          <div className="animals-result-grid">{animalCharacters.map((item,i)=><figure key={item.key}><img src={`./projects/animals/h5/result-${String(i+1).padStart(2,'0')}.jpg`} alt={`${item.name}人格测试结果页`} loading="lazy" /><figcaption>{item.name} / {item.animal}</figcaption></figure>)}</div>
+          <aside className="animals-qr"><p>SCAN TO TEST</p><img src="./projects/animals/qr.png" alt="热门动物人格鉴定H5二维码" /><h3>测一测，<br />你是哪种热门动物？</h3><small>使用手机扫码进入原始H5互动页面</small></aside>
         </div>
       </section>
 
@@ -578,11 +578,11 @@ function AnimalsProject({ onClose }:{ onClose:()=>void }) {
       <section className="animals-section animals-exhibition" id="animals-exhibition">
         <div className="animals-heading"><span>08</span><p>FINAL EXHIBITION</p><h2>从屏幕测试，<br />走进完整的动物世界。</h2></div>
         <div className="animals-exhibition-grid">
-          <figure className="animals-exhibition-tall"><img src="/projects/animals/exhibition/exhibition-01.jpg" alt="热门动物鉴定毕业展墙全景" loading="lazy" /></figure>
-          <figure><img src="/projects/animals/exhibition/exhibition-02.jpg" alt="热门动物鉴定地图与海报展墙" loading="lazy" /></figure>
-          <figure><img src="/projects/animals/exhibition/exhibition-03.jpg" alt="热门动物鉴定展览地图细节" loading="lazy" /></figure>
-          <figure className="animals-exhibition-tall"><img src="/projects/animals/exhibition/exhibition-04.jpg" alt="热门动物鉴定衍生品展示墙" loading="lazy" /></figure>
-          <figure><img src="/projects/animals/exhibition/exhibition-05.jpg" alt="热门动物鉴定手提袋实物" loading="lazy" /></figure>
+          <figure className="animals-exhibition-tall"><img src="./projects/animals/exhibition/exhibition-01.jpg" alt="热门动物鉴定毕业展墙全景" loading="lazy" /></figure>
+          <figure><img src="./projects/animals/exhibition/exhibition-02.jpg" alt="热门动物鉴定地图与海报展墙" loading="lazy" /></figure>
+          <figure><img src="./projects/animals/exhibition/exhibition-03.jpg" alt="热门动物鉴定展览地图细节" loading="lazy" /></figure>
+          <figure className="animals-exhibition-tall"><img src="./projects/animals/exhibition/exhibition-04.jpg" alt="热门动物鉴定衍生品展示墙" loading="lazy" /></figure>
+          <figure><img src="./projects/animals/exhibition/exhibition-05.jpg" alt="热门动物鉴定手提袋实物" loading="lazy" /></figure>
         </div>
       </section>
 
@@ -592,15 +592,15 @@ function AnimalsProject({ onClose }:{ onClose:()=>void }) {
 }
 
 const petalsMetaphors = [
-  { key:'rose', index:'01', flower:'Rose / 玫瑰', word:'刺', context:'亲密关系', title:'爱意里的刺', copy:'亲密关系中的评价、比较与审美期待，会以“为你好”的方式进入身体经验。', scene:'/projects/petals/revision/context-intimacy.png', photo:'/projects/petals/revision/photo-rose.jpg', model:'/projects/petals/figma/rose-model.png', transform:'亲密关系 → 隐喻玫瑰 → 缠绕与刺' },
-  { key:'lily', index:'02', flower:'Lily / 百合', word:'框', context:'职场环境', title:'规则后的框', copy:'职业形象、年龄与性别气质被写进隐形规则，外貌逐渐成为一项额外劳动。', scene:'/projects/petals/revision/context-workplace.png', photo:'/projects/petals/revision/photo-lily.jpg', model:'/projects/petals/figma/lily-model.png', transform:'职场环境 → 隐喻百合 → 规训与框定' },
-  { key:'daisy', index:'03', flower:'Daisy / 雏菊', word:'眼', context:'同辈关系', title:'周围人的眼', copy:'同伴目光与社交媒体的持续观看，让比较被内化为随时发生的自我审查。', scene:'/projects/petals/revision/context-peers.png', photo:'/projects/petals/revision/photo-daisy.jpg', model:'/projects/petals/figma/daisy-model.png', transform:'同辈关系 → 隐喻雏菊 → 目光与比较' },
+  { key:'rose', index:'01', flower:'Rose / 玫瑰', word:'刺', context:'亲密关系', title:'爱意里的刺', copy:'亲密关系中的评价、比较与审美期待，会以“为你好”的方式进入身体经验。', scene:'./projects/petals/revision/context-intimacy.png', photo:'./projects/petals/revision/photo-rose.jpg', model:'./projects/petals/figma/rose-model.png', transform:'亲密关系 → 隐喻玫瑰 → 缠绕与刺' },
+  { key:'lily', index:'02', flower:'Lily / 百合', word:'框', context:'职场环境', title:'规则后的框', copy:'职业形象、年龄与性别气质被写进隐形规则，外貌逐渐成为一项额外劳动。', scene:'./projects/petals/revision/context-workplace.png', photo:'./projects/petals/revision/photo-lily.jpg', model:'./projects/petals/figma/lily-model.png', transform:'职场环境 → 隐喻百合 → 规训与框定' },
+  { key:'daisy', index:'03', flower:'Daisy / 雏菊', word:'眼', context:'同辈关系', title:'周围人的眼', copy:'同伴目光与社交媒体的持续观看，让比较被内化为随时发生的自我审查。', scene:'./projects/petals/revision/context-peers.png', photo:'./projects/petals/revision/photo-daisy.jpg', model:'./projects/petals/figma/daisy-model.png', transform:'同辈关系 → 隐喻雏菊 → 目光与比较' },
 ];
 
 const petalsDevelopment = [
-  { key:'rose', label:'ROSE / INTIMACY', title:'把“刺”变成缠绕的结构', sketch:'/projects/petals/figma/rose-sketch.png', model:'/projects/petals/revision/model-rose.png' },
-  { key:'lily', label:'LILY / WORKPLACE', title:'把“框”变成受限的生长', sketch:'/projects/petals/figma/lily-sketch.png', model:'/projects/petals/revision/model-lily.png' },
-  { key:'daisy', label:'DAISY / PEERS', title:'把“眼”变成聚集的凝视', sketch:'/projects/petals/figma/daisy-sketch.png', model:'/projects/petals/revision/model-daisy.png' },
+  { key:'rose', label:'ROSE / INTIMACY', title:'把“刺”变成缠绕的结构', sketch:'./projects/petals/figma/rose-sketch.png', model:'./projects/petals/revision/model-rose.png' },
+  { key:'lily', label:'LILY / WORKPLACE', title:'把“框”变成受限的生长', sketch:'./projects/petals/figma/lily-sketch.png', model:'./projects/petals/revision/model-lily.png' },
+  { key:'daisy', label:'DAISY / PEERS', title:'把“眼”变成聚集的凝视', sketch:'./projects/petals/figma/daisy-sketch.png', model:'./projects/petals/revision/model-daisy.png' },
 ];
 
 function PetalsProject({ onClose }:{ onClose:()=>void }) {
@@ -623,7 +623,7 @@ function PetalsProject({ onClose }:{ onClose:()=>void }) {
         <div className="petals-hero-visual" aria-label="三组关系压力融合生成的视觉图像">
           <span className="petals-orbit orbit-one" /><span className="petals-orbit orbit-two" /><span className="petals-orbit orbit-three" />
           <span className="petals-particle particle-red" /><span className="petals-particle particle-lime" /><span className="petals-particle particle-blue" />
-          <img className="petals-hero-output" src="/projects/petals/revision/cover-a4.png" alt="红黄蓝三组关系视觉融合后的粒子图像" />
+          <img className="petals-hero-output" src="./projects/petals/revision/cover-a4.png" alt="红黄蓝三组关系视觉融合后的粒子图像" />
           <div className="petals-axis"><span>INTIMACY</span><span>WORKPLACE</span><span>PEERS</span></div>
         </div>
         <p className="petals-scroll-note">SCROLL TO UNFOLD THE INVISIBLE PRESSURE ↓</p>
@@ -672,9 +672,9 @@ function PetalsProject({ onClose }:{ onClose:()=>void }) {
       <section className="petals-section petals-system" id="petals-system">
         <div className="petals-heading light"><span>04</span><p>INTERACTION SYSTEM</p><h2>表情成为输入，<br />花的状态成为反馈。</h2></div>
         <div className="petals-system-grid" id="petals-system-grid">
-          <figure><div className="petals-system-number">01</div><img src="/projects/petals/revision/system-touchdesigner.png" alt="TouchDesigner 粒子系统节点与三组花朵视觉输出" loading="lazy" /><figcaption><b>TOUCHDESIGNER / 粒子视觉系统</b><span>建立玫瑰、百合与雏菊三套生成材质，并统一接入实时粒子反馈。</span></figcaption></figure>
-          <figure><div className="petals-system-number">02</div><img src="/projects/petals/revision/system-face-channels.png" alt="MediaPipe 面部通道选择与数值范围" loading="lazy" /><figcaption><b>MEDIAPIPE / 面部通道映射</b><span>从眉部、眨眼、眯眼、张嘴与微笑通道提取数值，映射到视觉状态。</span></figcaption></figure>
-          <figure><div className="petals-system-number">03</div><img src="/projects/petals/revision/system-interaction-flow.png" alt="摄像头采集观众面部数据并切换屏幕视觉的交互流程" loading="lazy" /><figcaption><b>INTERACTION LOGIC / 观众—镜头—屏幕</b><span>摄像头采集单张人脸，眨眼与微笑触发切换，显示屏同步生成对应反馈。</span></figcaption></figure>
+          <figure><div className="petals-system-number">01</div><img src="./projects/petals/revision/system-touchdesigner.png" alt="TouchDesigner 粒子系统节点与三组花朵视觉输出" loading="lazy" /><figcaption><b>TOUCHDESIGNER / 粒子视觉系统</b><span>建立玫瑰、百合与雏菊三套生成材质，并统一接入实时粒子反馈。</span></figcaption></figure>
+          <figure><div className="petals-system-number">02</div><img src="./projects/petals/revision/system-face-channels.png" alt="MediaPipe 面部通道选择与数值范围" loading="lazy" /><figcaption><b>MEDIAPIPE / 面部通道映射</b><span>从眉部、眨眼、眯眼、张嘴与微笑通道提取数值，映射到视觉状态。</span></figcaption></figure>
+          <figure><div className="petals-system-number">03</div><img src="./projects/petals/revision/system-interaction-flow.png" alt="摄像头采集观众面部数据并切换屏幕视觉的交互流程" loading="lazy" /><figcaption><b>INTERACTION LOGIC / 观众—镜头—屏幕</b><span>摄像头采集单张人脸，眨眼与微笑触发切换，显示屏同步生成对应反馈。</span></figcaption></figure>
         </div>
         <div className="petals-steps" aria-label="交互步骤"><span><b>01</b>镜头捕捉人脸</span><i>→</i><span><b>02</b>识别眨眼与微笑</span><i>→</i><span><b>03</b>切换花朵状态</span><i>→</i><span><b>04</b>实时生成视觉反馈</span></div>
       </section>
@@ -682,29 +682,29 @@ function PetalsProject({ onClose }:{ onClose:()=>void }) {
       <section className="petals-section petals-posters" id="petals-posters">
         <div className="petals-heading light"><span>05</span><p>DYNAMIC POSTERS</p><h2 className="petals-heading-single">持续发生的凝视</h2></div>
         <div className="petals-poster-grid">
-          <figure className="rose"><video autoPlay muted loop playsInline controls preload="metadata" poster="/projects/petals/video/rose-poster.jpg" aria-label="玫瑰主题动态海报"><source src="/projects/petals/video/rose.mp4" type="video/mp4" /></video><figcaption><span>01 / ROSE</span>亲密关系中的刺</figcaption></figure>
-          <figure className="lily"><video autoPlay muted loop playsInline controls preload="metadata" poster="/projects/petals/video/lily-poster.jpg" aria-label="百合主题动态海报"><source src="/projects/petals/video/lily.mp4" type="video/mp4" /></video><figcaption><span>02 / LILY</span>职场规则后的框</figcaption></figure>
-          <figure className="daisy"><video autoPlay muted loop playsInline controls preload="metadata" poster="/projects/petals/video/daisy-poster.jpg" aria-label="雏菊主题动态海报"><source src="/projects/petals/video/daisy.mp4" type="video/mp4" /></video><figcaption><span>03 / DAISY</span>同辈关系之间的眼</figcaption></figure>
+          <figure className="rose"><video autoPlay muted loop playsInline controls preload="metadata" poster="./projects/petals/video/rose-poster.jpg" aria-label="玫瑰主题动态海报"><source src="./projects/petals/video/rose.mp4" type="video/mp4" /></video><figcaption><span>01 / ROSE</span>亲密关系中的刺</figcaption></figure>
+          <figure className="lily"><video autoPlay muted loop playsInline controls preload="metadata" poster="./projects/petals/video/lily-poster.jpg" aria-label="百合主题动态海报"><source src="./projects/petals/video/lily.mp4" type="video/mp4" /></video><figcaption><span>02 / LILY</span>职场规则后的框</figcaption></figure>
+          <figure className="daisy"><video autoPlay muted loop playsInline controls preload="metadata" poster="./projects/petals/video/daisy-poster.jpg" aria-label="雏菊主题动态海报"><source src="./projects/petals/video/daisy.mp4" type="video/mp4" /></video><figcaption><span>03 / DAISY</span>同辈关系之间的眼</figcaption></figure>
         </div>
       </section>
 
       <section className="petals-section petals-results" id="petals-results">
         <div className="petals-heading light"><span>06</span><p>INTERACTIVE VISUAL OUTPUT</p><h2 className="petals-heading-single">被关系改写的脸</h2></div>
         <div className="petals-results-grid">
-          <figure><img src="/projects/petals/revision/output-composite.jpg" alt="玫瑰、百合、雏菊三组关系交互视觉的横向合成输出" loading="lazy" /><figcaption><span>ROSE / INTIMACY</span><span>LILY / WORKPLACE</span><span>DAISY / PEERS</span></figcaption></figure>
+          <figure><img src="./projects/petals/revision/output-composite.jpg" alt="玫瑰、百合、雏菊三组关系交互视觉的横向合成输出" loading="lazy" /><figcaption><span>ROSE / INTIMACY</span><span>LILY / WORKPLACE</span><span>DAISY / PEERS</span></figcaption></figure>
         </div>
       </section>
 
-      <details className="petals-board"><summary>VIEW ORIGINAL RESEARCH BOARD <span>查看完整原始展板 ＋</span></summary><div><img src="/projects/petals/board.jpg" alt="赏花勿审花完整设计研究展板" loading="lazy" /></div></details>
+      <details className="petals-board"><summary>VIEW ORIGINAL RESEARCH BOARD <span>查看完整原始展板 ＋</span></summary><div><img src="./projects/petals/board.jpg" alt="赏花勿审花完整设计研究展板" loading="lazy" /></div></details>
 
       <section className="petals-section petals-exhibition" id="petals-exhibition">
         <div className="petals-heading light"><span>07</span><p>FINAL EXHIBITION</p><h2>让视觉从屏幕溢出，<br />回到被观看的现场。</h2></div>
         <div className="petals-final-grid">
-          <figure className="petals-final-video"><video controls playsInline preload="metadata" poster="/projects/petals/video/final-poster.jpg" aria-label="赏花勿审花最终交互演示视频"><source src="/projects/petals/video/final.mp4" type="video/mp4" /></video><figcaption>FINAL INTERACTION FILM / 最终交互演示</figcaption></figure>
+          <figure className="petals-final-video"><video controls playsInline preload="metadata" poster="./projects/petals/video/final-poster.jpg" aria-label="赏花勿审花最终交互演示视频"><source src="./projects/petals/video/final.mp4" type="video/mp4" /></video><figcaption>FINAL INTERACTION FILM / 最终交互演示</figcaption></figure>
           <div className="petals-photo-grid">
-            <figure><img src="/projects/petals/exhibition/view-01.jpg" alt="电脑与平板共同展示玫瑰主题交互视觉的现场" loading="lazy" /><figcaption>01 / LIVE SETUP</figcaption></figure>
-            <figure><img src="/projects/petals/exhibition/view-02.jpg" alt="交互设备与设计展板现场细节" loading="lazy" /><figcaption>02 / INTERACTION DETAIL</figcaption></figure>
-            <figure><img src="/projects/petals/exhibition/view-03.jpg" alt="赏花勿审花完整展板与设备陈列现场" loading="lazy" /><figcaption>03 / FINAL DISPLAY</figcaption></figure>
+            <figure><img src="./projects/petals/exhibition/view-01.jpg" alt="电脑与平板共同展示玫瑰主题交互视觉的现场" loading="lazy" /><figcaption>01 / LIVE SETUP</figcaption></figure>
+            <figure><img src="./projects/petals/exhibition/view-02.jpg" alt="交互设备与设计展板现场细节" loading="lazy" /><figcaption>02 / INTERACTION DETAIL</figcaption></figure>
+            <figure><img src="./projects/petals/exhibition/view-03.jpg" alt="赏花勿审花完整展板与设备陈列现场" loading="lazy" /><figcaption>03 / FINAL DISPLAY</figcaption></figure>
           </div>
         </div>
       </section>
@@ -734,11 +734,11 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
           <p className="lm-hero-intro">以非遗体验为入口，让参与、奖励与再消费形成持续流动的文化循环。</p>
         </div>
         <div className="lm-hero-art" aria-label="龙门非遗美食工坊视觉设计">
-          <video className="lm-hero-video" autoPlay muted loop playsInline controls preload="metadata" poster="/projects/longmen/storyboard/04.jpg" aria-label="LonGO Live 龙门古镇项目视频">
-            <source src="/projects/longmen/longmen-film.mp4" type="video/mp4" />
+          <video className="lm-hero-video" autoPlay muted loop playsInline controls preload="metadata" poster="./projects/longmen/storyboard/04.jpg" aria-label="LonGO Live 龙门古镇项目视频">
+            <source src="./projects/longmen/longmen-film.mp4" type="video/mp4" />
           </video>
           <figure className="lm-mascot-art">
-            <img src="/projects/longmen/mascot-hero.png" alt="GLUGLU 非遗美食 IP 角色" />
+            <img src="./projects/longmen/mascot-hero.png" alt="GLUGLU 非遗美食 IP 角色" />
             <figcaption>GLUGLU</figcaption>
           </figure>
         </div>
@@ -762,11 +762,11 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
         <div className="lm-heading"><span>02</span><p>FIELD RESEARCH</p><h2>从利益相关者之间，<br />找到真正的断点。</h2></div>
         <div className={`lm-research-switcher ${researchFocus === 1 ? 'is-secondary-active' : ''}`}>
           <button className={`lm-research-view lm-research-one ${researchFocus === 0 ? 'is-active' : 'is-preview'}`} type="button" onClick={()=>setResearchFocus(0)} aria-pressed={researchFocus === 0} aria-label="放大查看访谈与生态系统图">
-            <img src="/projects/longmen/research-primary.png" alt="龙门古镇访谈与旅游生态系统图" loading="lazy" />
+            <img src="./projects/longmen/research-primary.png" alt="龙门古镇访谈与旅游生态系统图" loading="lazy" />
             <span>01 / INTERVIEWS &amp; ECOSYSTEM MAP / 访谈与生态系统</span>
           </button>
           <button className={`lm-research-view lm-research-two ${researchFocus === 1 ? 'is-active' : 'is-preview'}`} type="button" onClick={()=>setResearchFocus(1)} aria-pressed={researchFocus === 1} aria-label="放大查看龙门古镇在地视觉线索">
-            <img src="/projects/longmen/research-secondary.png" alt="龙门古镇自然非遗美食生活方式情绪板" loading="lazy" />
+            <img src="./projects/longmen/research-secondary.png" alt="龙门古镇自然非遗美食生活方式情绪板" loading="lazy" />
             <span>02 / VISUAL FIELD NOTES / 在地视觉线索</span>
           </button>
         </div>
@@ -782,13 +782,13 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
 
       <section className="lm-section lm-product" id="longmen-product">
         <div className="lm-product-head"><p>04 / DIGITAL PLATFORM</p><h2>一套平台，<br />串联到访前后。</h2><div><span>BOOK</span><span>DISCOVER</span><span>NAVIGATE</span><span>EARN</span><span>REDEEM</span></div></div>
-        <figure className="lm-ia"><img src="/projects/longmen/slides/architecture.jpg" alt="LonGO Live 信息架构与低保真原型" loading="lazy" /><figcaption>INFORMATION ARCHITECTURE &amp; LOW-FI PROTOTYPE</figcaption></figure>
+        <figure className="lm-ia"><img src="./projects/longmen/slides/architecture.jpg" alt="LonGO Live 信息架构与低保真原型" loading="lazy" /><figcaption>INFORMATION ARCHITECTURE &amp; LOW-FI PROTOTYPE</figcaption></figure>
         <LongmenPlatformShowcase />
       </section>
 
       <section className="lm-section lm-brand-system" id="longmen-brand">
         <div className="lm-heading"><span>05</span><p>GRAPHIC BRANDING</p><h2>把非遗食物，<br />变成可识别的城市表情。</h2></div>
-        <div className="lm-brand-lead"><figure><img src="/projects/longmen/slides/branding.jpg" alt="Gluglu IP 形象、平台标志与龙门美食工坊视觉系统" loading="lazy" /></figure><div><img className="lm-brand-mascot" src="/projects/longmen/mascot-mark.png" alt="GLUGLU IP 角色" /><p>以龙门面筋为原型，将圆润的食物形态、厨师帽与动作表情组合成 IP 角色 GLUGLU。荧光绿、珊瑚红与亮蓝延伸到平台、海报、明信片和折页，让数字体验与现场工坊保持一致的识别度。</p></div></div>
+        <div className="lm-brand-lead"><figure><img src="./projects/longmen/slides/branding.jpg" alt="Gluglu IP 形象、平台标志与龙门美食工坊视觉系统" loading="lazy" /></figure><div><img className="lm-brand-mascot" src="./projects/longmen/mascot-mark.png" alt="GLUGLU IP 角色" /><p>以龙门面筋为原型，将圆润的食物形态、厨师帽与动作表情组合成 IP 角色 GLUGLU。荧光绿、珊瑚红与亮蓝延伸到平台、海报、明信片和折页，让数字体验与现场工坊保持一致的识别度。</p></div></div>
         <div className="lm-brand-gallery-section lm-brand-postcards">
           <div className="lm-brand-gallery-head"><p>01 / POSTER CARD</p><h3>把在地风味，<br />带离现场。</h3><span>4 PIECES / 四款主题明信片</span></div>
           <LongmenGallery items={longmenPostcards} label="Poster Card 明信片" />
@@ -807,10 +807,10 @@ function LongmenProject({ onClose }:{ onClose:()=>void }) {
 
       <section className="lm-section lm-exhibition">
         <div className="lm-exhibition-copy"><p>06 / EXHIBITION</p><h2>从屏幕，<br />回到真实场域。</h2><p>最终成果以 A0 研究展板、服务系统图、应用界面、故事板和实体印刷品共同呈现，验证数字平台如何与线下文化体验形成完整触点。</p></div>
-        <figure><img src="/projects/longmen/slides/exhibition.jpg" alt="LonGO Live 项目展览现场" loading="lazy" /><figcaption>FINAL EXHIBITION / 2025</figcaption></figure>
+        <figure><img src="./projects/longmen/slides/exhibition.jpg" alt="LonGO Live 项目展览现场" loading="lazy" /><figcaption>FINAL EXHIBITION / 2025</figcaption></figure>
       </section>
 
-      <details className="longmen-boards"><summary>VIEW ORIGINAL A0 BOARDS <span>查看两张原始设计展板 ＋</span></summary><div><img src="/projects/longmen/boards/a0-research.jpg" alt="LonGO Live 原始研究展板" loading="lazy" /><img src="/projects/longmen/boards/a0-system.jpg" alt="LonGO Live 原始系统与成果展板" loading="lazy" /></div></details>
+      <details className="longmen-boards"><summary>VIEW ORIGINAL A0 BOARDS <span>查看两张原始设计展板 ＋</span></summary><div><img src="./projects/longmen/boards/a0-research.jpg" alt="LonGO Live 原始研究展板" loading="lazy" /><img src="./projects/longmen/boards/a0-system.jpg" alt="LonGO Live 原始系统与成果展板" loading="lazy" /></div></details>
       <footer className="longmen-footer"><p>LONGMEN TRIBUTE / LonGO LIVE</p><button onClick={onClose}>BACK TO MASTER&apos;S WORK ↑</button></footer>
     </article>
   );
@@ -826,7 +826,7 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
       </header>
 
       <section className="tongyun-hero" id="tongyun-top">
-        <img className="ty-hero-cover" src="/projects/tongyun/hero-frame-59.png" alt="漕运城市、桥梁与船只组成的项目封面视觉" />
+        <img className="ty-hero-cover" src="./projects/tongyun/hero-frame-59.png" alt="漕运城市、桥梁与船只组成的项目封面视觉" />
         <div className="tongyun-title">
           <p>MASTER&apos;S PROJECT · 01 / 2025—2026</p>
           <h1><span>通运</span><span>共生</span></h1>
@@ -865,7 +865,7 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
             <figcaption>DESIGN FRAMEWORK / 双线体验框架</figcaption>
           </figure>
           <figure className="overview-route-figure">
-            <img src="/projects/tongyun/route-frame-60.png" alt="宋元明清漕运路线地图" />
+            <img src="./projects/tongyun/route-frame-60.png" alt="宋元明清漕运路线地图" />
             <figcaption>HISTORICAL ROUTE / 杭州—扬州—淮安—通州</figcaption>
           </figure>
         </div>
@@ -881,15 +881,15 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
         <div className="vr-intro"><p>03 / VR NARRATIVE</p><h2>从地图出发，<br />进入运河沿线的日常。</h2><p>VR 部分以第一人称旅程串联港口、桥下、市集与城门等节点。玩家通过观察、移动、对话与触发事件，在航行中理解漕运网络背后的劳动、贸易与城市生活。</p></div>
         <figure className="vr-main">
           <div className="vr-scene-canvas" aria-label="运河沿线城市与码头场景">
-            <img className="vr-cover-scene" src="/projects/tongyun/hero-frame-59.png" alt="运河沿线城市、桥梁与船只场景" />
+            <img className="vr-cover-scene" src="./projects/tongyun/hero-frame-59.png" alt="运河沿线城市、桥梁与船只场景" />
             <span>PORT · MARKET · BRIDGE · CITY GATE</span>
           </div>
           <figcaption>VR PROTOTYPE / 场景原型与叙事节点</figcaption>
         </figure>
         <figure className="vr-logic">
           <div className="vr-logic-canvas" aria-label="VR叙事逻辑与交互流程">
-            <img className="vr-narrative-map" src="/projects/tongyun/vr-narrative-frame.png" alt="港口、桥下、市集与城门的VR人物交互叙事" />
-            <img className="vr-route-flow" src="/projects/tongyun/vr-route-flow.png" alt="从杭州码头到城门的VR航行交互流程" />
+            <img className="vr-narrative-map" src="./projects/tongyun/vr-narrative-frame.png" alt="港口、桥下、市集与城门的VR人物交互叙事" />
+            <img className="vr-route-flow" src="./projects/tongyun/vr-route-flow.png" alt="从杭州码头到城门的VR航行交互流程" />
           </div>
           <figcaption>SPATIAL STORYTELLING / 人物叙事与航行交互流程</figcaption>
         </figure>
@@ -898,7 +898,7 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
       <section className="tongyun-tech">
         <div className="case-heading"><span>04</span><p>TECHNICAL PATH</p><h2>从视觉语言，<br />到可运行的体验。</h2></div>
         <figure className="tech-figure tech-process-figure">
-          <img src="/projects/tongyun/technical-process-frame.png" alt="从古画高清处理、三维模型、C4D与UE5开发到MR和VR头显测试的完整技术过程" loading="lazy" />
+          <img src="./projects/tongyun/technical-process-frame.png" alt="从古画高清处理、三维模型、C4D与UE5开发到MR和VR头显测试的完整技术过程" loading="lazy" />
           <figcaption>VISUAL RESEARCH → C4D &amp; UE5 PRODUCTION → HEADSET TESTING</figcaption>
         </figure>
       </section>
@@ -908,22 +908,22 @@ function TongyunProject({ onClose }:{ onClose:()=>void }) {
         <OutcomeGallery />
       </section>
 
-      <details className="tongyun-boards"><summary>VIEW ORIGINAL PROCESS BOARDS <span>查看两张原始设计展板 ＋</span></summary><div><img src="/projects/tongyun/board-01.jpg" alt="通运共生原始设计展板一" loading="lazy" /><img src="/projects/tongyun/board-02.jpg" alt="通运共生原始设计展板二" loading="lazy" /></div></details>
+      <details className="tongyun-boards"><summary>VIEW ORIGINAL PROCESS BOARDS <span>查看两张原始设计展板 ＋</span></summary><div><img src="./projects/tongyun/board-01.jpg" alt="通运共生原始设计展板一" loading="lazy" /><img src="./projects/tongyun/board-02.jpg" alt="通运共生原始设计展板二" loading="lazy" /></div></details>
       <footer className="tongyun-footer"><p>通运共生 / TONGYUN CONFLUENCE</p><button onClick={onClose}>BACK TO MASTER&apos;S WORK ↑</button></footer>
     </article>
   );
 }
 
 const qingtourBoards = [
-  ['/projects/qingtour/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与设计流程'],
-  ['/projects/qingtour/boards/board-02.jpg','PRIMARY RESEARCH / 项目背景与问卷调查'],
-  ['/projects/qingtour/boards/board-03.jpg','USER INSIGHT / 用户画像与出行情境'],
-  ['/projects/qingtour/boards/board-04.jpg','FUNCTION ARCHITECTURE / 功能架构'],
-  ['/projects/qingtour/boards/board-05.jpg','LOW FIDELITY / 低保真原型与登录流程'],
-  ['/projects/qingtour/boards/board-06.jpg','CORE PAGES / 天气与实时交通'],
-  ['/projects/qingtour/boards/board-07.jpg','SERVICE PAGES / 收藏、聊天、打车与附近'],
-  ['/projects/qingtour/boards/board-08.jpg','VISUAL SYSTEM / 新手引导与视觉规范'],
-  ['/projects/qingtour/boards/board-09.jpg','RESULTS DISPLAY / 最终界面展示'],
+  ['./projects/qingtour/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与设计流程'],
+  ['./projects/qingtour/boards/board-02.jpg','PRIMARY RESEARCH / 项目背景与问卷调查'],
+  ['./projects/qingtour/boards/board-03.jpg','USER INSIGHT / 用户画像与出行情境'],
+  ['./projects/qingtour/boards/board-04.jpg','FUNCTION ARCHITECTURE / 功能架构'],
+  ['./projects/qingtour/boards/board-05.jpg','LOW FIDELITY / 低保真原型与登录流程'],
+  ['./projects/qingtour/boards/board-06.jpg','CORE PAGES / 天气与实时交通'],
+  ['./projects/qingtour/boards/board-07.jpg','SERVICE PAGES / 收藏、聊天、打车与附近'],
+  ['./projects/qingtour/boards/board-08.jpg','VISUAL SYSTEM / 新手引导与视觉规范'],
+  ['./projects/qingtour/boards/board-09.jpg','RESULTS DISPLAY / 最终界面展示'],
 ];
 
 function QingTourProject({ onClose }:{ onClose:()=>void }) {
@@ -936,7 +936,7 @@ function QingTourProject({ onClose }:{ onClose:()=>void }) {
       </header>
 
       <section className="qingtour-hero" id="qingtour-top">
-        <div className="qingtour-hero-crop"><img src="/projects/qingtour/boards/board-01.jpg" alt="轻途适老化出行应用主视觉与界面展示" /></div>
+        <div className="qingtour-hero-crop"><img src="./projects/qingtour/boards/board-01.jpg" alt="轻途适老化出行应用主视觉与界面展示" /></div>
         <div className="qingtour-hero-strip"><p>BACHELOR&apos;S PROJECT · 02 / 2023</p><span>UI/UX · APP DESIGN</span></div>
       </section>
 
@@ -965,15 +965,15 @@ function QingTourProject({ onClose }:{ onClose:()=>void }) {
 }
 
 const nannanBoards = [
-  ['/projects/nannan/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与设计流程'],
-  ['/projects/nannan/boards/board-02.jpg','BRAND REVIEW / 品牌梳理与升级目标'],
-  ['/projects/nannan/boards/board-03.jpg','CULTURE VISION / 海派文化背景与元素提取'],
-  ['/projects/nannan/boards/board-04.jpg','FAMILY CHARACTER / 家庭角色设定与三视图'],
-  ['/projects/nannan/boards/board-05.jpg','CHARACTER SYSTEM / 儿童角色与家族比例'],
-  ['/projects/nannan/boards/board-06.jpg','STYLE EXTENSION / 海派造型与服饰延展'],
-  ['/projects/nannan/boards/board-07.jpg','POSTER & ACTION / 海报与动作延展'],
-  ['/projects/nannan/boards/board-08.jpg','COLOR SYSTEM / 品牌色彩与角色背景'],
-  ['/projects/nannan/boards/board-09.jpg','RESULTS DISPLAY / 包装与衍生成果'],
+  ['./projects/nannan/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与设计流程'],
+  ['./projects/nannan/boards/board-02.jpg','BRAND REVIEW / 品牌梳理与升级目标'],
+  ['./projects/nannan/boards/board-03.jpg','CULTURE VISION / 海派文化背景与元素提取'],
+  ['./projects/nannan/boards/board-04.jpg','FAMILY CHARACTER / 家庭角色设定与三视图'],
+  ['./projects/nannan/boards/board-05.jpg','CHARACTER SYSTEM / 儿童角色与家族比例'],
+  ['./projects/nannan/boards/board-06.jpg','STYLE EXTENSION / 海派造型与服饰延展'],
+  ['./projects/nannan/boards/board-07.jpg','POSTER & ACTION / 海报与动作延展'],
+  ['./projects/nannan/boards/board-08.jpg','COLOR SYSTEM / 品牌色彩与角色背景'],
+  ['./projects/nannan/boards/board-09.jpg','RESULTS DISPLAY / 包装与衍生成果'],
 ];
 
 function NannanProject({ onClose }:{ onClose:()=>void }) {
@@ -986,7 +986,7 @@ function NannanProject({ onClose }:{ onClose:()=>void }) {
       </header>
 
       <section className="nannan-hero" id="nannan-top">
-        <div className="nannan-hero-crop"><img src="/projects/nannan/boards/board-01.jpg" alt="兔团团一家四个家庭角色主视觉" /></div>
+        <div className="nannan-hero-crop"><img src="./projects/nannan/boards/board-01.jpg" alt="兔团团一家四个家庭角色主视觉" /></div>
         <div className="nannan-hero-strip"><p>BACHELOR&apos;S PROJECT · 03 / 2024</p><span>BRAND IP · VISUAL SYSTEM</span></div>
       </section>
 
@@ -1015,12 +1015,12 @@ function NannanProject({ onClose }:{ onClose:()=>void }) {
 }
 
 const flowerBoards = [
-  ['/projects/flowers/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与三组主题'],
-  ['/projects/flowers/boards/board-02.jpg','MOOD BOARD / 墨花、狂花与梦花情绪板'],
-  ['/projects/flowers/boards/board-03.jpg','DESIGN PROCESS / 草稿推演与视觉加工'],
-  ['/projects/flowers/boards/board-04.jpg','POSTER DESIGN / 狂花与墨花海报'],
-  ['/projects/flowers/boards/board-05.jpg','POSTER & APPLICATION / 梦花海报与场景应用'],
-  ['/projects/flowers/boards/board-06.jpg','RESULTS DISPLAY / 数字媒介与成品展示'],
+  ['./projects/flowers/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与三组主题'],
+  ['./projects/flowers/boards/board-02.jpg','MOOD BOARD / 墨花、狂花与梦花情绪板'],
+  ['./projects/flowers/boards/board-03.jpg','DESIGN PROCESS / 草稿推演与视觉加工'],
+  ['./projects/flowers/boards/board-04.jpg','POSTER DESIGN / 狂花与墨花海报'],
+  ['./projects/flowers/boards/board-05.jpg','POSTER & APPLICATION / 梦花海报与场景应用'],
+  ['./projects/flowers/boards/board-06.jpg','RESULTS DISPLAY / 数字媒介与成品展示'],
 ];
 
 function FlowersProject({ onClose }:{ onClose:()=>void }) {
@@ -1033,7 +1033,7 @@ function FlowersProject({ onClose }:{ onClose:()=>void }) {
       </header>
 
       <section className="flowers-hero" id="flowers-top">
-        <div className="flowers-hero-crop"><img src="/projects/flowers/boards/board-01.jpg" alt="造花实验性字体海报设计左侧主视觉" /></div>
+        <div className="flowers-hero-crop"><img src="./projects/flowers/boards/board-01.jpg" alt="造花实验性字体海报设计左侧主视觉" /></div>
         <div className="flowers-hero-strip"><p>BACHELOR&apos;S PROJECT · 04 / 2021</p><span>TYPOGRAPHY · POSTER DESIGN</span></div>
       </section>
 
@@ -1063,10 +1063,10 @@ function FlowersProject({ onClose }:{ onClose:()=>void }) {
 }
 
 const dressBoards = [
-  ['/projects/dress/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与成品预览'],
-  ['/projects/dress/boards/board-02.jpg','RESEARCH / 设计背景、问卷与访谈'],
-  ['/projects/dress/boards/board-03.jpg','PAGES DISPLAY / 封面与系列内页设计'],
-  ['/projects/dress/boards/board-04.jpg','HANDMADE BOOK / 书皮制作与实体展示'],
+  ['./projects/dress/boards/board-01.jpg','PROJECT OVERVIEW / 项目概览与成品预览'],
+  ['./projects/dress/boards/board-02.jpg','RESEARCH / 设计背景、问卷与访谈'],
+  ['./projects/dress/boards/board-03.jpg','PAGES DISPLAY / 封面与系列内页设计'],
+  ['./projects/dress/boards/board-04.jpg','HANDMADE BOOK / 书皮制作与实体展示'],
 ];
 
 function DressProject({ onClose }:{ onClose:()=>void }) {
@@ -1079,7 +1079,7 @@ function DressProject({ onClose }:{ onClose:()=>void }) {
       </header>
 
       <section className="dress-hero" id="dress-top">
-        <div className="dress-hero-crop"><img src="/projects/dress/boards/board-01.jpg" alt="不撞衫编辑书籍项目左侧主视觉" /></div>
+        <div className="dress-hero-crop"><img src="./projects/dress/boards/board-01.jpg" alt="不撞衫编辑书籍项目左侧主视觉" /></div>
         <div className="dress-hero-strip"><p>BACHELOR&apos;S PROJECT · 05 / 2021</p><span>EDITORIAL · BOOK DESIGN</span></div>
       </section>
 
@@ -1188,7 +1188,7 @@ export default function Home() {
         <div className="section-kicker light">02 / ABOUT <span>基本信息</span></div>
         <div className="about-grid">
           <figure className="portrait-card">
-            <div className="portrait-frame"><img src="/wenhui-portrait.jpg" alt="董文慧的个人照片" /></div>
+            <div className="portrait-frame"><img src="./wenhui-portrait.jpg" alt="董文慧的个人照片" /></div>
             <figcaption><span>PORTRAIT / 01</span><span>PERSONAL ARCHIVE · 2026</span></figcaption>
           </figure>
           <div className="about-copy">
@@ -1232,7 +1232,7 @@ export default function Home() {
         <div className="section-kicker light">05 / CONTACT <span>联络</span></div>
         <div className="contact-main"><p>HAVE A PROJECT IN MIND?</p><h2>Let&apos;s make<br /><em>something.</em></h2></div>
         <div className="contact-details">
-          <div className="qr-placeholder"><img src="/contact/wechat-qr.jpg" alt="微信二维码" /></div>
+          <div className="qr-placeholder"><img src="./contact/wechat-qr.jpg" alt="微信二维码" /></div>
           <div><small>EMAIL</small><a href="mailto:hikatanhui0624@gmail.com">hikatanhui0624@gmail.com</a></div>
           <div><small>PHONE</small><p>+86 151 6215 3449</p></div>
           <a className="top-link" href="#home">BACK TO TOP ↑</a>
